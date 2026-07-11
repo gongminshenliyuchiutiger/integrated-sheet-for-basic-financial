@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【借貸與信用】活動四至六：大學學貸試算與還款計畫 | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-850 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-amber-100 text-amber-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元三：借貸「金」厲害</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-amber-500 text-white rounded-xl shadow-md shadow-amber-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            活動四至六：大學成本與學貸還款計畫
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 活動四：讀大學的代價 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-calculator text-amber-500"></i>
+          活動四：讀大學的機會成本與會計成本分析
+        </h2>
+        <p class="text-xs text-slate-500 font-semibold mb-4">
+          讀大學不僅要花學雜費（會計成本），還放棄了這四年可以工作賺錢的收入（機會成本）。請概算以下項目：
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <label class="block text-xs font-black text-slate-900 mb-1.5">1. 四年學雜與生活費 (會計成本)</label>
+            <input type="text" id="cost_university_direct" placeholder="例如：約 60 萬元 (學雜費+住宿膳食)" class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <label class="block text-xs font-black text-slate-900 mb-1.5">2. 四年放棄的工作所得 (隱性成本)</label>
+            <input type="text" id="cost_university_indirect" placeholder="例如：約 135 萬元 (以基本工資2.8萬估計)" class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <label class="block text-xs font-black text-slate-900 mb-1.5">3. 讀大學的總機會成本反思</label>
+            <input type="text" id="cost_university_total" placeholder="例如：約 195 萬元。所以大學教育要更珍惜資源！" class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+      </div>
+
+      <!-- 活動五：就學貸款政策查詢 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-amber-500"></i>
+          活動五：高級中等以上學校「就學貸款 (學貸)」政策查詢
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">1. 學貸申辦的家庭年所得門檻規定為何？（例如A、B、C三類等級之標準與利息負擔規定）</label>
+            <textarea id="loan_law_rules" rows="3" placeholder="例如：
+1. 家庭年所得 120 萬以下：免息，由政府全額補貼。
+2. 120 萬 ~ 148 萬：半額補貼利息，自行負擔半息。
+3. 148 萬以上：自付全息。若家中有兩名以上子女就學則仍可申辦..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">2. 我國政府對於弱勢或特定情況畢業生，有哪些「學貸寬限期」或「緩繳本息」的貼心措施？</label>
+            <textarea id="loan_law_defer" rows="3" placeholder="例如：
+1. 畢業或退伍後滿一年才開始還本息（寬限期）。
+2. 低收入戶、中低收入戶或月收入低於一定門檻者，可申請每次延後還款一年，最多可申辦8次（緩繳本息）..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 活動六：學貸還款計算機與計畫 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-coins text-amber-500"></i>
+          活動六：學貸試算與還款生涯計畫
+        </h2>
+        
+        <!-- 還款計算機 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-amber-50/20 p-5 rounded-xl border border-amber-100 flex flex-col justify-between">
+            <div>
+              <span class="block text-xs font-black text-amber-850 mb-3"><i class="fa-solid fa-laptop-code"></i> 學貸本息攤還動態試算機</span>
+              <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-slate-700 w-24">貸款總額 (元):</span>
+                  <input type="number" id="calc_principal" value="400000" oninput="calcLoan()" class="flex-grow bg-white border border-slate-250 rounded px-2.5 py-1 text-xs font-bold">
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-slate-700 w-24">年利率 (%):</span>
+                  <input type="number" id="calc_rate" value="1.65" step="0.01" oninput="calcLoan()" class="flex-grow bg-white border border-slate-250 rounded px-2.5 py-1 text-xs font-bold">
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-slate-700 w-24">還款年期 (年):</span>
+                  <input type="number" id="calc_years" value="8" oninput="calcLoan()" class="flex-grow bg-white border border-slate-250 rounded px-2.5 py-1 text-xs font-bold">
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-150 text-center">
+              <span class="text-[10px] text-slate-500 font-bold block">每月應攤還本息金額：</span>
+              <span id="calc_result" class="text-xl font-black text-amber-700">0 元</span>
+            </div>
+          </div>
+
+          <!-- 生涯還款計畫 -->
+          <div class="flex flex-col justify-between">
+            <div>
+              <label class="block text-xs font-bold text-slate-705 mb-1.5">根據上述試算金額，當你大學畢業進入職場後，該如何編列這筆「學貸償還支出」？你會給自己什麼生涯理財提醒？</label>
+              <textarea id="ref_repay_plan" rows="5" placeholder="例如：以月薪 3.8 萬元、每月還款約 4500 元計算，學貸約占月收入的 12%。我需要在發薪日當天就自動轉帳扣款還學貸，視其為固定開支。在學貸未還清前，應剪掉不必要的信用卡、減少無謂的社交大餐開銷，努力存下第一筆備用金..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-amber-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const textIds = [
+      'cost_university_direct', 'cost_university_indirect', 'cost_university_total',
+      'loan_law_rules', 'loan_law_defer',
+      'calc_principal', 'calc_rate', 'calc_years',
+      'ref_repay_plan'
+    ];
+    const storagePrefix = 'credit_university_';
+
+    function calcLoan() {
+      const P = parseFloat(document.getElementById('calc_principal').value || 0);
+      const annualRate = parseFloat(document.getElementById('calc_rate').value || 0);
+      const years = parseFloat(document.getElementById('calc_years').value || 0);
+
+      if (P <= 0 || annualRate <= 0 || years <= 0) {
+        document.getElementById('calc_result').textContent = '0 元';
+        return;
+      }
+
+      const r = (annualRate / 100) / 12; // 月利率
+      const n = years * 12; // 總期數 (月)
+
+      // 本息平均攤還公式：PMT = P * [r * (1+r)^n] / [(1+r)^n - 1]
+      const pmt = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      
+      document.getElementById('calc_result').textContent = Math.round(pmt).toLocaleString() + ' 元';
+    }
+
+    function initStorage() {
+      textIds.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val) document.getElementById(id).value = val;
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+          if (id.startsWith('calc_')) calcLoan();
+        });
+      });
+
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      calcLoan();
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學貸理財計畫的所有作答狀態嗎？')) {
+        textIds.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+        });
+        document.getElementById('cost_university_direct').value = '';
+        document.getElementById('cost_university_indirect').value = '';
+        document.getElementById('cost_university_total').value = '';
+        document.getElementById('loan_law_rules').value = '';
+        document.getElementById('loan_law_defer').value = '';
+        document.getElementById('calc_principal').value = '400000';
+        document.getElementById('calc_rate').value = '1.65';
+        document.getElementById('calc_years').value = '8';
+        document.getElementById('ref_repay_plan').value = '';
+
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        
+        calcLoan();
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-amber-700 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-amber-700 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // Textarea / Input 替換
+      const tempElements = [];
+      textIds.forEach(id => {
+        const inp = document.getElementById(id);
+        const val = inp.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2 text-xs text-amber-800 font-semibold shadow-inner min-h-[30px] whitespace-pre-wrap flex items-center';
+        tDiv.textContent = val;
+        
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tDiv, inp);
+        tempElements.push({ original: inp, temp: tDiv });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `借貸與信用_活動四五六_學貸試算計畫_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

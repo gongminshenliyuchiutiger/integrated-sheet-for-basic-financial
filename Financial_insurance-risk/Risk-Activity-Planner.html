@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【保險與風險管理】活動一、二＆三：假日活動計畫與風險防範紀錄 | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-blue-100 text-blue-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元二：生活金贏家 Let’s go</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-600/20 flex items-center justify-center">
+              <i class="fa-solid fa-umbrella-beach"></i>
+            </span>
+            活動一、二＆三：假日活動計畫與風險防範紀錄
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-blue-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 活動一：課外或假日活動計畫 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-calendar-days text-blue-600"></i>
+          活動一：課外或假日活動計畫 (手冊 P.5)
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-650 mb-1.5">活動主題</label>
+            <input type="text" id="plan_title" placeholder="例如：山區露營趣、基隆港一日遊" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-650 mb-1.5">時間安排</label>
+            <select id="plan_duration" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+              <option value="半日">半日活動</option>
+              <option value="一日">一日行程</option>
+              <option value="二日以上">兩日以上/其他</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-655 mb-1.5">主要交通工具</label>
+            <input type="text" id="plan_transport" placeholder="例如：火車 + 客運、租遊覽車" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-650 mb-1.5">行程亮點 / 吸引力</label>
+            <textarea id="plan_attraction" rows="2" placeholder="說明此行程吸引人之處或主要特色..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-650 mb-1.5">預算（所需費用與估算說明）</label>
+            <textarea id="plan_budget" rows="2" placeholder="例如：每人火車票 300 元、餐費 400 元、雜支 100 元，總共約 800 元..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <label class="block text-xs font-bold text-slate-650 mb-1.5">活動詳細內容 / 行程安排</label>
+          <textarea id="plan_itinerary" rows="3" placeholder="例如：08:00 台北車站集合 -> 09:30 抵達目的地 -> 12:00 午餐時間..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+        </div>
+      </div>
+
+      <!-- 活動二：哪裡有險我知道 (自訂增刪) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4 border-b border-slate-100 pb-3">
+          <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-circle-exclamation text-blue-600"></i>
+            活動二：哪裡有險我知道 (可自行增刪)
+          </h2>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-550">活動類型：</span>
+              <input type="text" id="risk_type" placeholder="例如：郊遊踏青" class="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+            </div>
+            <button type="button" onclick="addRiskRow('', '', '', '')" class="no-print text-xs font-black text-blue-700 bg-blue-50 border border-blue-150 px-3 py-1.5 rounded-xl hover:bg-blue-100 transition-all flex items-center gap-1">
+              <i class="fa-solid fa-plus"></i> 新增風險項目
+            </button>
+          </div>
+        </div>
+        <p class="text-xs text-slate-500 font-semibold mb-4 leading-relaxed">
+          請思考活動計畫中可能發生的危險、可能的損失與傷害，並寫下如何預防。可自由新增、修改或刪除。
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs font-semibold text-slate-700 border-collapse border border-slate-200">
+            <thead>
+              <tr class="bg-blue-50/50 text-slate-900 border-b border-slate-200">
+                <th class="p-3 text-left w-1/4 border-r border-slate-200">可能危險的地點</th>
+                <th class="p-3 text-left w-1/4 border-r border-slate-200">可能發生的事件</th>
+                <th class="p-3 text-left w-1/4 border-r border-slate-200">可能的損失與傷害</th>
+                <th class="p-3 text-left border-r border-slate-200">預防或應對方式</th>
+                <th class="p-2 text-center w-16 no-print">操作</th>
+              </tr>
+            </thead>
+            <tbody id="risk-tbody">
+              <!-- 由 JS 動態生成 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 活動三：報告分享會紀錄 (自訂增刪) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4 border-b border-slate-100 pb-3">
+          <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-blue-600"></i>
+            活動三：報告分享會紀錄表格 (可自行增刪)
+          </h2>
+          <button type="button" onclick="addShareRow('', '', '', 'A. 風險規避')" class="no-print text-xs font-black text-blue-700 bg-blue-50 border border-blue-150 px-3 py-1.5 rounded-xl hover:bg-blue-100 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-plus"></i> 新增分享紀錄
+          </button>
+        </div>
+        <p class="text-xs text-slate-500 font-semibold mb-4 leading-relaxed font-semibold">
+          聆聽其他小組分享活動計畫時，記錄他們提到的重點，並從風險管理四策略中評估其採用的策略：<br>
+          <span class="inline-block bg-blue-50 text-blue-800 text-[10.5px] px-2 py-0.5 rounded font-bold">A. 風險規避</span> (完全避開風險)、
+          <span class="inline-block bg-blue-50 text-blue-800 text-[10.5px] px-2 py-0.5 rounded font-bold">B. 風險降低</span> (減少機率或損害)、
+          <span class="inline-block bg-blue-50 text-blue-800 text-[10.5px] px-2 py-0.5 rounded font-bold">C. 風險轉嫁</span> (如向保險公司投保)、
+          <span class="inline-block bg-blue-50 text-blue-800 text-[10.5px] px-2 py-0.5 rounded font-bold">D. 風險自承</span> (自負盈虧/承擔小額損害)。
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs font-semibold text-slate-700 border-collapse border border-slate-200">
+            <thead>
+              <tr class="bg-blue-50/50 text-slate-900 border-b border-slate-200">
+                <th class="p-3 text-left w-1/5 border-r border-slate-200">報告的活動類型</th>
+                <th class="p-3 text-left w-1/4 border-r border-slate-200">可能發生的事件</th>
+                <th class="p-3 text-left w-1/4 border-r border-slate-200">預防方式</th>
+                <th class="p-3 text-left border-r border-slate-200">對應的風險管理策略</th>
+                <th class="p-2 text-center w-16 no-print">操作</th>
+              </tr>
+            </thead>
+            <tbody id="share-tbody">
+              <!-- 由 JS 動態生成 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-blue-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const storagePrefix = 'risk_planner_dynamic_';
+    
+    // 活動一欄位
+    const planFields = ['plan_title', 'plan_duration', 'plan_transport', 'plan_attraction', 'plan_budget', 'plan_itinerary', 'risk_type'];
+
+    // 活動二預設資料
+    const defaultRisks = [
+      { loc: '山區、步道', event: '突降大雨', loss: '淋雨感冒、失溫', prevent: '攜帶雨具、備用衣物' },
+      { loc: '步道轉折處', event: '失足滑倒', loss: '腳踝扭傷、擦傷', prevent: '穿合適的運動鞋、帶醫藥包' }
+    ];
+
+    // 活動三預設資料
+    const defaultShares = [
+      { act: '野外溯溪', event: '山洪暴發', prevent: '天候不佳即不進溪流', strategy: 'A. 風險規避' },
+      { act: '畢業旅行', event: '意外生病或車禍', prevent: '投保旅行平安保險', strategy: 'C. 風險轉嫁' }
+    ];
+
+    // 儲存至 LocalStorage
+    function saveData() {
+      // 1. 儲存活動一
+      planFields.forEach(id => {
+        localStorage.setItem(storagePrefix + id, document.getElementById(id).value);
+      });
+
+      // 2. 儲存活動二表格
+      const riskRows = document.querySelectorAll('#risk-tbody tr');
+      const risks = [];
+      riskRows.forEach(row => {
+        risks.push({
+          loc: row.querySelector('.risk-loc').value,
+          event: row.querySelector('.risk-event').value,
+          loss: row.querySelector('.risk-loss').value,
+          prevent: row.querySelector('.risk-prevent').value
+        });
+      });
+      localStorage.setItem(storagePrefix + 'risks_list', JSON.stringify(risks));
+
+      // 3. 儲存活動三表格
+      const shareRows = document.querySelectorAll('#share-tbody tr');
+      const shares = [];
+      shareRows.forEach(row => {
+        shares.push({
+          act: row.querySelector('.share-act').value,
+          event: row.querySelector('.share-event').value,
+          prevent: row.querySelector('.share-prevent').value,
+          strategy: row.querySelector('.share-strategy').value
+        });
+      });
+      localStorage.setItem(storagePrefix + 'shares_list', JSON.stringify(shares));
+    }
+
+    // 渲染活動二的一行
+    function renderRiskRow(loc = '', event = '', loss = '', prevent = '') {
+      const tbody = document.getElementById('risk-tbody');
+      const tr = document.createElement('tr');
+      tr.className = 'border-b border-slate-200';
+      tr.innerHTML = `
+        <td class="p-2 border-r border-slate-200"><input type="text" class="risk-loc w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：山區、步道" value="${loc}"></td>
+        <td class="p-2 border-r border-slate-200"><input type="text" class="risk-event w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：突降大雨" value="${event}"></td>
+        <td class="p-2 border-r border-slate-200"><input type="text" class="risk-loss w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：淋雨感冒" value="${loss}"></td>
+        <td class="p-2 border-r border-slate-200"><input type="text" class="risk-prevent w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：攜帶雨具" value="${prevent}"></td>
+        <td class="p-2 text-center no-print">
+          <button type="button" class="btn-delete text-rose-600 hover:text-rose-800 transition text-sm"><i class="fa-solid fa-trash-can"></i></button>
+        </td>
+      `;
+
+      tr.querySelectorAll('input').forEach(inp => inp.addEventListener('input', saveData));
+      tr.querySelector('.btn-delete').addEventListener('click', () => {
+        if (confirm('確定要刪除此風險項目嗎？')) {
+          tr.remove();
+          saveData();
+        }
+      });
+
+      tbody.appendChild(tr);
+    }
+
+    // 按鈕：動態新增風險行
+    function addRiskRow(loc = '', event = '', loss = '', prevent = '') {
+      renderRiskRow(loc, event, loss, prevent);
+      saveData();
+    }
+
+    // 渲染活動三的一行
+    function renderShareRow(act = '', event = '', prevent = '', strategy = 'A. 風險規避') {
+      const tbody = document.getElementById('share-tbody');
+      const tr = document.createElement('tr');
+      tr.className = 'border-b border-slate-200';
+      tr.innerHTML = `
+        <td class="p-2 border-r border-slate-200"><input type="text" class="share-act w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：畢業旅行" value="${act}"></td>
+        <td class="p-2 border-r border-slate-200"><input type="text" class="share-event w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：意外生病" value="${event}"></td>
+        <td class="p-2 border-r border-slate-200"><input type="text" class="share-prevent w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500" placeholder="例如：投保旅平險" value="${prevent}"></td>
+        <td class="p-2 border-r border-slate-200">
+          <select class="share-strategy w-full bg-slate-50 border border-slate-200 rounded p-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500">
+            <option value="A. 風險規避">A. 風險規避 (取消活動)</option>
+            <option value="B. 風險降低">B. 風險降低 (安全檢查)</option>
+            <option value="C. 風險轉嫁">C. 風險轉嫁 (投保理賠)</option>
+            <option value="D. 風險自承">D. 風險自承 (自行承擔小額)</option>
+          </select>
+        </td>
+        <td class="p-2 text-center no-print">
+          <button type="button" class="btn-delete text-rose-600 hover:text-rose-800 transition text-sm"><i class="fa-solid fa-trash-can"></i></button>
+        </td>
+      `;
+
+      tr.querySelector('.share-strategy').value = strategy;
+
+      tr.querySelectorAll('input').forEach(inp => inp.addEventListener('input', saveData));
+      tr.querySelector('.share-strategy').addEventListener('change', saveData);
+      
+      tr.querySelector('.btn-delete').addEventListener('click', () => {
+        if (confirm('確定要刪除此分享紀錄嗎？')) {
+          tr.remove();
+          saveData();
+        }
+      });
+
+      tbody.appendChild(tr);
+    }
+
+    // 按鈕：動態新增分享行
+    function addShareRow(act = '', event = '', prevent = '', strategy = 'A. 風險規避') {
+      renderShareRow(act, event, prevent, strategy);
+      saveData();
+    }
+
+    function initStorage() {
+      // 1. 載入基本資料
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      // 2. 載入活動一欄位
+      planFields.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val) document.getElementById(id).value = val;
+        
+        document.getElementById(id).addEventListener('input', () => saveData());
+        if (document.getElementById(id).tagName === 'SELECT') {
+          document.getElementById(id).addEventListener('change', () => saveData());
+        }
+      });
+
+      // 3. 載入活動二表格
+      const riskJson = localStorage.getItem(storagePrefix + 'risks_list');
+      const riskTbody = document.getElementById('risk-tbody');
+      riskTbody.innerHTML = '';
+      if (riskJson) {
+        const list = JSON.parse(riskJson);
+        list.forEach(r => renderRiskRow(r.loc, r.event, r.loss, r.prevent));
+      } else {
+        defaultRisks.forEach(r => renderRiskRow(r.loc, r.event, r.loss, r.prevent));
+      }
+
+      // 4. 載入活動三表格
+      const shareJson = localStorage.getItem(storagePrefix + 'shares_list');
+      const shareTbody = document.getElementById('share-tbody');
+      shareTbody.innerHTML = '';
+      if (shareJson) {
+        const list = JSON.parse(shareJson);
+        list.forEach(s => renderShareRow(s.act, s.event, s.prevent, s.strategy));
+      } else {
+        defaultShares.forEach(s => renderShareRow(s.act, s.event, s.prevent, s.strategy));
+      }
+
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有作答狀態嗎？這將會恢復預設的表格項目！')) {
+        planFields.forEach(id => localStorage.removeItem(storagePrefix + id));
+        localStorage.removeItem(storagePrefix + 'risks_list');
+        localStorage.removeItem(storagePrefix + 'shares_list');
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        planFields.forEach(id => {
+          const el = document.getElementById(id);
+          if (el.tagName === 'SELECT') el.selectedIndex = 0;
+          else el.value = '';
+        });
+
+        initStorage();
+        showToast('學習單已重設，已恢復預設欄位！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-blue-700 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-blue-700 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      const tempElements = [];
+
+      // 1. 處理頁面中所有的 static input 和 textarea
+      planFields.forEach(id => {
+        const inp = document.getElementById(id);
+        let val = '';
+        if (inp.tagName === 'SELECT') {
+          val = inp.options[inp.selectedIndex].text;
+        } else {
+          val = inp.value || '';
+        }
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs text-blue-700 font-semibold shadow-inner min-h-[30px] whitespace-pre-wrap flex items-center';
+        tDiv.textContent = val || ' ';
+        
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tDiv, inp);
+        tempElements.push({ original: inp, temp: tDiv });
+      });
+
+      // 2. 處理表格中所有的 input 欄位
+      const tableInputs = document.querySelectorAll('#risk-tbody input, #share-tbody input');
+      tableInputs.forEach(inp => {
+        const val = inp.value || '';
+        const tSpan = document.createElement('span');
+        tSpan.className = 'text-xs text-blue-800 font-semibold';
+        tSpan.textContent = val || ' ';
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tSpan, inp);
+        tempElements.push({ original: inp, temp: tSpan });
+      });
+
+      // 3. 處理表格中的 select 欄位
+      const tableSelects = document.querySelectorAll('#share-tbody select');
+      tableSelects.forEach(sel => {
+        const val = sel.options[sel.selectedIndex].text;
+        const tSpan = document.createElement('span');
+        tSpan.className = 'text-xs text-blue-800 font-black';
+        tSpan.textContent = val;
+        sel.style.display = 'none';
+        sel.parentNode.insertBefore(tSpan, sel);
+        tempElements.push({ original: sel, temp: tSpan });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `保險與風險管理_活動一二三_活動計畫與風險紀錄_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

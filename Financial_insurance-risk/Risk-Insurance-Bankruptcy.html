@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【保險與風險管理】活動六：如果保險公司破產的話，會怎樣？ | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-blue-100 text-blue-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元三：有「保」有保佑</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-600/20 flex items-center justify-center">
+              <i class="fa-solid fa-building-circle-xmark"></i>
+            </span>
+            活動六：如果保險公司破產的話，會怎樣？
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-blue-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 泰國防疫保單破產個案 (手冊 P.18) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-sm font-black text-rose-600 mb-3 border-b border-rose-100 pb-2 flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-exclamation animate-pulse"></i> 個案閱讀：泰國防疫保單破產案 (他山之石)
+        </h2>
+        <p class="text-xs font-semibold text-slate-650 leading-relaxed">
+          泰國 16 家保險業者 2020 年新冠疫情相對溫和之際，推出確診即理賠的防疫保單，結果 2021 年疫情大爆發， Omicron 來勢洶洶， 泰國保險監理委員會 （OIC） 數據顯示， 至 2022 年 3 月底， 防疫保單累計給付近 600 億泰銖（518.3 億台幣），但至當月 15 日保險公司收到的保費總額為 110 億泰銖（95 億台幣），收支嚴重失衡，其中四家業者因資不抵債而宣告破產。
+        </p>
+      </div>
+
+      <!-- 問題思考與影響分析 (重新設計為引導式選項，降低編寫難度) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-brain text-blue-600"></i>
+          小組思辨討論區 (引導式問答)
+        </h2>
+
+        <!-- Q1 & Q2 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- Q1 -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <label class="block text-xs font-black text-slate-900 mb-2.5">Q1. 泰國 4 家保險公司破產的原因為何？ (可複選)</label>
+              <div class="space-y-2 text-xs font-bold text-slate-700">
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="checkbox" id="q1_opt_1" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>保單設計精算失誤，低估傳染病大流行機率</span>
+                </label>
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="checkbox" id="q1_opt_2" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>確診即理賠，且無重症或就醫限制導致大量理賠</span>
+                </label>
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="checkbox" id="q1_opt_3" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>理賠給付支出（600億）遠高於保費收入（110億），收支嚴重失衡</span>
+                </label>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label class="block text-[10px] font-bold text-slate-500 mb-1">我有其他想法或補充：</label>
+              <input type="text" id="break_reason" placeholder="（選填）例如：防疫险爆發力強，超出了公司的承擔能力" class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <label class="block text-xs font-black text-slate-900 mb-2.5">Q2. 在我國會不會發生保險公司破產的情況？ (單選)</label>
+              <div class="space-y-2 text-xs font-bold text-slate-700">
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="radio" name="q2_radio" id="q2_opt_a" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                  <span>可能會。面對極端重大天災或新傳染病（如我國防疫險鉅額虧損），若無防護網可能破產。</span>
+                </label>
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="radio" name="q2_radio" id="q2_opt_b" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                  <span>可能，但有國家防護網。我國金管會有資本適足率(RBC)監理與保險安定基金接管機制，能降低衝擊。</span>
+                </label>
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="radio" name="q2_radio" id="q2_opt_c" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                  <span>絕對不會。因為保險公司是特許行業，政府隨時會無條件給錢。</span>
+                </label>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label class="block text-[10px] font-bold text-slate-500 mb-1">我有其他想法或補充：</label>
+              <input type="text" id="break_taiwan" placeholder="（選填）例如：台灣的保險法規監管相對嚴格許多..." class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 影響分析 -->
+        <h3 class="text-xs font-black text-slate-950 mb-3 border-t border-slate-100 pt-4 flex items-center gap-1.5"><i class="fa-solid fa-circle-nodes text-blue-600"></i> 3. 如果保險公司破產的話，那麼對保險公司、保戶、政府會有什麼影響呢？ (勾選出正確的觀念)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-semibold text-slate-700">
+          
+          <!-- 保險公司 -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span class="block font-black text-blue-900 mb-2.5"><i class="fa-solid fa-building text-blue-600"></i> (1) 對保險公司的影響</span>
+              <div class="space-y-2">
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_c_1" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>公司商譽與品牌信用徹底歸零</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_c_2" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>股東投入的資金面臨血本無歸</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_c_3" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>員工面臨失業、減薪或裁員危機</span>
+                </label>
+              </div>
+            </div>
+            <div class="mt-3">
+              <input type="text" id="impact_company" placeholder="我想額外補充的影響..." class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+
+          <!-- 保戶 -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span class="block font-black text-blue-900 mb-2.5"><i class="fa-solid fa-users text-blue-600"></i> (2) 對保戶投保人的影響</span>
+              <div class="space-y-2">
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_h_1" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>手上的保單面臨失效，失去事故防護網</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_h_2" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>發生意外或生病時，可能拿不到應得理賠</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_h_3" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>先前已繳納的龐大保費可能無法全額拿回</span>
+                </label>
+              </div>
+            </div>
+            <div class="mt-3">
+              <input type="text" id="impact_holder" placeholder="我想額外補充的影響..." class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+
+          <!-- 政府 -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span class="block font-black text-blue-900 mb-2.5"><i class="fa-solid fa-landmark text-blue-600"></i> (3) 對政府的影響</span>
+              <div class="space-y-2">
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_g_1" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>民眾對國家金融體系失去信任，引發社會恐慌</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_g_2" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>需要動用「保險安定基金」接管，造成財政負擔</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="imp_g_3" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                  <span>需要協調其他健康的保險公司併購或承接原保單</span>
+                </label>
+              </div>
+            </div>
+            <div class="mt-3">
+              <input type="text" id="impact_gov" placeholder="我想額外補充的影響..." class="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-blue-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669(4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const textIds = ['break_reason', 'break_taiwan', 'impact_company', 'impact_holder', 'impact_gov'];
+    const chkIds = [
+      'q1_opt_1', 'q1_opt_2', 'q1_opt_3',
+      'q2_opt_a', 'q2_opt_b', 'q2_opt_c',
+      'imp_c_1', 'imp_c_2', 'imp_c_3',
+      'imp_h_1', 'imp_h_2', 'imp_h_3',
+      'imp_g_1', 'imp_g_2', 'imp_g_3'
+    ];
+    const storagePrefix = 'risk_bankruptcy_v3_';
+
+    function initStorage() {
+      // 載入與監聽 input text
+      textIds.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val) document.getElementById(id).value = val;
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+        });
+      });
+
+      // 載入與監聽 checkboxes / radios
+      chkIds.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val !== null) {
+          document.getElementById(id).checked = val === 'true';
+        }
+        document.getElementById(id).addEventListener('change', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.checked);
+          
+          // 如果是 radio，需手動儲存同群組其他 radio 的 false 狀態
+          if (e.target.type === 'radio') {
+            const groupName = e.target.name;
+            const radios = document.querySelectorAll(`input[name="${groupName}"]`);
+            radios.forEach(r => {
+              if (r.id !== id) {
+                localStorage.setItem(storagePrefix + r.id, 'false');
+              }
+            });
+          }
+        });
+      });
+
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有作答狀態嗎？')) {
+        textIds.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).value = '';
+        });
+
+        chkIds.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).checked = false;
+        });
+
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-blue-700 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-blue-700 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 臨時將 input text 轉換為 div 顯示，避免截圖時被裁切
+      const tempElements = [];
+      textIds.forEach(id => {
+        const inp = document.getElementById(id);
+        const val = inp.value || '（無補充說明）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2 text-xs text-blue-700 font-semibold shadow-inner min-h-[36px] whitespace-pre-wrap';
+        tDiv.textContent = val;
+        
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tDiv, inp);
+        tempElements.push({ original: inp, temp: tDiv });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `保險與風險管理_活動六_保險公司破產思辨_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

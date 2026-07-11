@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【保險與風險管理】活動五：保險詐騙案件 | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-blue-100 text-blue-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元三：有「保」有保佑</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-600/20 flex items-center justify-center">
+              <i class="fa-solid fa-mask animate-pulse"></i>
+            </span>
+            活動五：保險詐騙案件 (ORID焦點討論)
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-blue-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 案件故事與補充資料雙排卡片 (手冊 P.16 - P.17) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        
+        <!-- 案件故事 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between print-shadow-none">
+          <div>
+            <h2 class="text-sm font-black text-rose-600 mb-3 border-b border-rose-100 pb-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-newspaper"></i> 個案閱讀：乾冰泡腳「雙腿截肢」男大生涉詐保逾4千萬
+            </h2>
+            <div class="text-[11px] text-slate-650 space-y-2.5 font-semibold leading-relaxed">
+              <p>
+                張姓男大生遭高中好友廖男設局陷害欠下上千萬的巨款，因此聽從廖男的安排，在 2023 年 1 月向 5 家保險公司投保壽險、旅遊平安險與傷害保險等保險。接著，兩人為了詐領保險金，竟異想天開，張男把腳放進裝有乾冰的水桶裡長達 10 小時，導致雙腳膝蓋以下凍傷壞死截肢。
+              </p>
+              <p>
+                之後，張男謊稱騎機車環島行經陽明山、金山、淡水等地時，因氣溫太低導致雙腳凍傷，小腿以下部位需截肢保命，而向多家投保的保險公司申請理賠，金額高達 4,126 萬元，而這次意外僅發生在張男的保單生效 3 天後。
+              </p>
+              <p>
+                保險公司察覺張男恐是自導自演，拒絕理賠並向警方報案。警方調閱氣象觀測站資料發現，2 人所稱的夜騎時段溫度在 6 度至 17 度之間，根本不可能凍傷，且傷勢整齊對稱，也沒鞋子、襪子印痕，不合常理，全案才曝光，張男及廖男則依詐欺等罪嫌遭起訴。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 補充資料 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between print-shadow-none">
+          <div>
+            <h2 class="text-sm font-black text-blue-800 mb-3 border-b border-blue-100 pb-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 補充資料：保險詐欺的原因與危害
+            </h2>
+            <div class="text-[11px] text-slate-650 space-y-3 font-semibold leading-relaxed">
+              <p>
+                <strong>保險理賠詐欺</strong>是指投保人以詐欺的手段欺騙保險公司，使保險公司相信被保險人發生意外或人身損失，而獲得保險公司理賠之行為。主要起因於雙方資訊不對稱，可分為以下二類：
+              </p>
+              <div class="bg-blue-50/20 p-3 rounded-lg border border-blue-100">
+                <span class="block font-black text-blue-900 mb-1">1. 投保之前：逆選擇 (Adverse Selection)</span>
+                有病在身或高風險群的人故意隱瞞身體健康狀況加入保險，進而增加理賠率。當理賠率提高，保費相對提高，導致健康的人因為保費昂貴而放棄投保，造成惡性循環。
+              </div>
+              <div class="bg-blue-50/20 p-3 rounded-lg border border-blue-100">
+                <span class="block font-black text-blue-900 mb-1">2. 投保之後：道德風險 (Moral Hazard)</span>
+                保戶在投保後，故意做出危險的行為或自殘、假車禍、裝病來騙取保險金。這會大幅增加保險公司的負擔，導致真正有需要的被保險人權益受損。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORID 焦點討論區 (2x2 田字型排版，空間大，非常好填寫) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-comments text-blue-600"></i>
+          保險詐騙案件 ORID 焦點討論
+        </h2>
+        <p class="text-xs text-slate-500 font-semibold mb-4 leading-relaxed">
+          請小組討論並針對本案寫下你們的看法：
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- O -->
+          <div class="flex flex-col bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm justify-between min-h-[160px]">
+            <div class="flex flex-col gap-1 mb-2">
+              <span class="text-[10px] font-black text-blue-700 bg-blue-100 px-2 py-0.5 rounded self-start"><i class="fa-solid fa-eye"></i> O (客觀事實)</span>
+              <span class="text-[9.5px] text-slate-550 font-bold">你看到什麼？你發現什麼破綻？</span>
+            </div>
+            <textarea id="orid_o" rows="3" placeholder="例如：張男在保單生效僅3天後就聲稱凍傷截肢；警方查出當晚陽明山氣溫在 6~17 度，根本不可能造成凍傷；且傷勢對稱整齊、完全沒有鞋襪的痕跡..." class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+          </div>
+
+          <!-- R -->
+          <div class="flex flex-col bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm justify-between min-h-[160px]">
+            <div class="flex flex-col gap-1 mb-2">
+              <span class="text-[10px] font-black text-blue-700 bg-blue-100 px-2 py-0.5 rounded self-start"><i class="fa-solid fa-heart"></i> R (感受反應)</span>
+              <span class="text-[9.5px] text-slate-550 font-bold">你的感覺是什麼？印象最深刻的地方？</span>
+            </div>
+            <textarea id="orid_r" rows="3" placeholder="例如：感到非常震撼和同情。廖男用債務設局殘害朋友，而張男竟然愚蠢到配合自殘截肢。最不可思議的是為了金錢甘願賠上雙腿，結果終身失能且被起訴..." class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+          </div>
+
+          <!-- I -->
+          <div class="flex flex-col bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm justify-between min-h-[160px]">
+            <div class="flex flex-col gap-1 mb-2">
+              <span class="text-[10px] font-black text-blue-700 bg-blue-100 px-2 py-0.5 rounded self-start"><i class="fa-solid fa-lightbulb"></i> I (價值意義)</span>
+              <span class="text-[9.5px] text-slate-550 font-bold">為什麼會有這種感覺？你從中學到了什麼？</span>
+            </div>
+            <textarea id="orid_i" rows="3" placeholder="例如：這說明投保後的「道德風險」對社會與個人都有極大危害。學到天下沒有白吃的午餐，保險理賠有科學的精算與嚴密的核查制度，任何欺詐都會留下破綻..." class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+          </div>
+
+          <!-- D -->
+          <div class="flex flex-col bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm justify-between min-h-[160px]">
+            <div class="flex flex-col gap-1 mb-2">
+              <span class="text-[10px] font-black text-blue-700 bg-blue-100 px-2 py-0.5 rounded self-start"><i class="fa-solid fa-circle-play"></i> D (決定行動)</span>
+              <span class="text-[9.5px] text-slate-550 font-bold">遇到人生不順遂時該用什麼態度？如何正確使用保險？</span>
+            </div>
+            <textarea id="orid_d" rows="3" placeholder="例如：遇到金錢或債務困難應透過家人或司法協助解決，絕不聽信損友。保險是用來保障「未來不確定風險」的防護網，絕不能用來自殘作為發家致富的犯罪工具..." class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-blue-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const textIds = ['orid_o', 'orid_r', 'orid_i', 'orid_d'];
+    const storagePrefix = 'risk_scam_v2_';
+
+    function initStorage() {
+      textIds.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val) document.getElementById(id).value = val;
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+        });
+      });
+
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有作答狀態嗎？')) {
+        textIds.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).value = '';
+        });
+
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-blue-700 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-blue-700 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // Textarea 替換為 div
+      const tempElements = [];
+      textIds.forEach(id => {
+        const inp = document.getElementById(id);
+        const val = inp.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs text-blue-700 font-semibold shadow-inner min-h-[60px] whitespace-pre-wrap';
+        tDiv.textContent = val;
+        
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tDiv, inp);
+        tempElements.push({ original: inp, temp: tDiv });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `保險與風險管理_活動五_保險詐騙案件_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

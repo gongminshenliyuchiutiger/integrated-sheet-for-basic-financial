@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【保險與風險管理】主題教材互動式學習單導航儀表板</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      50% { filter: drop-shadow(0 0 6px rgba(14, 165, 233, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 2s linear infinite, mascot-shake 0.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主導航區 -->
+  <div class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 flex-grow">
+    
+    <!-- 返回全域首頁 -->
+    <div class="no-print mb-6">
+      <a href="../index.html" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回全域首頁
+      </a>
+    </div>
+
+    <!-- 頂部大標題 -->
+    <div class="text-center border-b-2 border-dashed border-slate-200 pb-8 mb-8">
+      <span class="inline-block bg-blue-100 text-blue-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-3 tracking-wider">金管會金融基礎教育推廣教材</span>
+      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight flex items-center justify-center gap-3">
+        <span class="p-3 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-600/20 flex items-center justify-center">
+          <i class="fa-solid fa-shield-halved"></i>
+        </span>
+        【保險與風險管理】主題教材互動學習單
+      </h1>
+      <p class="text-slate-500 text-xs font-semibold mt-3 max-w-md mx-auto leading-relaxed">
+        本教材涵蓋風險與危險的辨識、日常活動的風險預防，以及社會保險與商業保險的規劃。學生可直接線上作答，即時試算，並匯出不跑版的成果學習單。
+      </p>
+    </div>
+
+    <!-- 單元列表 -->
+    <div class="space-y-8">
+      
+      <!-- 單元一 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-black text-blue-700 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-triangle-exclamation"></i> 單元一：風險與危險
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- 活動一&二 -->
+          <a href="Risk-Basic-Concepts.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 1 & 2</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">象棋見風險與難兄難弟 ORID 影片討論</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+          
+          <!-- 活動三&四 -->
+          <a href="Risk-Campus-Safety.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 3 & 4</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">校園安全角落搜查與解密（心智圖/ORID）</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 單元二 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-black text-blue-700 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-compass"></i> 單元二：生活金贏家 Let’s go
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- 活動一、二、三 -->
+          <a href="Risk-Activity-Planner.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 1, 2 & 3</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">課外活動計畫、風險預防與報告分享會紀錄</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動四 -->
+          <a href="Risk-Insurance-Quiz.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 4</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">我是保險小達人</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 單元三 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-black text-blue-700 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-umbrella"></i> 單元三：有「保」有保佑
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <!-- 活動一 -->
+          <a href="Risk-Insurance-Basics.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 1</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">活動一：保險知多少？六大基礎觀念辨析</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動二 -->
+          <a href="Risk-Fire-Incident.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 2</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">活動二：火災事故中的人身/財產/責任風險</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動三 -->
+          <a href="Risk-Insurance-Planning.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 3</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">活動三：保險規劃與人身風險評估推薦</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動四 -->
+          <a href="Risk-National-Health-Insurance.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 4</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">活動四：全民健保大家談發言錯處修正</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動五 -->
+          <a href="Risk-Scam-ORID.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 5</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">活動五：保險詐騙案件 ORID 焦點討論</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動六 -->
+          <a href="Risk-Insurance-Bankruptcy.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 6</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-blue-700 transition">活動六：保險公司破產的影響與思辨</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 頁尾 -->
+  <div class="text-center border-t border-slate-200/60 py-6 bg-white mt-12 w-full">
+    <div class="flex justify-center mb-3">
+      <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+        <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        快樂鯉魚秋老虎
+      </a>
+    </div>
+    <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+      Copyright © Liyuchiutiger Gongminshen
+    </p>
+  </div>
+
+  <!-- 吉祥物拖曳元件 -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // Mascot dragging
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+    window.onload = initMascot;
+  </script>
+</body>
+</html>

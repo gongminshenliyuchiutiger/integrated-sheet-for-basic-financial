@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【借貸與信用】學習單：我的個人信用帳戶評分 | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-850 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-amber-100 text-amber-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元一：信不信由你</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-amber-500 text-white rounded-xl shadow-md shadow-amber-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </span>
+            活動五：我的個人信用帳戶
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 自動計算分數面板 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-sm font-black text-slate-900">個人信用帳戶分數即時試算</h2>
+            <p class="text-xs text-slate-500 font-semibold mt-1">請勾選下方11個信用行為項目，系統會自動累加您的信用總分。</p>
+          </div>
+          
+          <div class="flex items-center gap-4 flex-shrink-0">
+            <!-- 進度條 -->
+            <div class="w-32 bg-slate-100 rounded-full h-3.5 relative overflow-hidden border border-slate-200">
+              <div id="score-progress" class="bg-amber-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+            <div class="bg-amber-50 px-4 py-2 rounded-xl text-xs font-black text-amber-700">
+              信用總分：<span id="score-display" class="text-lg">0</span> / 55 分
+            </div>
+          </div>
+        </div>
+        
+        <!-- 動態評語 -->
+        <div class="mt-4 p-3 bg-amber-50/50 rounded-xl border border-amber-100 text-xs font-bold text-amber-800 flex items-center gap-2">
+          <i class="fa-solid fa-quote-left text-amber-400"></i>
+          信用等級評估：<span id="credit-evaluation">請先填寫下方的評分表...</span>
+        </div>
+      </div>
+
+      <!-- 評分表格 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs font-semibold text-slate-700 border-collapse border border-slate-200">
+            <thead>
+              <tr class="bg-amber-50/40 text-slate-900 border-b border-slate-200">
+                <th class="p-3 text-left border-r border-slate-200">日常信用行為項目</th>
+                <th class="p-3 text-center w-12 border-r border-slate-200">總是<br>(5分)</th>
+                <th class="p-3 text-center w-12 border-r border-slate-200">常常<br>(4分)</th>
+                <th class="p-3 text-center w-12 border-r border-slate-200">偶爾<br>(3分)</th>
+                <th class="p-3 text-center w-12 border-r border-slate-200">很少<br>(2分)</th>
+                <th class="p-3 text-center w-12">幾乎不<br>(1分)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 1 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">1. 我能準時繳交各科作業</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_1" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_1" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_1" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_1" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_1" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 2 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">2. 我憑實力完成作業，絕不抄襲他人</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_2" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_2" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_2" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_2" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_2" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 3 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">3. 我考試時遵守規則，不作弊</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_3" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_3" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_3" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_3" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_3" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 4 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">4. 我遵守班級公約、校規，自律守法</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_4" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_4" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_4" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_4" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_4" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 5 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">5. 我答應別人的承諾或約定，一定會做到</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_5" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_5" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_5" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_5" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_5" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 6 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">6. 我萬一不能實踐約定，一定會事先告知對方並道歉說明</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_6" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_6" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_6" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_6" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_6" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 7 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">7. 與他人有約，我一定準時赴約不無故遲到</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_7" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_7" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_7" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_7" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_7" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 8 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">8. 我沒有向同學借過錢的紀錄</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_8" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_8" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_8" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_8" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_8" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 9 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">9. 我沒有向父母預支過零用錢的習慣</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_9" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_9" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_9" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_9" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_9" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 10 -->
+              <tr class="border-b border-slate-200">
+                <td class="p-3 border-r border-slate-200">10. 我向別人借的書或物品，從沒有弄丟或損壞過</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_10" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_10" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_10" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_10" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_10" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+              <!-- 11 -->
+              <tr>
+                <td class="p-3 border-r border-slate-200">11. 我如果有向別人借錢，都有百分之百依約還款</td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_11" value="5" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_11" value="4" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_11" value="3" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center border-r border-slate-200"><input type="radio" name="item_11" value="2" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+                <td class="p-3 text-center"><input type="radio" name="item_11" value="1" onclick="calculateScore()" class="text-amber-600 focus:ring-amber-500"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 反思與提升 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-wider">提升我的信用分數</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">我認為我目前的信用分數在班上或日常生活是屬於：</label>
+            <select id="user_score_level" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-amber-500 transition">
+              <option value="高">高 (維持誠信好習慣)</option>
+              <option value="一般">一般 (偶有遲交，可以再加油)</option>
+              <option value="低">低 (需要主動改善信用行為)</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">我認為我可以做以下的事情，來提高我的個人信用分數：</label>
+            <textarea id="improve_actions" rows="2" placeholder="例如：
+1. 每天寫聯絡簿，提醒自己準時交作業。
+2. 借別人的筆記或課本，隔天就歸還。
+3. 與朋友約定提早 5 分鐘出門，以利準時赴約..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-amber-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const storagePrefix = 'credit_score_';
+    
+    function calculateScore() {
+      let score = 0;
+      let count = 0;
+      for (let i = 1; i <= 11; i++) {
+        const radios = document.getElementsByName('item_' + i);
+        let itemSelected = false;
+        for (let r of radios) {
+          if (r.checked) {
+            score += parseInt(r.value);
+            localStorage.setItem(storagePrefix + 'radio_' + i, r.value);
+            itemSelected = true;
+            count++;
+            break;
+          }
+        }
+      }
+      
+      document.getElementById('score-display').textContent = score;
+      const progressWidth = (score / 55) * 100;
+      document.getElementById('score-progress').style.width = progressWidth + '%';
+
+      // 評語更新
+      const evalText = document.getElementById('credit-evaluation');
+      if (count < 11) {
+        evalText.textContent = `請完成評分表（已完成 ${count} / 11 題）`;
+        evalText.className = "text-slate-500 font-bold text-xs";
+      } else {
+        if (score >= 48) {
+          evalText.textContent = `信用卓越（${score}分）：您在日常生活中非常遵守承諾，對時間、承諾和財務極有責任感，是大家絕對信賴的一諾千金模範！`;
+          evalText.className = "text-emerald-700 font-extrabold text-xs";
+        } else if (score >= 38) {
+          evalText.textContent = `信用良好（${score}分）：您有良好的誠信觀念，多數時候能履行約定，但有時在細節（如準時或還款）上可再加強。`;
+          evalText.className = "text-blue-700 font-extrabold text-xs";
+        } else if (score >= 25) {
+          evalText.textContent = `信用一般（${score}分）：您的信用紀錄一般。時有遲交作業、爽約或借貸拖延的習慣，需要主動養成好習慣。`;
+          evalText.className = "text-amber-700 font-extrabold text-xs";
+        } else {
+          evalText.textContent = `信用待加強（${score}分）：您的信用帳戶面臨透支風險！時常爽約或逃避責任，必須立即列出改善清單，重建個人誠信！`;
+          evalText.className = "text-rose-700 font-extrabold text-xs";
+        }
+      }
+    }
+
+    function initStorage() {
+      // 載入 Radio
+      for (let i = 1; i <= 11; i++) {
+        const savedVal = localStorage.getItem(storagePrefix + 'radio_' + i);
+        if (savedVal !== null) {
+          const radios = document.getElementsByName('item_' + i);
+          for (let r of radios) {
+            if (r.value === savedVal) {
+              r.checked = true;
+              break;
+            }
+          }
+        }
+      }
+
+      // 載入自訂 Textarea / Select
+      const valSelect = localStorage.getItem(storagePrefix + 'user_level');
+      if (valSelect) document.getElementById('user_score_level').value = valSelect;
+      document.getElementById('user_score_level').addEventListener('change', (e) => {
+        localStorage.setItem(storagePrefix + 'user_level', e.target.value);
+      });
+
+      const valActions = localStorage.getItem(storagePrefix + 'improve_actions');
+      if (valActions) document.getElementById('improve_actions').value = valActions;
+      document.getElementById('improve_actions').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'improve_actions', e.target.value);
+      });
+
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      calculateScore();
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有評分與作答狀態嗎？')) {
+        for (let i = 1; i <= 11; i++) {
+          localStorage.removeItem(storagePrefix + 'radio_' + i);
+          const radios = document.getElementsByName('item_' + i);
+          for (let r of radios) r.checked = false;
+        }
+
+        localStorage.removeItem(storagePrefix + 'user_level');
+        localStorage.removeItem(storagePrefix + 'improve_actions');
+        document.getElementById('user_score_level').selectedIndex = 0;
+        document.getElementById('improve_actions').value = '';
+
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        
+        calculateScore();
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-amber-700 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-amber-700 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 替換 Textarea 與 Select
+      const selectValText = document.getElementById('user_score_level').options[document.getElementById('user_score_level').selectedIndex].text;
+      const tSelectDiv = document.createElement('div');
+      tSelectDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs text-amber-800 font-semibold shadow-inner min-h-[30px] flex items-center';
+      tSelectDiv.textContent = selectValText;
+      document.getElementById('user_score_level').style.display = 'none';
+      document.getElementById('user_score_level').parentNode.insertBefore(tSelectDiv, document.getElementById('user_score_level'));
+
+      const inpText = document.getElementById('improve_actions');
+      const valText = inpText.value || '（未填寫）';
+      const tTextDiv = document.createElement('div');
+      tTextDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs text-amber-800 font-semibold shadow-inner min-h-[60px] whitespace-pre-wrap';
+      tTextDiv.textContent = valText;
+      inpText.style.display = 'none';
+      inpText.parentNode.insertBefore(tTextDiv, inpText);
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `借貸與信用_活動五_個人信用評分_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        
+        tSelectDiv.remove();
+        document.getElementById('user_score_level').style.display = 'block';
+        tTextDiv.remove();
+        inpText.style.display = 'block';
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

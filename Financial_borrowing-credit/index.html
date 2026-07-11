@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【借貸與信用】主題教材互動式學習單導航儀表板</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.9)); }
+      50% { filter: drop-shadow(0 0 6px rgba(217, 119, 6, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 2s linear infinite, mascot-shake 0.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主導航區 -->
+  <div class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 flex-grow">
+    
+    <!-- 返回全域首頁 -->
+    <div class="no-print mb-6">
+      <a href="../index.html" class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-800 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回全域首頁
+      </a>
+    </div>
+
+    <!-- 頂部大標題 -->
+    <div class="text-center border-b-2 border-dashed border-slate-200 pb-8 mb-8">
+      <span class="inline-block bg-amber-100 text-amber-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-3 tracking-wider">金管會金融基礎教育推廣教材</span>
+      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight flex items-center justify-center gap-3">
+        <span class="p-3 bg-amber-500 text-white rounded-2xl shadow-lg shadow-amber-500/20 flex items-center justify-center">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+        </span>
+        【借貸與信用】主題教材互動學習單
+      </h1>
+      <p class="text-slate-500 text-xs font-semibold mt-3 max-w-md mx-auto leading-relaxed">
+        本系統整合了信用防線、信用卡與卡債預防、貸款審核實務、人生理財收支規劃以及助學貸款還款計畫。學生可直接線上作答，即時試算，並匯出不跑版的成果學習單。
+      </p>
+    </div>
+
+    <!-- 單元列表 -->
+    <div class="space-y-8">
+      
+      <!-- 單元一：信不信由你 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-black text-amber-700 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-user-check"></i> 單元一：信不信由你
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- 影片心得 -->
+          <a href="Credit-Video-Reflections.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 1 TO 4</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">放羊的孩子/王永慶一諾千金/守時守信心得反思</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 個人信用評分 -->
+          <a href="Credit-Personal-Score.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 5</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">我的個人信用帳戶檢視與自動評分表</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 單元二：信用不卡卡 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-black text-amber-700 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-credit-card"></i> 單元二：信用不卡卡
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- 行動支付評比 -->
+          <!-- 活動一&二 -->
+          <a href="Credit-Payment-Compare.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 1 & 2</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">活動一&二：卡卡玄機&卡卡分明</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動三 -->
+          <a href="Credit-Card-Basics.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 3</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">活動三：信用冒險家</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動四&五 -->
+          <a href="Credit-Debt-Trap.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 4 & 5</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">活動四&五：卡債停看聽＆卡債 No No ！</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 活動六 -->
+          <a href="Credit-Debt-Theater.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 6</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">活動六：卡債族小劇場</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 單元三：借貸「金」厲害 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-black text-amber-700 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-file-invoice-dollar"></i> 單元三：借貸「金」厲害
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- 金融參訪 -->
+          <a href="Credit-Bank-Visit.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 1</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">社區金融好厝邊參訪心得紀錄</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 借不借由你 -->
+          <a href="Credit-Loan-Evaluation.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 2</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">借不借由你：銀行貸款審核評估實務</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 人生規劃師 -->
+          <a href="Credit-Life-Planner.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITY 3</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">我的人生規劃師：家庭收支與餘額自動試算</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+
+          <!-- 大學與學貸 -->
+          <a href="Credit-University-Costs.html" class="group bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-amber-500 hover:bg-amber-50/10 transition-all flex flex-col justify-between min-h-[110px]">
+            <div>
+              <div class="text-[10px] font-black text-slate-400 mb-1">ACTIVITIES 4 TO 6</div>
+              <div class="text-xs font-black text-slate-800 group-hover:text-amber-700 transition">大學機會成本與學貸還款試算計畫</div>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 self-end flex items-center gap-1">前往學習單 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i></span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 頁尾 -->
+  <div class="text-center border-t border-slate-200/60 py-6 bg-white mt-12 w-full">
+    <div class="flex justify-center mb-3">
+      <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+        <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        快樂鯉魚秋老虎
+      </a>
+    </div>
+    <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+      Copyright © Liyuchiutiger Gongminshen
+    </p>
+  </div>
+
+  <!-- 吉祥物拖曳元件 -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // Mascot dragging
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+    window.onload = initMascot;
+  </script>
+</body>
+</html>

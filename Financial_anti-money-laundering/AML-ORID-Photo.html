@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【洗錢防制】學習單二：洗錢照片 ORID 焦點討論 | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-indigo-100 text-indigo-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元一：洗錢防制</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-indigo-600 text-white rounded-xl shadow-md shadow-indigo-600/20 flex items-center justify-center">
+              <i class="fa-solid fa-comments"></i>
+            </span>
+            學習單二：洗錢情境照片 ORID 焦點討論
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-indigo-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-indigo-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 照片情境展示 (金流與洗錢資產) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-wider">A. 洗錢犯罪常見的清洗標的與外在表象</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 照片 A：豪奢資產 -->
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-[10px]">A</span>
+                <span class="text-xs font-black text-slate-900">不法所得清洗標的：豪奢物質享受</span>
+              </div>
+              <p class="text-[11px] text-slate-500 font-semibold leading-relaxed mb-4">
+                犯罪集團透過洗錢水房出入金，將不法獲利購置名車、豪宅、大批精品包、黃金或高檔名錶，甚至跨境轉移至境外公司，包裝成合法收入。
+              </p>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center text-[10px] font-bold text-slate-600">
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-car-side text-indigo-500 text-lg mb-1"></i><br>豪華跑車</div>
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-gem text-indigo-500 text-lg mb-1"></i><br>珠寶黃金</div>
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-building text-indigo-500 text-lg mb-1"></i><br>七期豪宅</div>
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-bag-shopping text-indigo-500 text-lg mb-1"></i><br>精品包櫃</div>
+            </div>
+          </div>
+
+          <!-- 照片 B：人頭戶悲歌 -->
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-[10px]">B</span>
+                <span class="text-xs font-black text-slate-900">洗錢犯罪前置斷點：人頭帳戶</span>
+              </div>
+              <p class="text-[11px] text-slate-500 font-semibold leading-relaxed mb-4">
+                詐騙集團以「高薪、輕鬆、提供簿子就給錢」或「代收租金、網路配對」等話術，誘騙民眾寄出提款卡、出借銀行帳戶，最終帳戶被凍結，民眾成為洗錢共犯。
+              </p>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center text-[10px] font-bold text-slate-600">
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-id-card-clip text-indigo-500 text-lg mb-1"></i><br>身分證件</div>
+              <div class="fa-solid bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-credit-card text-indigo-500 text-lg mb-1"></i><br>金融提款卡</div>
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-book text-indigo-500 text-lg mb-1"></i><br>銀行存摺</div>
+              <div class="bg-white p-2 rounded border border-slate-200"><i class="fa-solid fa-lock text-indigo-500 text-lg mb-1"></i><br>帳戶警示</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORID 焦點討論填寫 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-xs font-black text-slate-400 mb-6 uppercase tracking-wider">B. 小組焦點討論 (ORID 討論法)</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- O -->
+          <div class="bg-indigo-50/20 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between min-h-[160px]">
+            <div>
+              <span class="text-[10px] font-black text-indigo-750 bg-indigo-100 px-2 py-0.5 rounded">O (客觀事實) - 看到了什麼？</span>
+              <h3 class="text-xs font-bold text-slate-800 mt-2 mb-2">你在兩張照片/情境中，觀察到哪些洗錢的物件與手法？</h3>
+            </div>
+            <textarea id="orid_o" rows="3" placeholder="例如：看到犯罪集團將騙來的錢拿來購買名車、名牌包，也看到民眾為了小利出借金融卡與密碼，結果帳戶被列為警示帳戶..." class="w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500 transition shadow-inner resize-none"></textarea>
+          </div>
+
+          <!-- R -->
+          <div class="bg-indigo-50/20 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between min-h-[160px]">
+            <div>
+              <span class="text-[10px] font-black text-indigo-750 bg-indigo-100 px-2 py-0.5 rounded">R (主觀感受) - 產生哪些感受？</span>
+              <h3 class="text-xs font-bold text-slate-800 mt-2 mb-2">看完這些奢華名車與被警方查扣的精品包、被禁錮的人頭戶，你感受如何？</h3>
+            </div>
+            <textarea id="orid_r" rows="3" placeholder="例如：覺得犯罪分子非常貪婪，利用非法所得享受豪奢生活；同時也覺得無知提供帳戶的人很可悲，為了一點小錢卻要面臨司法起訴..." class="w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500 transition shadow-inner resize-none"></textarea>
+          </div>
+
+          <!-- I -->
+          <div class="bg-indigo-50/20 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between min-h-[160px]">
+            <div>
+              <span class="text-[10px] font-black text-indigo-750 bg-indigo-100 px-2 py-0.5 rounded">I (意義體悟) - 可能涉及哪些犯罪？</span>
+              <h3 class="text-xs font-bold text-slate-800 mt-2 mb-2">這些行為後面涉及哪些前置犯罪？對金融秩序有什麼危害？</h3>
+            </div>
+            <textarea id="orid_i" rows="3" placeholder="例如：涉及線上非法博弈、電信詐騙、組織犯罪。提供人頭戶會破壞金融交易的透明度，製造追緝斷點，讓受害者的血汗錢再也拿不回來..." class="w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500 transition shadow-inner resize-none"></textarea>
+          </div>
+
+          <!-- D -->
+          <div class="bg-indigo-50/20 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between min-h-[160px]">
+            <div>
+              <span class="text-[10px] font-black text-indigo-750 bg-indigo-100 px-2 py-0.5 rounded">D (行動方針) - 未來該怎麼做？</span>
+              <h3 class="text-xs font-bold text-slate-800 mt-2 mb-2">在日常生活中，我們要如何避免自己或家人沦為洗錢犯罪的共犯？</h3>
+            </div>
+            <textarea id="orid_d" rows="3" placeholder="例如：堅信「天底下沒有不用付出代價的輕鬆高薪」，絕對不出借或出售身分證件、金融存摺及提款卡，有疑慮立刻撥打 165 反詐騙專線查詢..." class="w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500 transition shadow-inner resize-none"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-indigo-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const textIds = ['orid_o', 'orid_r', 'orid_i', 'orid_d'];
+    const storagePrefix = 'aml_photo_';
+
+    function initStorage() {
+      textIds.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val) document.getElementById(id).value = val;
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+        });
+      });
+
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有作答狀態嗎？')) {
+        textIds.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).value = '';
+        });
+
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-indigo-750 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-indigo-750 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // Textarea 替換
+      const tempElements = [];
+      textIds.forEach(id => {
+        const inp = document.getElementById(id);
+        const val = inp.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs text-indigo-750 font-semibold shadow-inner min-h-[80px] whitespace-pre-wrap';
+        tDiv.textContent = val;
+        
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tDiv, inp);
+        tempElements.push({ original: inp, temp: tDiv });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `洗錢防制_學習單二_ORID焦點討論_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金融基礎教育互動式學習單整合系統</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/30 min-h-screen text-slate-800 antialiased flex flex-col justify-between relative overflow-x-hidden">
+
+  <!-- 裝飾用背景微光 -->
+  <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-400/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <!-- 主內容區 -->
+  <div class="w-full max-w-6xl mx-auto px-6 pt-12 md:pt-20 pb-4 md:pb-6 flex-grow z-10 flex flex-col justify-between">
+    
+    <!-- 頂部 Header -->
+    <div class="text-center mb-12">
+      <span class="inline-block bg-blue-100 text-blue-800 border border-blue-200 font-extrabold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">
+        金管會金融基礎教育推廣教材
+      </span>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 flex flex-wrap items-center justify-center gap-3">
+        <span class="p-3.5 bg-gradient-to-tr from-blue-600 to-emerald-500 text-white rounded-3xl shadow-xl shadow-blue-500/20 flex items-center justify-center">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </span>
+        金融基礎教育互動式學習單整合系統
+      </h1>
+      
+      <!-- 官方推廣入口網連結按鈕 -->
+      <div class="mt-6 mb-6 flex justify-center">
+        <a href="https://rm.ib.gov.tw/Pages/FKLearning_new.aspx?Dir=010200000000000000" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-700 via-indigo-650 to-blue-800 hover:from-blue-800 hover:to-indigo-800 text-white font-extrabold text-xs md:text-sm px-6 py-3.5 rounded-2xl shadow-lg shadow-blue-700/10 hover:shadow-xl hover:shadow-blue-700/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-blue-600/30">
+          <i class="fa-solid fa-globe text-emerald-400"></i>
+          金管會保險局風險管理與保險教育推廣入口網金融基礎教育教材
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-80"></i>
+        </a>
+      </div>
+
+      <p class="text-slate-500 text-sm font-semibold mt-4 max-w-2xl mx-auto leading-relaxed">
+        本系統收錄全套七大核心金融主題教材。學生可直接進行線上互動答題、即時計分與模擬沙盒交易，並支持一鍵下載不跑版的成果學習單。
+      </p>
+    </div>
+
+    <!-- 教材卡片網格 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      
+      <!-- 1. 金錢規劃 -->
+      <a href="Financial_financial-planning/index.html" class="group bg-white hover:bg-emerald-50/10 border border-slate-200 hover:border-emerald-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-wallet"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-emerald-700 transition">【金錢規劃】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            了解需要與想要、記帳存錢目標、複利效應、夢想與預算規劃。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-emerald-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <!-- 2. 借貸與信用 -->
+      <a href="Financial_borrowing-credit/index.html" class="group bg-white hover:bg-amber-50/10 border border-slate-200 hover:border-amber-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-amber-700 transition">【信用與借貸】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            誠信用途、日常信用評分、悠遊卡與信用卡、債務預防與就學貸款試算。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-amber-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <!-- 3. 保險與風險管理 -->
+      <a href="Financial_insurance-risk/index.html" class="group bg-white hover:bg-blue-50/10 border border-slate-200 hover:border-blue-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-umbrella"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-blue-700 transition">【保險與風險管理】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            校園角落搜查、防範風險策略、保險知識挑戰、人物保險規劃與健保探討。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-blue-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <!-- 4. 理財投資 -->
+      <a href="Financial_wealth-investment/index.html" class="group bg-white hover:bg-teal-50/10 border border-slate-200 hover:border-teal-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-chart-pie"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-teal-700 transition">【理財投資】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            開心農場融資模擬、投投是道乒乓球、園遊會開店企劃與投資大觀園（理財、風險與夢想大樓）。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-teal-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <!-- 5. 金融消費保護 -->
+      <a href="Financial_consumer-protection/index.html" class="group bg-white hover:bg-cyan-50/10 border border-slate-200 hover:border-cyan-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-handshake-angle"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-cyan-700 transition">【金融消費保護】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            大家來評理評議案例、防範高齡金融剝削、個人金融消費權利與申訴流程。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-cyan-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <!-- 6. 洗錢防制 -->
+      <a href="Financial_anti-money-laundering/index.html" class="group bg-white hover:bg-indigo-50/10 border border-slate-200 hover:border-indigo-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-building-columns"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-indigo-700 transition">【洗錢防制】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            防制洗錢基礎互動答題、豪奢斷點情境圖思辨、首創 Canvas 畫布連線金流流向。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-indigo-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <!-- 7. 金融防詐 -->
+      <a href="Financial_fraud-prevention/index.html" class="group bg-white hover:bg-orange-50/10 border border-slate-200 hover:border-orange-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-shield-halved"></i>
+            </span>
+            <h2 class="text-lg font-black text-slate-900 group-hover:text-orange-700 transition">【金融防詐】</h2>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+            信用水杯小幫手、真假訊息擂台戰、防詐守門員、防詐行動家與詐騙快閃GO。
+          </p>
+        </div>
+        <span class="text-[11px] font-extrabold text-orange-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+    </div> <!-- 結束教材卡片網格 grid 容器 -->
+
+    <!-- 頁尾 (完全融入背景的通透精簡樣式，移除灰色分界線以完美對齊設計) -->
+    <div class="text-center mt-12 pb-2">
+      <div class="flex justify-center mb-3">
+        <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+          <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          快樂鯉魚秋老虎
+        </a>
+      </div>
+      <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+        Copyright © Liyuchiutiger Gongminshen
+      </p>
+    </div>
+
+  </div> <!-- 結束 max-w-6xl 容器 -->
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+    window.onload = initMascot;
+  </script>
+</body>
+</html>

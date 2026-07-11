@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【洗錢防制】學習單一：錢也可以用洗的？互動問答 | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-indigo-100 text-indigo-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元一：洗錢防制</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-indigo-600 text-white rounded-xl shadow-md shadow-indigo-600/20 flex items-center justify-center">
+              <i class="fa-solid fa-circle-question"></i>
+            </span>
+            學習單一：錢也可以用洗的？互動問答
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-indigo-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-indigo-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 答題計分區 -->
+      <div class="flex items-center justify-between bg-white rounded-2xl border border-slate-200 p-4 shadow-sm mb-6 print-shadow-none">
+        <span class="text-xs font-bold text-slate-600">請完成以下 10 題洗錢防制觀念挑戰。</span>
+        <div class="bg-indigo-50 px-4 py-1.5 rounded-full text-xs font-black text-indigo-750">
+          目前得分：<span id="score-display" class="text-sm">0</span> / 10
+        </div>
+      </div>
+
+      <!-- 題目列表 -->
+      <div class="space-y-4">
+        
+        <!-- A. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">A. 下列何者為洗錢的英文？</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <button onclick="checkAnswer('a', 1, 'money laundering')" id="btn_a_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">money laundering</button>
+            <button onclick="checkAnswer('a', 2, 'washing money')" id="btn_a_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">washing money</button>
+            <button onclick="checkAnswer('a', 3, 'Washing Laundering')" id="btn_a_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">Washing Laundering</button>
+            <button onclick="checkAnswer('a', 4, 'Financial Fraud')" id="btn_a_4" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">Financial Fraud</button>
+          </div>
+        </div>
+
+        <!-- B. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">B. 國際防制洗錢金融行動工作組織（國際洗錢小組）簡稱為何？</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <button onclick="checkAnswer('b', 1, 'Financial Action Task Force')" id="btn_b_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">Financial Action Task Force (FATF)</button>
+            <button onclick="checkAnswer('b', 2, 'Financial Agent Task Fraud')" id="btn_b_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">Financial Agent Task Fraud</button>
+            <button onclick="checkAnswer('b', 3, 'Fund Action Task Force')" id="btn_b_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">Fund Action Task Force</button>
+            <button onclick="checkAnswer('b', 4, 'Fraud Agent Task Force')" id="btn_b_4" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">Fraud Agent Task Force</button>
+          </div>
+        </div>
+
+        <!-- C. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">C. 臨櫃辦理大額通貨交易達新台幣 50 萬元時，需要提供身分證件並向調查局申報嗎？</span>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="checkAnswer('c', 1, '是，需要出示證件確認身分並申報')" id="btn_c_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">是，需要出示證件確認身分並申報</button>
+            <button onclick="checkAnswer('c', 2, '否，低於100萬不用申報或確認身分')" id="btn_c_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">否，低於100萬不用申報或確認身分</button>
+          </div>
+        </div>
+
+        <!-- D. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">D. 協助詐騙集團提款或轉帳（擔任車手），會不會觸犯洗錢防制法？</span>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="checkAnswer('d', 1, '會，屬於移轉、收受特定犯罪所得，觸犯洗錢罪')" id="btn_d_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">會，屬於移轉、收受特定犯罪所得，觸犯洗錢罪</button>
+            <button onclick="checkAnswer('d', 2, '不會，車手只有提款，只算詐欺罪共犯')" id="btn_d_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">不會，車手只有提款，只算詐欺罪共犯</button>
+          </div>
+        </div>
+
+        <!-- E. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">E. 去銀行辦理一般的小額業務時，是否每次都需要出示身分證明文件？</span>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="checkAnswer('e', 1, '非所有，特定業務（如開戶、更正資料、大額交易）或達一定門檻才必須出示')" id="btn_e_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">非所有，特定業務（如開戶、大額交易、更正資料）才必須出示</button>
+            <button onclick="checkAnswer('e', 2, '是，只要進入銀行辦理任何事都要出示身分證明文件')" id="btn_e_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">是，只要進入銀行辦理任何事都要出示身分證明文件</button>
+          </div>
+        </div>
+
+        <!-- F. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">F. 下列何者交易因金額較低或不易保存價值，最「不容易」成為洗錢的工具/標的？</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <button onclick="checkAnswer('f', 1, '黃金')" id="btn_f_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">黃金</button>
+            <button onclick="checkAnswer('f', 2, '車子')" id="btn_f_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">車子</button>
+            <button onclick="checkAnswer('f', 3, '飲料')" id="btn_f_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">飲料</button>
+            <button onclick="checkAnswer('f', 4, '房子')" id="btn_f_4" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">房子</button>
+          </div>
+        </div>
+
+        <!-- G. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">G. 我國的反詐騙電話為何？</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <button onclick="checkAnswer('g', 1, '110')" id="btn_g_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">110</button>
+            <button onclick="checkAnswer('g', 2, '123')" id="btn_g_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">123</button>
+            <button onclick="checkAnswer('g', 3, '165')" id="btn_g_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">165</button>
+            <button onclick="checkAnswer('g', 4, '1950')" id="btn_g_4" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">1950</button>
+          </div>
+        </div>
+
+        <!-- H. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">H. 我在郵局開戶十年了，郵局依法可能出現以下哪種常態性做法？</span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <button onclick="checkAnswer('h', 1, '要求我更新已留存的基本資料')" id="btn_h_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">要求我定期更新留存的基本資料</button>
+            <button onclick="checkAnswer('h', 2, '若不更新基本資料可以無條件凍結帳戶')" id="btn_h_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">若不配合更新可依法暫停其交易</button>
+            <button onclick="checkAnswer('h', 3, '打電話要求結清帳戶並把錢匯到安全戶頭')" id="btn_h_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left">打電話要求結清帳戶並把錢匯到安全戶頭</button>
+          </div>
+        </div>
+
+        <!-- I. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">I. 若沒有事先辦理「約定轉帳」，實體 ATM 的「單日非約定轉帳」上限是多少錢？</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <button onclick="checkAnswer('i', 1, '3萬')" id="btn_i_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">3 萬元</button>
+            <button onclick="checkAnswer('i', 2, '5萬')" id="btn_i_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">5 萬元</button>
+            <button onclick="checkAnswer('i', 3, '10萬')" id="btn_i_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">10 萬元</button>
+            <button onclick="checkAnswer('i', 4, '20萬')" id="btn_i_4" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">20 萬元</button>
+          </div>
+        </div>
+
+        <!-- J. -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <span class="block text-xs font-bold text-slate-900 mb-3">J. 違反《洗錢防制法》第14條辦理一般洗錢罪，最重可以判處多少年有期徒刑？</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <button onclick="checkAnswer('j', 1, '5年')" id="btn_j_1" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">5 年</button>
+            <button onclick="checkAnswer('j', 2, '6年')" id="btn_j_2" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">6 年</button>
+            <button onclick="checkAnswer('j', 3, '7年')" id="btn_j_3" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">7 年</button>
+            <button onclick="checkAnswer('j', 4, '10年')" id="btn_j_4" class="quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition">10 年</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-indigo-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // 正確答案映射
+    const answers = {
+      'a': 1, // money laundering
+      'b': 1, // Financial Action Task Force
+      'c': 1, // 是
+      'd': 1, // 會
+      'e': 1, // 非所有
+      'f': 3, // 飲料
+      'g': 3, // 165
+      'h': 1, // 要求我定期更新留存的基本資料
+      'i': 1, // 3萬
+      'j': 3  // 7年
+    };
+
+    let userAnswers = {};
+    const keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    const storagePrefix = 'aml_quiz_';
+
+    function checkAnswer(key, btnIndex, textVal) {
+      userAnswers[key] = btnIndex;
+      localStorage.setItem(storagePrefix + key, btnIndex);
+      
+      const correctIndex = answers[key];
+      const isCorrect = btnIndex === correctIndex;
+      
+      // 更新按鈕樣式
+      // 先將該題所有按鈕重置
+      let maxBtn = 4;
+      if (key === 'c' || key === 'd' || key === 'e') maxBtn = 2;
+      if (key === 'h') maxBtn = 3;
+
+      for (let i = 1; i <= maxBtn; i++) {
+        const btn = document.getElementById(`btn_${key}_${i}`);
+        if (btn) btn.className = "quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left md:text-center";
+        if (key === 'b' || key === 'h') {
+          // 這些需要靠左對齊
+          if (btn) btn.classList.add('text-left');
+        }
+      }
+
+      // 標示點選結果
+      const clickedBtn = document.getElementById(`btn_${key}_${btnIndex}`);
+      if (isCorrect) {
+        clickedBtn.className = "quiz-btn bg-emerald-600 text-white font-bold text-xs p-2.5 rounded-lg border border-emerald-600 transition shadow text-left md:text-center";
+        showToast('答對了！', 'success');
+      } else {
+        clickedBtn.className = "quiz-btn bg-rose-600 text-white font-bold text-xs p-2.5 rounded-lg border border-rose-600 transition shadow text-left md:text-center";
+        showToast('答錯了，請再想想！', 'error');
+      }
+
+      if (key === 'b' || key === 'h') {
+        clickedBtn.classList.add('text-left');
+      }
+
+      calculateScore();
+    }
+
+    function calculateScore() {
+      let score = 0;
+      keys.forEach(k => {
+        if (userAnswers[k] === answers[k]) {
+          score++;
+        }
+      });
+      document.getElementById('score-display').textContent = score;
+    }
+
+    function initStorage() {
+      keys.forEach(k => {
+        const savedVal = localStorage.getItem(storagePrefix + k);
+        if (savedVal !== null) {
+          const btnIndex = parseInt(savedVal);
+          userAnswers[k] = btnIndex;
+          
+          const correctIndex = answers[k];
+          const isCorrect = btnIndex === correctIndex;
+          const btn = document.getElementById(`btn_${k}_${btnIndex}`);
+          
+          if (btn) {
+            if (isCorrect) {
+              btn.className = "quiz-btn bg-emerald-600 text-white font-bold text-xs p-2.5 rounded-lg border border-emerald-600 transition shadow";
+            } else {
+              btn.className = "quiz-btn bg-rose-600 text-white font-bold text-xs p-2.5 rounded-lg border border-rose-600 transition shadow";
+            }
+            if (k === 'b' || k === 'h') btn.classList.add('text-left');
+          }
+        }
+      });
+
+      const sClass = localStorage.getItem(storagePrefix + 'student_class');
+      if (sClass) document.getElementById('student-class').value = sClass;
+      document.getElementById('student-class').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_class', e.target.value);
+      });
+
+      const sName = localStorage.getItem(storagePrefix + 'student_name');
+      if (sName) document.getElementById('student-name').value = sName;
+      document.getElementById('student-name').addEventListener('input', (e) => {
+        localStorage.setItem(storagePrefix + 'student_name', e.target.value);
+      });
+
+      calculateScore();
+      initMascot();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有作答與分數嗎？')) {
+        keys.forEach(k => {
+          localStorage.removeItem(storagePrefix + k);
+          let maxBtn = 4;
+          if (k === 'c' || k === 'd' || k === 'e') maxBtn = 2;
+          if (k === 'h') maxBtn = 3;
+
+          for (let i = 1; i <= maxBtn; i++) {
+            const btn = document.getElementById(`btn_${k}_${i}`);
+            if (btn) {
+              btn.className = "quiz-btn bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs p-2.5 rounded-lg border border-slate-200 transition text-left md:text-center";
+              if (k === 'b' || k === 'h') btn.classList.add('text-left');
+            }
+          }
+        });
+
+        userAnswers = {};
+        localStorage.removeItem(storagePrefix + 'student_class');
+        localStorage.removeItem(storagePrefix + 'student_name');
+        document.getElementById('student-class').value = '';
+        document.getElementById('student-name').value = '';
+        
+        calculateScore();
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-indigo-750 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-indigo-750 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `洗錢防制_學習單一_互動問答_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // --- 吉祥物拖曳 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      if (!mascot) return;
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      mascot.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = mascot.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        mascot.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        mascot.style.left = (e.clientX - offsetX) + 'px';
+        mascot.style.top = (e.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mascot.style.cursor = 'grab';
+      });
+
+      mascot.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = mascot.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        mascot.style.left = (touch.clientX - offsetX) + 'px';
+        mascot.style.top = (touch.clientY - offsetY) + 'px';
+        mascot.style.bottom = 'auto';
+        mascot.style.right = 'auto';
+      });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

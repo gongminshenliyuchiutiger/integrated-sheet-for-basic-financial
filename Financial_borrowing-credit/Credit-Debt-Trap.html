@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【借貸與信用】活動四&五：卡債停看聽＆卡債 No No ！ | 互動學習單</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.9)); }
+      50% { filter: drop-shadow(0 0 6px rgba(217, 119, 6, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 主內容區 -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-850 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-amber-100 text-amber-800 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元二：信用不卡卡</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-amber-500 text-white rounded-xl shadow-md shadow-amber-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </span>
+            活動四&五：卡債停看聽＆卡債 No No ！
+          </h1>
+        </div>
+        
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- A. 卡債停看聽 (活動四) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-3 mb-4 gap-3">
+          <h2 class="text-sm font-black text-amber-800 flex items-center gap-2">
+            <i class="fa-solid fa-tv"></i> A. 活動四：卡債停看聽
+          </h2>
+          <!-- 影片播放連結 -->
+          <a href="https://www.youtube.com/watch?v=yjP_hfc4hjg" target="_blank" class="no-print inline-flex items-center gap-2 bg-rose-50 hover:bg-rose-100 text-rose-700 hover:text-rose-800 font-extrabold text-[11px] px-3 py-1.5 rounded-xl border border-rose-200 shadow-sm transition-all transform hover:-translate-y-0.5">
+            <i class="fa-brands fa-youtube text-rose-600 text-sm"></i>
+            播放「她刷爆了」影片
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold mb-4">
+          提示：觀看「債務漩渦」與信用卡警示相關影片，記錄並深入思考下列問題：
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold text-slate-700">
+          <div>
+            <label class="block text-slate-800 mb-1.5 font-bold">1. 影片中你看到哪些事實？（主角面臨什麼狀況）</label>
+            <textarea id="sz_debt_fact" rows="2" placeholder="例如：主角在不知不覺中刷了許多張信用卡買奢侈品，最後無力全額還款，只繳最低應繳金額，導致債務迅速累積..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+          </div>
+          <div>
+            <label class="block text-slate-800 mb-1.5 font-bold">2. 影片中提及的「債務漩渦」是指什麼狀況？</label>
+            <textarea id="sz_debt_vortex" rows="2" placeholder="例如：當債務產生的利息（及違約金）大於還款速度，或是借新債還舊債，導致債務像漩渦一樣越滾越大、終至完全無法脫身..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+          </div>
+          <div>
+            <label class="block text-slate-800 mb-1.5 font-bold">3. 影片中提及「財務逃避」是指什麼狀況？</label>
+            <textarea id="sz_debt_evasion" rows="2" placeholder="例如：因為不敢面對龐大的債務，選擇不拆開信用卡帳單信封、假裝債務不存在，或用盲目消費來逃避現實焦慮的消極心態..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+          </div>
+          <div>
+            <label class="block text-slate-800 mb-1.5 font-bold">4. 未來自己申辦或使用信用卡要留意什麼？</label>
+            <textarea id="sz_debt_prevention" rows="2" placeholder="例如：確實記帳並規劃每月預算，帳單一定按時且全額繳清，絕不使用循環利息；分期付款時要算入未來還款能力..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- B. 卡債 No No ！ (活動五) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-sm font-black text-amber-800 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-ban"></i> B. 活動五：卡債 No No ！
+        </h2>
+
+        <!-- 是非討論區 -->
+        <div class="space-y-4 mb-6">
+          <span class="block font-black text-slate-800 text-xs mb-3"><i class="fa-solid fa-circle-question text-amber-600"></i> (一) 信用觀念是非大挑戰 (請判斷正確與否，並簡述討論原因)：</span>
+          
+          <div class="space-y-3.5 text-xs">
+            <!-- 題 1 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">1. 造成卡債的主要原因是高估了自己的還債能力。</span>
+                <input type="text" id="q_nono_reason_1" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_1" value="yes" onchange="saveRadio('q_nono_ans_1')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_1" value="no" onchange="saveRadio('q_nono_ans_1')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+            
+            <!-- 題 2 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">2. 使用信用卡會有很多紅利點數，不用考慮太多，刷越多越好。</span>
+                <input type="text" id="q_nono_reason_2" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_2" value="yes" onchange="saveRadio('q_nono_ans_2')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_2" value="no" onchange="saveRadio('q_nono_ans_2')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+
+            <!-- 題 3 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">3. 如果我有卡債，銀行有權在我領薪水時，最高可事先扣除我 1/3 薪水償還銀行。</span>
+                <input type="text" id="q_nono_reason_3" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_3" value="yes" onchange="saveRadio('q_nono_ans_3')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_3" value="no" onchange="saveRadio('q_nono_ans_3')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+
+            <!-- 題 4 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">4. 卡債的「循環利息」累積，是一件可怕的事。</span>
+                <input type="text" id="q_nono_reason_4" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_4" value="yes" onchange="saveRadio('q_nono_ans_4')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_4" value="no" onchange="saveRadio('q_nono_ans_4')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+
+            <!-- 題 5 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">5. 金融簽帳卡必須在銀行有帳戶，帳戶裡有足夠的錢才能刷，比較不會刷太多。</span>
+                <input type="text" id="q_nono_reason_5" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_5" value="yes" onchange="saveRadio('q_nono_ans_5')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_5" value="no" onchange="saveRadio('q_nono_ans_5')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+
+            <!-- 題 6 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">6. 卡債形成原因之一是因為銀行發卡審核寬鬆導致。</span>
+                <input type="text" id="q_nono_reason_6" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_6" value="yes" onchange="saveRadio('q_nono_ans_6')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_6" value="no" onchange="saveRadio('q_nono_ans_6')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+
+            <!-- 題 7 -->
+            <div class="bg-slate-50/60 p-3.5 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 font-semibold text-slate-700">
+              <div class="md:w-3/5">
+                <span class="text-slate-900 font-bold block mb-1">7. 信用卡可以累積點數或折抵現金，只要準時繳卡費，可以放心使用。</span>
+                <input type="text" id="q_nono_reason_7" placeholder="請填寫討論原因..." class="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="flex items-center gap-4 text-xs font-black no-print">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_7" value="yes" onchange="saveRadio('q_nono_ans_7')" class="accent-amber-600"> 是</label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="q_nono_ans_7" value="no" onchange="saveRadio('q_nono_ans_7')" class="accent-amber-600"> 否</label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 歸納討論表格 -->
+        <div class="space-y-3 font-semibold text-slate-700">
+          <span class="block font-black text-slate-800 text-xs mb-2"><i class="fa-solid fa-table-list text-amber-600"></i> (二) 卡債原因、後果與解決方法討論表：</span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div>
+              <label class="block text-slate-800 mb-1.5 font-bold">1. 造成卡債的原因（為什麼會欠卡債）：</label>
+              <textarea id="sz_nono_causes" rows="3" placeholder="例如：過度透支消費、追求名牌奢侈品、只繳最低應繳金額使利息滾大、或是對自身財務收支缺乏規劃與監控..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+            </div>
+            <div>
+              <label class="block text-slate-800 mb-1.5 font-bold">2. 欠卡債後可能的悲慘後果：</label>
+              <textarea id="sz_nono_effects" rows="3" placeholder="例如：個人信用破產，無法再貸款或辦卡；面臨催收壓力與精神折磨；薪水面臨被法院強制扣押 1/3；與家人關係破裂等..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+            </div>
+            <div>
+              <label class="block text-slate-800 mb-1.5 font-bold">3. 面對或防範卡債的解決方法：</label>
+              <textarea id="sz_nono_solutions" rows="3" placeholder="例如：剪掉信用卡只用現金或簽帳卡；主動向債權銀行申請進行債務協商；尋求專業的理債顧問或法律更生機制協助..." class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 resize-none focus:outline-none focus:border-amber-500 shadow-inner leading-relaxed"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 底部按鈕與頁尾 -->
+    <div class="mt-8">
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="no-print inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-amber-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-amber-500"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    const storagePrefix = 'credit_debt_trap_v2_';
+    
+    // 文字與問答 ID
+    const textIds = [
+      'student-class', 'student-name',  
+      'sz_debt_fact', 'sz_debt_vortex', 'sz_debt_evasion', 'sz_debt_prevention',
+      'q_nono_reason_1', 'q_nono_reason_2', 'q_nono_reason_3', 'q_nono_reason_4',
+      'q_nono_reason_5', 'q_nono_reason_6', 'q_nono_reason_7',
+      'sz_nono_causes', 'sz_nono_effects', 'sz_nono_solutions'
+    ];
+
+    const radioIds = [
+      'q_nono_ans_1', 'q_nono_ans_2', 'q_nono_ans_3', 'q_nono_ans_4',
+      'q_nono_ans_5', 'q_nono_ans_6', 'q_nono_ans_7'
+    ];
+
+    function saveRadio(name) {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      if (selected) {
+        localStorage.setItem(storagePrefix + name, selected.value);
+      }
+    }
+
+    // 初始化與快取載入
+    function initStorage() {
+      textIds.forEach(id => {
+        const val = localStorage.getItem(storagePrefix + id);
+        if (val) document.getElementById(id).value = val;
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+        });
+      });
+
+      // 載入 radio 快取
+      radioIds.forEach(name => {
+        const val = localStorage.getItem(storagePrefix + name);
+        if (val) {
+          const radio = document.querySelector(`input[name="${name}"][value="${val}"]`);
+          if (radio) radio.checked = true;
+        }
+      });
+
+      initMascot();
+    }
+
+    // 訊息 Toast
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+      }
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // 重設
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除這張學習單的所有作答與勾選狀態嗎？')) {
+        textIds.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).value = '';
+        });
+        radioIds.forEach(name => {
+          localStorage.removeItem(storagePrefix + name);
+          const checkedRadio = document.querySelector(`input[name="${name}"]:checked`);
+          if (checkedRadio) checkedRadio.checked = false;
+        });
+        showToast('學習單已重設！');
+      }
+    });
+
+    // 下載成果 (通用高保真靜態化)
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classVal = document.getElementById('student-class').value || '未填寫';
+      const nameVal = document.getElementById('student-name').value || '未填寫';
+      
+      
+
+      // 建立臨時的列印用學生資訊區
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-amber-800 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-amber-800 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 通用靜態化替換：把 CaptureArea 內所有的 textarea / input[type="text"] 替換為靜態 div
+      const tempElements = [];
+      
+      const textareas = captureArea.querySelectorAll('textarea');
+      textareas.forEach(ta => {
+        const div = document.createElement('div');
+        div.className = 'w-full bg-white border border-slate-200 rounded-lg p-2.5 text-xs text-amber-855 font-semibold shadow-inner min-h-[50px] whitespace-pre-wrap flex items-center';
+        div.textContent = ta.value || '（未填寫）';
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(div, ta);
+        tempElements.push({ original: ta, temp: div });
+      });
+
+      const inputs = captureArea.querySelectorAll('input[type="text"]');
+      inputs.forEach(inp => {
+        const div = document.createElement('div');
+        div.className = 'w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs text-amber-855 font-semibold shadow-inner text-center inline-block';
+        div.textContent = inp.value || '（未填寫）';
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(div, inp);
+        tempElements.push({ original: inp, temp: div });
+      });
+
+      // 替換 radio 為文字標籤
+      radioIds.forEach(name => {
+        const checked = document.querySelector(`input[name="${name}"]:checked`);
+        const textVal = checked ? (checked.value === 'yes' ? '是' : '否') : '未勾選';
+        
+        const labelContainer = checked ? checked.closest('.flex') : null;
+        if (labelContainer) {
+          const div = document.createElement('div');
+          div.className = 'bg-amber-100 text-amber-800 font-black text-xs px-2.5 py-1 rounded';
+          div.textContent = `判定：${textVal}`;
+          labelContainer.style.display = 'none';
+          labelContainer.parentNode.insertBefore(div, labelContainer);
+          tempElements.push({ original: labelContainer, temp: div });
+        }
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `借貸與信用_活動四&五_卡債停看聽與防範_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error(err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'inline-block';
+          if (item.original.tagName === 'TEXTAREA') {
+            item.original.style.display = 'block';
+          }
+          if (item.original.classList.contains('flex')) {
+            item.original.style.display = 'flex';
+          }
+        });
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // 吉祥物拖曳
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      captureArea.appendChild(mascot);
+      mascot.style.position = 'absolute';
+
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        initialLeft = mascot.offsetLeft;
+        initialTop = mascot.offsetTop;
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        const parentRect = captureArea.getBoundingClientRect();
+        const mascotRect = mascot.getBoundingClientRect();
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (newLeft < 0) newLeft = 0;
+        if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+        if (newTop < 0) newTop = 0;
+        if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'credit_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      const pageKey = 'credit_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    }
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

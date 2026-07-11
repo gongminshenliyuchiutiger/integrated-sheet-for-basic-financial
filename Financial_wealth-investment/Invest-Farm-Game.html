@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【理財投資】單元一：精打細算學理財 | 活動一：種瓜得瓜？</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    
+    <div>
+      <!-- 導航條 -->
+      <div class="no-print mb-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-850 transition">
+          <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+        </a>
+      </div>
+
+      <!-- 頂部標頭與學生資訊區 -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-emerald-100 text-emerald-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元一：精打細算學理財</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-emerald-500 text-white rounded-xl shadow-md shadow-emerald-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-wheat-awn"></i>
+            </span>
+            活動一：種瓜得瓜？
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">組員：</span>
+              <input type="text" id="student-group" placeholder="例如：小明、美美..." class="w-32 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 活動說明 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm mb-6 print-shadow-none">
+        <p class="text-slate-500 text-xs font-semibold leading-relaxed">
+          務農必須看天吃飯，作物的收成易受天候與市場需求影響。現在你們小組擁有 <strong>10 萬元</strong> 的本金，請討論並配置兩回合的栽種計畫。體驗看看如何配置才能獲得最大收益，並思考「種瓜一定能得瓜嗎？」
+        </p>
+      </div>
+
+      <!-- 作物成本與收益規則對照表 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm mb-6 print-shadow-none">
+        <h3 class="text-xs font-black text-slate-800 mb-3 flex items-center gap-1.5">
+          <i class="fa-solid fa-list text-emerald-500"></i>
+          作物栽種成本與不同天候情境之收益對照表 (萬元/單位)
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-center border-collapse border border-slate-200 text-[11px]">
+            <thead>
+              <tr class="bg-slate-50 text-slate-700 font-extrabold border-b border-slate-200">
+                <th class="p-2 border-r border-slate-200">栽種項目</th>
+                <th class="p-2 border-r border-slate-200">單位本金</th>
+                <th class="p-2 border-r border-slate-200 text-emerald-600">大吉 (風調雨順)</th>
+                <th class="p-2 border-r border-slate-200 text-emerald-600">小吉 (偶有風災)</th>
+                <th class="p-2 border-r border-slate-200 text-slate-600">平 (蟲害頻傳)</th>
+                <th class="p-2 border-r border-slate-200 text-rose-600">小凶 (風災頻傳)</th>
+                <th class="p-2 border-r border-slate-200 text-rose-600">大凶 (百年久旱)</th>
+                <th class="p-2 text-left">作物風險與獲利屬性說明</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium text-slate-600">
+              <tr>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-800">豆芽菜</td>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-900">1 萬元</td>
+                <td class="p-2 border-r border-slate-200">1.1 萬</td>
+                <td class="p-2 border-r border-slate-200">1.1 萬</td>
+                <td class="p-2 border-r border-slate-200">1.1 萬</td>
+                <td class="p-2 border-r border-slate-200">1.1 萬</td>
+                <td class="p-2 border-r border-slate-200">1.1 萬</td>
+                <td class="p-2 text-left text-[10px] text-slate-500 font-semibold">固定獲利，零風險，收益有保障但獲利極低。</td>
+              </tr>
+              <tr>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-800">契作地瓜</td>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-900">5 萬元</td>
+                <td class="p-2 border-r border-slate-200">7 萬元</td>
+                <td class="p-2 border-r border-slate-200">7 萬元</td>
+                <td class="p-2 border-r border-slate-200">7 萬元</td>
+                <td class="p-2 border-r border-slate-200">7 萬元</td>
+                <td class="p-2 border-r border-slate-200 text-rose-500">0 萬元</td>
+                <td class="p-2 text-left text-[10px] text-slate-500 font-semibold">如期交貨固定獲利 7 萬。若遇大凶違約，將血本無歸。</td>
+              </tr>
+              <tr>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-800">溫室草莓</td>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-900">2 萬元</td>
+                <td class="p-2 border-r border-slate-200">6 萬元</td>
+                <td class="p-2 border-r border-slate-200">4 萬元</td>
+                <td class="p-2 border-r border-slate-200">2 萬元</td>
+                <td class="p-2 border-r border-slate-200">1 萬元</td>
+                <td class="p-2 border-r border-slate-200 text-rose-500">0 萬元</td>
+                <td class="p-2 text-left text-[10px] text-slate-500 font-semibold">溫室保護受天災損害小。品質好時大吉收益可達 3 倍。</td>
+              </tr>
+              <tr>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-800">契作水稻</td>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-900">5 萬元</td>
+                <td class="p-2 border-r border-slate-200">9 萬元</td>
+                <td class="p-2 border-r border-slate-200">9 萬元</td>
+                <td class="p-2 border-r border-slate-200">9 萬元</td>
+                <td class="p-2 border-r border-slate-200 text-rose-500">0 萬元</td>
+                <td class="p-2 border-r border-slate-200 text-rose-500">0 萬元</td>
+                <td class="p-2 text-left text-[10px] text-slate-500 font-semibold">如期交貨收穫高。但若遇小凶或大凶，可能全數受損。</td>
+              </tr>
+              <tr>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-800">青蔥</td>
+                <td class="p-2 border-r border-slate-200 font-bold text-slate-900">1 萬元</td>
+                <td class="p-2 border-r border-slate-200">5 萬元</td>
+                <td class="p-2 border-r border-slate-200">3 萬元</td>
+                <td class="p-2 border-r border-slate-200">1 萬元</td>
+                <td class="p-2 border-r border-slate-200 text-rose-500">0 萬元</td>
+                <td class="p-2 border-r border-slate-200 text-rose-500">0 萬元</td>
+                <td class="p-2 text-left text-[10px] text-slate-500 font-semibold">投資本金小，但天時地利大吉時獲利高達 5 倍；極易受災。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 經營回合 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        
+        <!-- 第一回合 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm print-shadow-none flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 mb-4">
+              <h3 class="text-xs font-black text-slate-800 flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-white font-extrabold text-[11px] flex items-center justify-center">1</span>
+                第一回合 栽種計畫書
+              </h3>
+              <span class="text-[11px] font-extrabold text-slate-500">本金上限：10 萬元</span>
+            </div>
+
+            <div class="space-y-3 mb-4 text-xs font-bold text-slate-700">
+              <!-- sprout -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">豆芽菜 (每單位 1萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r1_sprout" value="0" min="0" step="0.1" oninput="updateCost(1, 'sprout')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r1_sprout_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- potato -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">契作地瓜 (每單位 5萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r1_potato" value="0" min="0" step="0.1" oninput="updateCost(1, 'potato')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r1_potato_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- strawberry -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">溫室草莓 (每單位 2萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r1_strawberry" value="0" min="0" step="0.1" oninput="updateCost(1, 'strawberry')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r1_strawberry_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- rice -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">契作水稻 (每單位 5萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r1_rice" value="0" min="0" step="0.1" oninput="updateCost(1, 'rice')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r1_rice_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- scallion -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">青蔥 (每單位 1萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r1_scallion" value="0" min="0" step="0.1" oninput="updateCost(1, 'scallion')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r1_scallion_cost">0 萬</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-dashed border-slate-200 space-y-3">
+            <div class="flex justify-between text-xs font-black">
+              <span class="text-slate-600">費用總計 (須等於 10萬)：</span>
+              <span id="r1_total_spend" class="text-rose-600">0 萬元</span>
+            </div>
+            <div class="flex justify-between text-xs font-bold text-slate-600">
+              <span>剩餘可用本金：</span>
+              <span id="r1_remain_cash" class="text-rose-600">10.0 萬元</span>
+            </div>
+            
+            <!-- 抽情境 -->
+            <div class="flex items-center gap-3 no-print">
+              <button onclick="drawScenario(1)" id="r1_draw_btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[11px] px-3.5 py-2 rounded-lg transition active:scale-95 flex-shrink-0">
+                <i class="fa-solid fa-dice"></i> 抽取第一回合情境
+              </button>
+              <div id="r1_card_box" class="text-xs font-black text-slate-700 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1.5 flex-grow text-center">
+                尚未抽情境卡
+              </div>
+            </div>
+            <!-- 列印情境與收成結果 -->
+            <div class="bg-emerald-50/40 p-2.5 rounded-lg border border-emerald-100/60 space-y-1">
+              <div class="flex justify-between text-xs font-bold text-slate-700">
+                <span>情境結果：</span>
+                <span id="r1_scenario_print" class="text-slate-900 font-black">尚未抽卡</span>
+              </div>
+              <div class="flex justify-between text-xs font-black text-slate-900">
+                <span>第一回合收穫總計：</span>
+                <span class="text-emerald-700" id="r1_harvest_label">0 萬元</span>
+              </div>
+              <!-- 作物收成明細區 -->
+              <div id="r1_harvest_details" class="mt-2 pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 font-bold space-y-1 hidden">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第二回合 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm print-shadow-none flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 mb-4">
+              <h3 class="text-xs font-black text-slate-800 flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-white font-extrabold text-[11px] flex items-center justify-center">2</span>
+                第二回合 栽種計畫書
+              </h3>
+              <span class="text-[11px] font-extrabold text-slate-500">可用本金：<span id="r2_avail_label" class="text-emerald-600">0 萬元</span></span>
+            </div>
+
+            <div class="space-y-3 mb-4 text-xs font-bold text-slate-700">
+              <!-- sprout -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">豆芽菜 (每單位 1萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r2_sprout" value="0" min="0" step="0.1" oninput="updateCost(2, 'sprout')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r2_sprout_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- potato -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">契作地瓜 (每單位 5萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r2_potato" value="0" min="0" step="0.1" oninput="updateCost(2, 'potato')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r2_potato_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- strawberry -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">溫室草莓 (每單位 2萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r2_strawberry" value="0" min="0" step="0.1" oninput="updateCost(2, 'strawberry')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r2_strawberry_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- rice -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">契作水稻 (每單位 5萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r2_rice" value="0" min="0" step="0.1" oninput="updateCost(2, 'rice')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r2_rice_cost">0 萬</span>
+                </div>
+              </div>
+              <!-- scallion -->
+              <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                <span class="flex-shrink-0">青蔥 (每單位 1萬)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="r2_scallion" value="0" min="0" step="0.1" oninput="updateCost(2, 'scallion')" class="w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold"> 單位
+                  <span class="text-[10px] text-slate-400 font-normal w-16 text-right" id="r2_scallion_cost">0 萬</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-dashed border-slate-200 space-y-2">
+            <div class="flex justify-between text-xs font-bold text-slate-600">
+              <span>計畫投入總花費：</span>
+              <span id="r2_total_spend" class="text-slate-800 font-black">0 萬元</span>
+            </div>
+            <div class="flex justify-between text-xs font-bold text-slate-600">
+              <span>剩餘可用本金：</span>
+              <span id="r2_remain_cash" class="text-slate-800 font-black">0 萬元</span>
+            </div>
+            
+            <!-- 抽情境 -->
+            <div class="flex items-center gap-3 no-print">
+              <button onclick="drawScenario(2)" id="r2_draw_btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[11px] px-3.5 py-2 rounded-lg transition active:scale-95 flex-shrink-0">
+                <i class="fa-solid fa-dice"></i> 抽取第二回合情境
+              </button>
+              <div id="r2_card_box" class="text-xs font-black text-slate-700 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1.5 flex-grow text-center">
+                尚未抽情境卡
+              </div>
+            </div>
+            <!-- 列印情境與結果 -->
+            <div class="bg-emerald-50/40 p-2.5 rounded-lg border border-emerald-100/60 space-y-1">
+              <div class="flex justify-between text-xs font-bold text-slate-700">
+                <span>情境結果：</span>
+                <span id="r2_scenario_print" class="text-slate-900 font-black">尚未抽卡</span>
+              </div>
+              <div class="flex justify-between text-xs font-black text-slate-900">
+                <span>第二回合收穫小計：</span>
+                <span class="text-emerald-700" id="r2_harvest_label">0 萬元</span>
+              </div>
+              <!-- 作物收成明細區 -->
+              <div id="r2_harvest_details" class="mt-2 pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 font-bold space-y-1 hidden">
+              </div>
+              <div class="flex justify-between text-xs font-black text-slate-900 border-t border-slate-200/60 pt-1 mt-1">
+                <span>最終累積總資產 (收穫+保留)：</span>
+                <span class="text-blue-700 text-sm" id="final_assets_label">0 萬元</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 思考與討論 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+        <h3 class="text-xs font-black text-slate-800 mb-3 flex items-center gap-1.5">
+          <i class="fa-solid fa-comment-dots text-emerald-500"></i>
+          腦力激盪與生涯思辨
+        </h3>
+        <div class="space-y-4 text-xs font-semibold text-slate-700">
+          <div>
+            <label class="block text-slate-800 font-extrabold mb-1.5">
+              1. 「種瓜一定能得瓜嗎？」請結合你們小組兩回合的經營配置與抽卡體驗，寫下你們的發現與收穫（例如：風險跟獲利之間的關係）。
+            </label>
+            <textarea id="farm_reflection_1" placeholder="請詳細寫下小組的討論與心得..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-emerald-500 focus:bg-white transition min-h-[100px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部功能按鈕與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-emerald-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-emerald-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- 可拖曳吉祥物功能 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      captureArea.appendChild(mascot);
+      mascot.style.position = 'absolute';
+
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        initialLeft = mascot.offsetLeft;
+        initialTop = mascot.offsetTop;
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        const parentRect = captureArea.getBoundingClientRect();
+        const mascotRect = mascot.getBoundingClientRect();
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (newLeft < 0) newLeft = 0;
+        if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+        if (newTop < 0) newTop = 0;
+        if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'money_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      const pageKey = 'money_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    }
+
+    // --- 種瓜得瓜核心模擬器邏輯 ---
+    const storagePrefix = 'invest_grow_melon_v3_';
+    
+    // 作物對應之本金係數 (萬元/單位)
+    const cropCosts = {
+      sprout: 1,
+      potato: 5,
+      strawberry: 2,
+      rice: 5,
+      scallion: 1
+    };
+
+    // 收益矩陣 (大吉、小吉、平、小凶、大凶 對應的 1單位 收成金額)
+    const payoutMatrix = {
+      sprout:     { '大吉': 1.1, '小吉': 1.1, '平': 1.1, '小凶': 1.1, '大凶': 1.1 },
+      potato:     { '大吉': 7.0, '小吉': 7.0, '平': 7.0, '小凶': 7.0, '大凶': 0.0 },
+      strawberry: { '大吉': 6.0, '小吉': 4.0, '平': 2.0, '小凶': 1.0, '大凶': 0.0 },
+      rice:       { '大吉': 9.0, '小吉': 9.0, '平': 9.0, '小凶': 0.0, '大凶': 0.0 },
+      scallion:   { '大吉': 5.0, '小吉': 3.0, '平': 1.0, '小凶': 0.0, '大凶': 0.0 }
+    };
+
+    // 取得指定回合的計畫總花費
+    function getRoundCost(round) {
+      const prefix = `r${round}_`;
+      let total = 0;
+      Object.keys(cropCosts).forEach(crop => {
+        const qty = parseFloat(document.getElementById(prefix + crop).value) || 0;
+        total += qty * cropCosts[crop];
+      });
+      return total;
+    }
+
+    // 更新介面花費顯示與快取
+    function updateCost(round, activeCropId) {
+      const limit = round === 1 ? 10 : (parseFloat(localStorage.getItem(storagePrefix + 'r1_harvest')) || 0);
+      const prefix = `r${round}_`;
+
+      if (activeCropId) {
+        let otherSpend = 0;
+        Object.keys(cropCosts).forEach(c => {
+          if (c !== activeCropId) {
+            const qty = parseFloat(document.getElementById(prefix + c).value) || 0;
+            otherSpend += qty * cropCosts[c];
+          }
+        });
+
+        const activeInput = document.getElementById(prefix + activeCropId);
+        let val = parseFloat(activeInput.value) || 0;
+        if (val < 0) {
+          val = 0;
+          activeInput.value = "0.0";
+        }
+
+        const maxAllowed = Math.floor(((limit - otherSpend) / cropCosts[activeCropId]) * 10) / 10;
+        if (val > maxAllowed) {
+          val = maxAllowed;
+          activeInput.value = maxAllowed.toFixed(1);
+          showToast(`已達本金上限！在此配置下該作物最多能配置 ${maxAllowed.toFixed(1)} 單位`, 'error');
+        } else {
+          // 強制將輸入值規範為小數後第一位，防止手動輸入多位小數
+          activeInput.value = parseFloat(val.toFixed(1));
+        }
+      }
+
+      const totalSpend = getRoundCost(round);
+      const spendEl = document.getElementById(`r${round}_total_spend`);
+      spendEl.textContent = `${totalSpend.toFixed(1)} 萬元`;
+
+      const remain = limit - totalSpend;
+      const remainEl = document.getElementById(`r${round}_remain_cash`);
+      remainEl.textContent = `${remain.toFixed(1)} 萬元`;
+
+      Object.keys(cropCosts).forEach(crop => {
+        const qty = parseFloat(document.getElementById(prefix + crop).value) || 0;
+        document.getElementById(`${prefix}${crop}_cost`).textContent = `${(qty * cropCosts[crop]).toFixed(1)} 萬`;
+        localStorage.setItem(storagePrefix + prefix + crop, qty.toFixed(1));
+      });
+
+      if (round === 1) {
+        if (Math.abs(totalSpend - 10) < 0.05) {
+          spendEl.className = "text-emerald-600 font-black";
+          remainEl.className = "text-emerald-600 font-black";
+        } else {
+          spendEl.className = "text-rose-600 font-black";
+          remainEl.className = "text-rose-600 font-black";
+        }
+      } else {
+        if (totalSpend <= limit + 0.05) {
+          spendEl.className = "text-emerald-600 font-black";
+          remainEl.className = "text-emerald-600 font-black";
+        } else {
+          spendEl.className = "text-rose-600 font-black";
+          remainEl.className = "text-rose-600 font-black";
+        }
+
+        // 當輸入變更時，若已抽過第二回合情境，則重新計算第二回合結果
+        const r2Scenario = localStorage.getItem(storagePrefix + 'r2_scenario');
+        if (r2Scenario) {
+          calculateHarvest(2, r2Scenario);
+        }
+      }
+    }
+
+    // 抽情境卡
+    function drawScenario(round) {
+      const spend = getRoundCost(round);
+      const limit = round === 1 ? 10 : (parseFloat(localStorage.getItem(storagePrefix + 'r1_harvest')) || 0);
+
+      if (round === 1 && spend !== 10) {
+        alert("第一回合投入總金額必須剛好等於 10 萬元！");
+        return;
+      }
+      if (round === 2 && spend > limit) {
+        alert(`第二回合投入總金額已超出上限 $${limit} 萬元！`);
+        return;
+      }
+
+      const scenarios = [
+        { name: '大吉', desc: '大吉 ☀️ 風調雨順' },
+        { name: '小吉', desc: '小吉 ⛅ 偶有風災' },
+        { name: '平', desc: '平 🐛 蟲害頻傳' },
+        { name: '小凶', desc: '小凶 🌧️ 風災頻傳' },
+        { name: '大凶', desc: '大凶 🌪️ 百年久旱' }
+      ];
+
+      const drawBtn = document.getElementById(`r${round}_draw_btn`);
+      const cardBox = document.getElementById(`r${round}_card_box`);
+      
+      drawBtn.disabled = true;
+      let count = 0;
+      const interval = setInterval(() => {
+        const rand = scenarios[Math.floor(Math.random() * scenarios.length)];
+        cardBox.textContent = rand.desc;
+        count++;
+        if (count > 8) {
+          clearInterval(interval);
+          const finalResult = scenarios[Math.floor(Math.random() * scenarios.length)];
+          cardBox.textContent = finalResult.desc;
+          
+          document.getElementById(`r${round}_scenario_print`).textContent = finalResult.desc;
+          localStorage.setItem(storagePrefix + `r${round}_scenario`, finalResult.name);
+          
+          calculateHarvest(round, finalResult.name);
+          drawBtn.disabled = false;
+        }
+      }, 100);
+    }
+
+    // 計算收獲總金額
+    function calculateHarvest(round, scenarioName) {
+      const prefix = `r${round}_`;
+      let harvestTotal = 0;
+
+      Object.keys(cropCosts).forEach(crop => {
+        const qty = parseFloat(document.getElementById(prefix + crop).value) || 0;
+        const payoutRate = payoutMatrix[crop][scenarioName];
+        harvestTotal += qty * payoutRate;
+      });
+
+      document.getElementById(`r${round}_harvest_label`).textContent = `${harvestTotal.toFixed(1)} 萬元`;
+      localStorage.setItem(storagePrefix + `r${round}_harvest`, harvestTotal.toFixed(1));
+
+      // 渲染大吉、小吉、平、小凶、大凶的作物收成明細
+      const detailsEl = document.getElementById(`r${round}_harvest_details`);
+      detailsEl.innerHTML = `<div class="text-[9px] text-slate-400 uppercase font-black tracking-wider mb-1 flex items-center gap-1"><i class="fa-solid fa-list-check"></i> 各作物收成明細：</div>`;
+      
+      const cropNames = {
+        sprout: '🌱 豆芽菜',
+        potato: '🍠 契作地瓜',
+        strawberry: '🍓 溫室草莓',
+        rice: '🌾 契作水稻',
+        scallion: '🧅 青蔥'
+      };
+
+      Object.keys(cropCosts).forEach(crop => {
+        const qty = parseFloat(document.getElementById(prefix + crop).value) || 0;
+        const rate = payoutMatrix[crop][scenarioName];
+        const payout = qty * rate;
+        
+        detailsEl.innerHTML += `<div class="flex justify-between items-center bg-slate-50/50 px-2 py-1 rounded border border-slate-100/50 mt-1">` +
+          `<span>${cropNames[crop]} (${cropCosts[crop]}萬/單位): <span class="text-slate-800 font-extrabold">${qty.toFixed(1)}</span> 單位 ➔ 收成 <span class="text-emerald-700 font-extrabold">${payout.toFixed(2)}</span> 萬</span>` +
+          `<span class="text-[9px] text-slate-400 font-normal bg-white px-1.5 py-0.5 rounded border border-slate-200/40">單期單價 ${rate.toFixed(1)}萬</span>` +
+          `</div>`;
+      });
+      detailsEl.classList.remove('hidden');
+
+      if (round === 1) {
+        // 第一回合結束，第二回合可用上限更新
+        document.getElementById('r2_avail_label').textContent = `${harvestTotal.toFixed(1)} 萬元`;
+        // 同時重算第二回合（如果有配額）
+        updateCost(2);
+      } else {
+        // 第二回合結算：收獲金額 + 保留現金
+        const r1Harvest = parseFloat(localStorage.getItem(storagePrefix + 'r1_harvest')) || 0;
+        const spend2 = getRoundCost(2);
+        const remainCash = r1Harvest - spend2;
+        const finalAssets = harvestTotal + remainCash;
+
+        document.getElementById('final_assets_label').textContent = `${finalAssets.toFixed(1)} 萬元`;
+        localStorage.setItem(storagePrefix + 'final_assets', finalAssets.toFixed(1));
+      }
+    }
+
+    // --- 快取載入 ---
+    const textInputs = ['student-class', 'student-name', 'student-group', 'farm_reflection_1'];
+
+    function initStorage() {
+      // 載入文字與文字區域
+      textInputs.forEach(id => {
+        const saved = localStorage.getItem(storagePrefix + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+        });
+      });
+
+      // 載入各作物單位
+      for (let r = 1; r <= 2; r++) {
+        Object.keys(cropCosts).forEach(crop => {
+          const saved = localStorage.getItem(storagePrefix + `r${r}_${crop}`);
+          if (saved !== null) {
+            document.getElementById(`r${r}_${crop}`).value = parseFloat(saved).toFixed(1);
+          }
+        });
+      }
+
+      // 更新花費顯示與標籤
+      updateCost(1);
+      updateCost(2);
+
+      // 還原情境卡狀態
+      const r1Scen = localStorage.getItem(storagePrefix + 'r1_scenario');
+      if (r1Scen) {
+        const desc = getScenarioDesc(r1Scen);
+        document.getElementById('r1_card_box').textContent = desc;
+        document.getElementById('r1_scenario_print').textContent = desc;
+        const r1Harv = parseFloat(localStorage.getItem(storagePrefix + 'r1_harvest')) || 0;
+        document.getElementById('r1_harvest_label').textContent = `${r1Harv.toFixed(1)} 萬元`;
+        document.getElementById('r2_avail_label').textContent = `${r1Harv.toFixed(1)} 萬元`;
+        calculateHarvest(1, r1Scen);
+      }
+
+      const r2Scen = localStorage.getItem(storagePrefix + 'r2_scenario');
+      if (r2Scen) {
+        const desc = getScenarioDesc(r2Scen);
+        document.getElementById('r2_card_box').textContent = desc;
+        document.getElementById('r2_scenario_print').textContent = desc;
+        const r2Harv = parseFloat(localStorage.getItem(storagePrefix + 'r2_harvest')) || 0;
+        document.getElementById('r2_harvest_label').textContent = `${r2Harv.toFixed(1)} 萬元`;
+        
+        const finalAssets = parseFloat(localStorage.getItem(storagePrefix + 'final_assets')) || 0;
+        document.getElementById('final_assets_label').textContent = `${finalAssets.toFixed(1)} 萬元`;
+        calculateHarvest(2, r2Scen);
+      }
+
+      initMascot();
+    }
+
+    function getScenarioDesc(name) {
+      if (name === '大吉') return '大吉 ☀️ 風調雨順';
+      if (name === '小吉') return '小吉 ⛅ 偶有風災';
+      if (name === '平') return '平 🐛 蟲害頻傳';
+      if (name === '小凶') return '小凶 🌧️ 風災頻傳';
+      if (name === '大凶') return '大凶 🌪️ 百年久旱';
+      return '尚未抽情境卡';
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要重設開心農場「種瓜得瓜？」的所有配置、抽卡結果與腦力討論答案嗎？')) {
+        textInputs.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).value = '';
+        });
+
+        for (let r = 1; r <= 2; r++) {
+          Object.keys(cropCosts).forEach(crop => {
+            localStorage.removeItem(storagePrefix + `r${r}_${crop}`);
+            document.getElementById(`r${r}_${crop}`).value = 0.0;
+          });
+          localStorage.removeItem(storagePrefix + `r${r}_scenario`);
+          localStorage.removeItem(storagePrefix + `r${r}_harvest`);
+        }
+        localStorage.removeItem(storagePrefix + 'final_assets');
+
+        document.getElementById('r1_card_box').textContent = '尚未抽情境卡';
+        document.getElementById('r1_scenario_print').textContent = '尚未抽卡';
+        document.getElementById('r1_harvest_label').textContent = '0 萬元';
+        document.getElementById('r1_harvest_details').innerHTML = '';
+        document.getElementById('r1_harvest_details').classList.add('hidden');
+
+        document.getElementById('r2_card_box').textContent = '尚未抽情境卡';
+        document.getElementById('r2_scenario_print').textContent = '尚未抽卡';
+        document.getElementById('r2_harvest_label').textContent = '0 萬元';
+        document.getElementById('r2_harvest_details').innerHTML = '';
+        document.getElementById('r2_harvest_details').classList.add('hidden');
+        document.getElementById('final_assets_label').textContent = '0 萬元';
+        document.getElementById('r2_avail_label').textContent = '0 萬元';
+
+        updateCost(1);
+        updateCost(2);
+        showToast('學習單已全部重設！');
+      }
+    });
+
+    // --- PNG 下載功能 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const groupInput = document.getElementById('student-group');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+      const groupVal = groupInput.value || '未填寫';
+
+      // 建立列印專用學生資訊
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${nameVal}</span></div>` +
+                               `<div>組員：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${groupVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      const tempElements = [];
+      
+      // 將所有 inputs 替換為靜態 span / div 方便美觀截圖
+      const inputTargets = [
+        'r1_sprout', 'r1_potato', 'r1_strawberry', 'r1_rice', 'r1_scallion',
+        'r2_sprout', 'r2_potato', 'r2_strawberry', 'r2_rice', 'r2_scallion'
+      ];
+
+      inputTargets.forEach(id => {
+        const inp = document.getElementById(id);
+        const val = inp.value || '0';
+        const tSpan = document.createElement('span');
+        tSpan.className = 'w-16 bg-white border border-slate-200 rounded px-2 py-1 text-center font-bold text-emerald-800 text-xs inline-block';
+        tSpan.textContent = val;
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tSpan, inp);
+        tempElements.push({ original: inp, temp: tSpan });
+      });
+
+      // textareas
+      const textareas = ['farm_reflection_1'];
+      textareas.forEach(id => {
+        const txt = document.getElementById(id);
+        const val = txt.value || '（未填寫）';
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-xl p-3.5 text-xs text-emerald-700 font-semibold shadow-inner min-h-[85px] leading-relaxed whitespace-pre-wrap';
+        tDiv.textContent = val;
+        txt.style.display = 'none';
+        txt.parentNode.insertBefore(tDiv, txt);
+        tempElements.push({ original: txt, temp: tDiv });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `理財投資_活動一_種瓜得瓜_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+          if (inputTargets.includes(item.original.id)) {
+            item.original.style.display = 'inline-block';
+          }
+        });
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    window.onload = initStorage;
+  </script>
+
+</body>
+</html>
