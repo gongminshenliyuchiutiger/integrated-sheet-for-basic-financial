@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【金融防詐】單元一：信用保護好詐騙遠離我 | 活動四：防詐行動家</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    /* 繪圖畫布樣式 */
+    .paint-canvas {
+      touch-action: none; /* 阻止觸控螢幕滾動，讓畫畫更流暢 */
+    }
+    
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between">
+    <!-- 導航條 -->
+    <div class="no-print mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-850 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+      </a>
+    </div>
+
+    
+    <!-- 頂部標頭與學生資訊區 -->
+    <div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-orange-100 text-orange-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元一：信用保護好，詐騙遠離我</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-orange-500 text-white rounded-xl shadow-md shadow-orange-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-people-horn"></i>
+            </span>
+            活動四：防詐行動家 —— 宣導記錄單
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2" id="class-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-orange-500 transition">
+            </div>
+            <div class="flex items-center gap-2" id="name-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-orange-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 說明文案與互動繪圖區 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-lg font-extrabold text-slate-900 mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-bullhorn text-orange-500"></i>
+          宣導宣言與任務
+        </h2>
+        <p class="text-slate-600 text-sm leading-relaxed mb-6 font-medium">
+          「您好，我們是防詐行動家。我們想向您宣導防詐騙的知識，請給我們 1 分鐘說明，聽懂後，請幫我們在下方勾選回饋並簽名。」
+        </p>
+
+        <!-- 區塊 1: 詐騙手法 (畫圖與標題) -->
+        <div class="mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3 border-b border-slate-100 pb-3">
+            <h3 class="text-sm font-black text-slate-800 flex items-center gap-2">
+              <span class="w-2 h-5 bg-orange-500 rounded-full"></span>
+              1. 繪製防詐手法（請用畫筆表達宣導案例）
+            </h3>
+            <!-- 畫布控制工具列 -->
+            <div class="no-print flex items-center gap-2">
+              <button onclick="setTool('draw')" id="tool-draw" class="p-2 rounded-lg bg-orange-100 text-orange-700 hover:bg-orange-200 transition text-xs font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-pencil"></i>畫筆
+              </button>
+              <button onclick="setTool('erase')" id="tool-erase" class="p-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition text-xs font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-eraser"></i>橡皮擦
+              </button>
+              <div class="h-4 w-px bg-slate-200 mx-1"></div>
+              <!-- 顏色選擇 -->
+              <div class="flex gap-1.5">
+                <button onclick="setColor('#000000')" class="w-5 h-5 rounded-full bg-black border border-white ring-2 ring-transparent transition transform active:scale-95" id="color-black"></button>
+                <button onclick="setColor('#ef4444')" class="w-5 h-5 rounded-full bg-red-500 border border-white ring-2 ring-transparent transition transform active:scale-95" id="color-red"></button>
+                <button onclick="setColor('#3b82f6')" class="w-5 h-5 rounded-full bg-blue-500 border border-white ring-2 ring-transparent transition transform active:scale-95" id="color-blue"></button>
+                <button onclick="setColor('#10b981')" class="w-5 h-5 rounded-full bg-emerald-500 border border-white ring-2 ring-transparent transition transform active:scale-95" id="color-green"></button>
+              </div>
+              <div class="h-4 w-px bg-slate-200 mx-1"></div>
+              <button onclick="clearCanvas('draw-canvas')" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition text-xs font-bold flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i>清除畫布
+              </button>
+            </div>
+          </div>
+          <!-- 畫布載體 -->
+          <div class="border border-slate-200 rounded-xl bg-slate-50/50 p-2 relative shadow-inner overflow-hidden">
+            <canvas id="draw-canvas" width="900" height="350" class="paint-canvas w-full bg-white rounded-lg shadow-sm border border-slate-100 cursor-crosshair"></canvas>
+          </div>
+        </div>
+
+        <!-- 區塊 2 & 3: 防詐 5 不/10 招與防詐專線 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="flex flex-col justify-between">
+            <h3 class="text-sm font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-2 h-5 bg-orange-500 rounded-full"></span>
+              2. 防詐 5 不或 10 招（宣導的核心招式）
+            </h3>
+            <textarea id="q_tips" placeholder="請在此處寫下您向親友宣導的防詐招式..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs font-semibold text-slate-700 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-50 transition min-h-[100px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+          
+          <div class="flex flex-col justify-between">
+            <h3 class="text-sm font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-2 h-5 bg-orange-500 rounded-full"></span>
+              3. 防詐專線與求助管道
+            </h3>
+            <textarea id="q_hotline" placeholder="請在此處寫下防詐專線電話，例如：165..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs font-semibold text-slate-700 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-50 transition min-h-[100px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+        </div>
+
+        <!-- 區塊 4: 聽眾回饋與簽名板 -->
+        <div class="border-t border-slate-100 pt-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- 回饋勾選 -->
+            <div class="md:col-span-2 flex flex-col justify-between bg-slate-50/50 p-5 rounded-2xl border border-slate-100">
+              <div>
+                <h4 class="font-extrabold text-sm text-slate-800 mb-3 flex items-center gap-2">
+                  <i class="fa-solid fa-circle-question text-orange-500"></i>
+                  被宣導人（家長/親友）回饋：
+                </h4>
+                <div class="space-y-3">
+                  <label class="flex items-start gap-3 cursor-pointer group" onclick="setFeedback(1)">
+                    <div class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-orange-400 transition" id="radio-1">
+                      <div class="w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition" id="radio-dot-1"></div>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-700">我聽懂了，獲益良多，謝謝你們！</span>
+                  </label>
+                  
+                  <label class="flex items-start gap-3 cursor-pointer group" onclick="setFeedback(2)">
+                    <div class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-orange-400 transition" id="radio-2">
+                      <div class="w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition" id="radio-dot-2"></div>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-700">我有不太懂的地方，請為我再解說一次。</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- 祝願填空 -->
+              <div class="mt-5 border-t border-slate-200/50 pt-4 flex flex-wrap items-center gap-2 text-xs font-extrabold text-slate-700">
+                <span>防詐行動家祝您們</span>
+                <input type="text" id="wish-input" placeholder="（例如：平安喜樂）" class="bg-white border-b border-slate-300 pb-0.5 px-2 text-orange-600 font-extrabold text-xs focus:outline-none focus:border-orange-500 transition w-48 text-center">
+                <span>，一切順利。</span>
+              </div>
+            </div>
+
+            <!-- 簽名畫布 -->
+            <div class="flex flex-col justify-between">
+              <div class="flex items-center justify-between gap-3 mb-3">
+                <h4 class="font-extrabold text-sm text-slate-800 flex items-center gap-2">
+                  <i class="fa-solid fa-signature text-orange-500"></i>
+                  被宣導人簽名處
+                </h4>
+                <button onclick="clearCanvas('sig-canvas')" class="no-print p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition text-[10px] font-bold flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i>清除
+                </button>
+              </div>
+              <div class="border border-slate-200 rounded-xl bg-white p-1 shadow-inner relative h-36">
+                <canvas id="sig-canvas" width="400" height="130" class="paint-canvas w-full h-full bg-white rounded-lg shadow-sm border border-slate-100 cursor-crosshair"></canvas>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 底部功能與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-orange-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-orange-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-orange-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- HTML5 Canvas 塗鴉/簽名板程式 ---
+    const canvases = {
+      'draw-canvas': { ctx: null, drawing: false, lastX: 0, lastY: 0 },
+      'sig-canvas': { ctx: null, drawing: false, lastX: 0, lastY: 0 }
+    };
+    
+    let currentTool = 'draw'; // 'draw' 或 'erase'
+    let currentColor = '#000000';
+    let currentLineWidth = 2;
+
+    function initCanvases() {
+      Object.keys(canvases).forEach(id => {
+        const canvas = document.getElementById(id);
+        const ctx = canvas.getContext('2d');
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        canvases[id].ctx = ctx;
+
+        // 計算縮放後的滑鼠位置
+        const getPos = (e, canvas) => {
+          const rect = canvas.getBoundingClientRect();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          // 將畫布的 client 座標轉換為 canvas 的實體解析度座標
+          return {
+            x: (clientX - rect.left) * (canvas.width / rect.width),
+            y: (clientY - rect.top) * (canvas.height / rect.height)
+          };
+        };
+
+        const drawStart = (e) => {
+          e.preventDefault();
+          const pos = getPos(e, canvas);
+          canvases[id].drawing = true;
+          canvases[id].lastX = pos.x;
+          canvases[id].lastY = pos.y;
+        };
+
+        const drawMove = (e) => {
+          if (!canvases[id].drawing) return;
+          e.preventDefault();
+          const pos = getPos(e, canvas);
+          const ctx = canvases[id].ctx;
+
+          ctx.beginPath();
+          ctx.moveTo(canvases[id].lastX, canvases[id].lastY);
+          ctx.lineTo(pos.x, pos.y);
+
+          // 設置工具樣式
+          if (id === 'sig-canvas') {
+            ctx.strokeStyle = '#1e293b'; // 簽名一律深灰藍
+            ctx.lineWidth = 2.5;
+          } else {
+            ctx.strokeStyle = currentTool === 'erase' ? '#ffffff' : currentColor;
+            ctx.lineWidth = currentTool === 'erase' ? 15 : currentLineWidth;
+          }
+
+          ctx.stroke();
+          
+          canvases[id].lastX = pos.x;
+          canvases[id].lastY = pos.y;
+        };
+
+        const drawEnd = () => {
+          if (canvases[id].drawing) {
+            canvases[id].drawing = false;
+            // 繪製結束後，儲存畫布內容
+            saveCanvasToStorage(id);
+          }
+        };
+
+        // 滑鼠事件
+        canvas.addEventListener('mousedown', drawStart);
+        canvas.addEventListener('mousemove', drawMove);
+        window.addEventListener('mouseup', drawEnd);
+
+        // 觸控事件
+        canvas.addEventListener('touchstart', drawStart, { passive: false });
+        canvas.addEventListener('touchmove', drawMove, { passive: false });
+        window.addEventListener('touchend', drawEnd);
+      });
+      
+      // 更新顏色工具高亮
+      updateColorSelector();
+      setTool('draw');
+    }
+
+    function setTool(tool) {
+      currentTool = tool;
+      document.getElementById('tool-draw').className = `p-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition ${tool === 'draw' ? 'bg-orange-500 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`;
+      document.getElementById('tool-erase').className = `p-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition ${tool === 'erase' ? 'bg-orange-500 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`;
+    }
+
+    function setColor(color) {
+      currentColor = color;
+      setTool('draw');
+      updateColorSelector();
+    }
+
+    function updateColorSelector() {
+      const colors = {
+        '#000000': 'color-black',
+        '#ef4444': 'color-red',
+        '#3b82f6': 'color-blue',
+        '#10b981': 'color-green'
+      };
+      Object.keys(colors).forEach(c => {
+        const btn = document.getElementById(colors[c]);
+        if (c === currentColor) {
+          btn.classList.add('ring-orange-500', 'scale-110');
+        } else {
+          btn.classList.remove('ring-orange-500', 'scale-110');
+        }
+      });
+    }
+
+    function clearCanvas(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvases[id].ctx;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      saveCanvasToStorage(id);
+    }
+
+    // 將 Canvas 儲存為 DataURL 放在 localStorage 中，實現斷電續寫
+    function saveCanvasToStorage(id) {
+      const canvas = document.getElementById(id);
+      localStorage.setItem('scam_agent_canvas_' + id, canvas.toDataURL());
+    }
+
+    function loadCanvasFromStorage(id) {
+      const dataUrl = localStorage.getItem('scam_agent_canvas_' + id);
+      if (dataUrl) {
+        const img = new Image();
+        img.src = dataUrl;
+        img.onload = () => {
+          canvases[id].ctx.drawImage(img, 0, 0);
+        };
+      }
+    }
+
+    // --- 單選回饋功能 ---
+    let currentFeedback = 0;
+    function setFeedback(index) {
+      currentFeedback = index;
+      localStorage.setItem('scam_agent_feedback', index);
+      
+      const r1 = document.getElementById('radio-1');
+      const rDot1 = document.getElementById('radio-dot-1');
+      const r2 = document.getElementById('radio-2');
+      const rDot2 = document.getElementById('radio-dot-2');
+      
+      if (index === 1) {
+        r1.className = 'w-5 h-5 rounded-full border-2 border-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5 transition';
+        rDot1.className = 'w-2.5 h-2.5 rounded-full bg-orange-500 scale-100 transition';
+        r2.className = 'w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition';
+        rDot2.className = 'w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition';
+      } else if (index === 2) {
+        r1.className = 'w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition';
+        rDot1.className = 'w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition';
+        r2.className = 'w-5 h-5 rounded-full border-2 border-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5 transition';
+        rDot2.className = 'w-2.5 h-2.5 rounded-full bg-orange-500 scale-100 transition';
+      }
+    }
+
+    // --- 本地快取儲存 ---
+    const textIds = ['q_tips', 'q_hotline', 'wish-input', 'student-class', 'student-name'];
+    
+    function initStorage() {
+      // 文字欄位載入
+      textIds.forEach(id => {
+        const saved = localStorage.getItem('scam_agent_' + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem('scam_agent_' + id, e.target.value);
+        });
+      });
+
+      // 回饋狀態載入
+      const savedFb = localStorage.getItem('scam_agent_feedback');
+      if (savedFb) {
+        setFeedback(parseInt(savedFb));
+      }
+
+      // Canvas 載入
+      loadCanvasFromStorage('draw-canvas');
+      loadCanvasFromStorage('sig-canvas');
+    }
+
+    // --- 一鍵重設學習單 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除所有填寫的內容與畫布嗎？')) {
+        textIds.forEach(id => {
+          localStorage.removeItem('scam_agent_' + id);
+          document.getElementById(id).value = '';
+        });
+        
+        localStorage.removeItem('scam_agent_feedback');
+        // 重設單選框外觀
+        const r1 = document.getElementById('radio-1');
+        const rDot1 = document.getElementById('radio-dot-1');
+        const r2 = document.getElementById('radio-2');
+        const rDot2 = document.getElementById('radio-dot-2');
+        r1.className = 'w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition';
+        rDot1.className = 'w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition';
+        r2.className = 'w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition';
+        rDot2.className = 'w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition';
+        currentFeedback = 0;
+
+        clearCanvas('draw-canvas');
+        clearCanvas('sig-canvas');
+        showToast('學習單與畫布已全部重設！');
+      }
+    });
+
+    // --- 一鍵下載 PNG ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      // 1. 固定寬度
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      // 2. 替換學生資訊
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-orange-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-orange-600 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 3. 替換 2 個 textarea 為對齊良好的靜態文字方格
+      const tempTaElements = [];
+      const textareas = ['q_tips', 'q_hotline'];
+      textareas.forEach(id => {
+        const ta = document.getElementById(id);
+        const val = ta.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-xl p-4 text-xs text-orange-700 font-semibold min-h-[100px] flex items-center whitespace-pre-wrap shadow-inner leading-relaxed';
+        tDiv.textContent = val;
+        
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(tDiv, ta);
+        tempTaElements.push({ original: ta, temp: tDiv });
+      });
+
+      // 4. 替換願望祝福願望為下劃線靜態文字，避免 input 下沉
+      const wishInput = document.getElementById('wish-input');
+      const wishVal = wishInput.value || '（未填寫）';
+      const wishSpan = document.createElement('span');
+      wishSpan.className = 'border-b border-slate-400 pb-0.5 px-2 text-orange-600 font-extrabold text-xs mx-1';
+      wishSpan.textContent = wishVal;
+      
+      wishInput.style.display = 'none';
+      wishInput.parentNode.insertBefore(wishSpan, wishInput);
+
+      // 5. 擷取
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `金融防詐_活動四_防詐行動家_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        // 6. 還原
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempTaElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+
+        wishSpan.remove();
+        wishInput.style.display = 'inline-block';
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    // 初始化畫布與快取資料
+    window.onload = () => {
+      initCanvases();
+      initStorage();
+    };
+  </script>
+
+  
+
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy 開始 -->
+  <style>
+    /* 吉祥物發光與抖動樣式 */
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+  </style>
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+  <script>
+    (function() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      // 如果有 capture-area，將吉祥物附加到 capture-area 內，使其下載時能被 html2canvas 擷取
+      if (captureArea) {
+        captureArea.appendChild(mascot);
+        mascot.style.position = 'absolute';
+      } else {
+        mascot.style.position = 'fixed';
+      }
+
+      // hover 效果
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        if (captureArea) {
+          initialLeft = mascot.offsetLeft;
+          initialTop = mascot.offsetTop;
+        } else {
+          const rect = mascot.getBoundingClientRect();
+          initialLeft = rect.left;
+          initialTop = rect.top;
+        }
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (captureArea) {
+          const parentRect = captureArea.getBoundingClientRect();
+          const mascotRect = mascot.getBoundingClientRect();
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+          if (newTop < 0) newTop = 0;
+          if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+        } else {
+          const mascotRect = mascot.getBoundingClientRect();
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > window.innerWidth - mascotRect.width) newLeft = window.innerWidth - mascotRect.width;
+          if (newTop < 0) newTop = 0;
+          if (newTop > window.innerHeight - mascotRect.height) newTop = window.innerHeight - mascotRect.height;
+        }
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'scam_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      // 載入該頁之前擺放的位置
+      const pageKey = 'scam_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    })();
+  </script>
+  <!-- 可拖曳吉祥物 LiyuChillGuy 結束 -->
+
+</body>
+</html>

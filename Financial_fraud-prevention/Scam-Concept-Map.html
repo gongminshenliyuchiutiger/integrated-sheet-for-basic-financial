@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【金融防詐】單元三：金融防詐與我的距離 | 活動三：金融防詐概念圖</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between">
+    <!-- 導航條 -->
+    <div class="no-print mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-850 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+      </a>
+    </div>
+
+    
+    <!-- 頂部標頭與學生資訊區 -->
+    <div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-sky-100 text-sky-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元三：金融詐騙與我的距離</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-sky-500 text-white rounded-xl shadow-md shadow-sky-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-diagram-project"></i>
+            </span>
+            活動三：金融防詐概念圖
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2" id="class-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-sky-500 transition">
+            </div>
+            <div class="flex items-center gap-2" id="name-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-sky-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 說明文案與分頁導覽 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-4">
+          <div>
+            <h2 class="text-base font-extrabold text-slate-900 mb-1 flex items-center gap-2">
+              <i class="fa-solid fa-brain text-sky-500"></i>
+              概念思考與案例閱讀
+            </h2>
+            <p class="text-slate-500 text-xs font-bold leading-relaxed">
+              閱讀檢察官案例，並透過「金融詐騙四分格概念地圖」整理所學知識。
+            </p>
+          </div>
+          
+          <!-- Tab 切換 -->
+          <div class="no-print flex gap-2">
+            <button onclick="switchTab('case')" id="btn-tab-case" class="py-2 px-4 rounded-xl font-extrabold text-xs border transition">
+              <i class="fa-solid fa-book-open mr-1.5"></i>案例與問題討論
+            </button>
+            <button onclick="switchTab('map')" id="btn-tab-map" class="py-2 px-4 rounded-xl font-extrabold text-xs border transition">
+              <i class="fa-solid fa-cubes-stacked mr-1.5"></i>金融詐騙概念圖
+            </button>
+          </div>
+        </div>
+        
+        <div class="inline-block bg-sky-100 text-sky-700 font-extrabold text-xs px-3.5 py-1.5 rounded-full mb-2 tracking-wider" id="active-tab-label">
+          案例與問題討論
+        </div>
+      </div>
+
+      <!-- 主內容區 (下載時強制並排雙欄) -->
+      <div id="sections-wrapper" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- 左欄：案例閱讀與討論 -->
+        <div id="section-case" class="space-y-6">
+          <h3 class="text-xs font-black text-sky-600 tracking-wider mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-4 bg-sky-500 rounded-full"></span>
+            【學習單三】防詐案例閱讀：《存股致富夢一場》
+          </h3>
+          
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4 print-shadow-none">
+            <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-xs font-semibold text-slate-600 leading-relaxed max-h-[220px] overflow-y-auto shadow-inner">
+              <p class="mb-2.5 font-bold text-slate-800">撰稿：黃珮瑜檢察官</p>
+              剛升上研究所二年級的美美，看見同學們都在討論如何存股致富，想著自己到現在都還沒有任何投資經驗，內心不禁有些慌亂，擔心畢業後要是沒有找到高薪的工作，將來肯定會輸給其他同學。就在美美正惆悵時，聽到手機響起聲音，原來是 Telegram 通訊軟體的「飆股 U12」邀請她加入投資 LINE 群組的訊息，美美內心興奮不已，夢想著跟同學們一樣，開啟投資存股的致富之路。<br><br>
+              看著群組內投資老師傳送的專業分析訊息及其他人對老師的崇拜言論，讓美美對老師的專業佩服不已，想著兩年來打工存了 30 萬元，如果能夠跟著老師投資而翻倍的話，短時間內就可以超越同學了，而且都是用自己的證券帳戶買賣，應該不會有問題。於是她暗自跟著老師的指示，先小買一張試試手氣，結果真的在一週左右的時間，就漲了 20%，讓美美更相信老師真是神準！<br><br>
+              後來老師開始鼓吹大家，為了讓大家有更高的獲利，下一檔將會與主力合作，但是大家必須嚴格保密，且一定要依照老師指示的時間、分配的額度下單，以創造最高的獲利。經過老師及群組中其他暗樁不斷的呼應後，美美決定放手一搏，除了自己原來的 30 萬元外，為了達成老師指定的額度，更向家人借款投入……一番操作下來，美美真的依照老師的要求，在星期五下午三點十五分買進將近新臺幣 100 萬元左右的「港股」，並期待著下週的獲利。<br><br>
+              怎知星期一上午八點五十分，老師忽然緊急通知美美，趕快以低於原先購買價格一半之金額，將手上所有的港股拋售，美美心想如果聽老師吩咐全部賣掉的話，就會虧損一半，但老師一再強調，因為群組內有人洩漏主力購買的訊息，如果不依照指示馬上止血的話，將會虧損更多。美美雖有不甘，但也只能依老師的指示，將手上所有股票賣出...瞬間就虧損了 50 萬元。至此，美美才恍然大悟，原來自己被「割韭菜」了！美美後來將她依照不明投資老師指示而操作股票一事告知家人，家人要美美報警處理，然而美美卻連投資老師的真實身分都不知道，求助無門，內心懊悔不已。
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex flex-col">
+                <span class="text-[11px] font-black text-slate-500 mb-1.5">1. 投資老師的行為可能觸犯什麼法律？</span>
+                <textarea id="case-q1" placeholder="從刑法詐欺、證券法規等角度思考..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[11px] font-black text-slate-500 mb-1.5">2. 如果以社群媒體參與投資，如何得知投資老師的真實身份？</span>
+                <textarea id="case-q2" placeholder="如何進行查證？有哪些防範方式？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右欄：四分格概念地圖 -->
+        <div id="section-map" class="space-y-6">
+          <h3 class="text-xs font-black text-sky-600 tracking-wider mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-4 bg-sky-500 rounded-full"></span>
+            【學習單四】「騙」面之辭：金融詐騙概念圖 (Frayer Model)
+          </h3>
+          
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm print-shadow-none">
+            <!-- 2x2 Frayer Model Layout -->
+            <div class="relative grid grid-cols-2 gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100 shadow-inner mb-4">
+              
+              <!-- 核心圓形 Badge -->
+              <div class="absolute top-1/2 left-1/2 w-16 h-16 rounded-full bg-sky-500 text-white font-black text-xs flex flex-col items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg shadow-sky-500/20 z-10 text-center tracking-tight border-2 border-white">
+                <span>金融</span>
+                <span>詐騙</span>
+              </div>
+              
+              <!-- 1. 定義 (右上) -->
+              <div class="flex flex-col bg-white border border-slate-200 rounded-lg p-2.5 relative">
+                <span class="text-[10px] font-black text-sky-600 mb-1.5"><i class="fa-solid fa-book text-[9px] mr-1"></i>定義 (Definition)</span>
+                <textarea id="map-def" placeholder="金融詐騙的具體定義..." class="w-full bg-slate-50 border border-transparent rounded-md p-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition h-20 resize-none leading-relaxed shadow-inner"></textarea>
+              </div>
+
+              <!-- 2. 特徵 (左上) -->
+              <div class="flex flex-col bg-white border border-slate-200 rounded-lg p-2.5 relative">
+                <span class="text-[10px] font-black text-sky-600 mb-1.5"><i class="fa-solid fa-list text-[9px] mr-1"></i>特徵 (Characteristics)</span>
+                <textarea id="map-char" placeholder="有哪些核心共同特徵？" class="w-full bg-slate-50 border border-transparent rounded-md p-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition h-20 resize-none leading-relaxed shadow-inner"></textarea>
+              </div>
+
+              <!-- 3. 例子 (左下) -->
+              <div class="flex flex-col bg-white border border-slate-200 rounded-lg p-2.5 relative mt-1">
+                <span class="text-[10px] font-black text-sky-600 mb-1.5"><i class="fa-solid fa-circle-check text-[9px] mr-1"></i>例子 (Examples)</span>
+                <textarea id="map-ex" placeholder="常見的金融詐騙手段例子..." class="w-full bg-slate-50 border border-transparent rounded-md p-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition h-20 resize-none leading-relaxed shadow-inner"></textarea>
+              </div>
+
+              <!-- 4. 非例子 (右下) -->
+              <div class="flex flex-col bg-white border border-slate-200 rounded-lg p-2.5 relative mt-1">
+                <span class="text-[10px] font-black text-sky-600 mb-1.5"><i class="fa-solid fa-circle-xmark text-[9px] mr-1"></i>非例子 (Non-examples)</span>
+                <textarea id="map-nonex" placeholder="哪些是合法的金融投資行為？" class="w-full bg-slate-50 border border-transparent rounded-md p-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition h-20 resize-none leading-relaxed shadow-inner"></textarea>
+              </div>
+
+            </div>
+
+            <!-- 討論：發生因素 -->
+            <div class="flex flex-col">
+              <span class="text-[11px] font-black text-slate-500 mb-1.5">小組討論：金融詐騙的發生通常有哪些因素？</span>
+              <textarea id="map-factors" placeholder="例如：心理貪念、資訊落差、科技漏洞、信任破壞..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-sky-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 底部功能與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-sky-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載完整成果 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-sky-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-sky-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- Tab 分頁切換 (網頁端版面整理) ---
+    function switchTab(tabId) {
+      const secCase = document.getElementById('section-case');
+      const secMap = document.getElementById('section-map');
+      const btnCase = document.getElementById('btn-tab-case');
+      const btnMap = document.getElementById('btn-tab-map');
+      const label = document.getElementById('active-tab-label');
+
+      if (tabId === 'case') {
+        secCase.classList.remove('hidden');
+        secMap.classList.add('hidden');
+        btnCase.className = "py-2 px-4 rounded-xl font-extrabold text-xs border bg-sky-500 border-sky-500 text-white shadow-sm transition";
+        btnMap.className = "py-2 px-4 rounded-xl font-extrabold text-xs border bg-white border-slate-200 text-slate-600 hover:bg-slate-50 transition";
+        label.textContent = "案例與問題討論";
+      } else {
+        secCase.classList.add('hidden');
+        secMap.classList.remove('hidden');
+        btnCase.className = "py-2 px-4 rounded-xl font-extrabold text-xs border bg-white border-slate-200 text-slate-600 hover:bg-slate-50 transition";
+        btnMap.className = "py-2 px-4 rounded-xl font-extrabold text-xs border bg-sky-500 border-sky-500 text-white shadow-sm transition";
+        label.textContent = "金融防詐概念圖";
+      }
+    }
+
+    function handleResize() {
+      const secCase = document.getElementById('section-case');
+      const secMap = document.getElementById('section-map');
+      
+      if (window.innerWidth >= 768) {
+        secCase.classList.remove('hidden');
+        secMap.classList.remove('hidden');
+      } else {
+        switchTab('case');
+      }
+    }
+    window.addEventListener('resize', handleResize);
+
+    // --- 本地快取儲存 ---
+    const qIds = [
+      'case-q1', 'case-q2',
+      'map-def', 'map-char', 'map-ex', 'map-nonex', 'map-factors',
+      'student-class', 'student-name'
+    ];
+
+    function initStorage() {
+      qIds.forEach(id => {
+        const saved = localStorage.getItem('scam_concept_' + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem('scam_concept_' + id, e.target.value);
+        });
+      });
+
+      // 初始化 Tab 定位
+      if (window.innerWidth < 768) {
+        switchTab('case');
+      } else {
+        document.getElementById('section-case').classList.remove('hidden');
+        document.getElementById('section-map').classList.remove('hidden');
+      }
+    }
+
+    // --- 一鍵重設學習單 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除所有填寫的概念答案與案例分析嗎？')) {
+        qIds.forEach(id => {
+          localStorage.removeItem('scam_concept_' + id);
+          document.getElementById(id).value = '';
+        });
+        showToast('學習單內容已重設！');
+      }
+    });
+
+    // --- 一鍵下載 PNG (對齊校正、防裁切版) ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      // 1. 強制讓兩欄並排，設定固定寬度，確保擷取完整圖表
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      // 強制顯示雙影片
+      const secCase = document.getElementById('section-case');
+      const secMap = document.getElementById('section-map');
+      const isCaseHidden = secCase.classList.contains('hidden');
+      const isMapHidden = secMap.classList.contains('hidden');
+
+      secCase.classList.remove('hidden');
+      secMap.classList.remove('hidden');
+
+      // 2. 暫時替換「班級、姓名」輸入框為印刷下劃線文字
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-sky-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-sky-600 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 3. 暫時替換所有 textarea 為對齊良好的靜態文字方格
+      const tempTaElements = [];
+      qIds.filter(id => id !== 'student-class' && id !== 'student-name').forEach(id => {
+        const ta = document.getElementById(id);
+        const val = ta.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        
+        // Frayer 四格文字框的微調高度
+        if (id.startsWith('map-') && id !== 'map-factors') {
+          tDiv.className = 'w-full bg-white border border-slate-200 rounded-md p-1.5 text-[11px] text-sky-700 font-semibold h-20 flex items-center whitespace-pre-wrap shadow-inner leading-relaxed';
+        } else {
+          tDiv.className = 'w-full bg-white border border-slate-200 rounded-xl p-3 text-xs text-sky-700 font-semibold min-h-[70px] flex items-center whitespace-pre-wrap shadow-inner leading-relaxed';
+        }
+        tDiv.textContent = val;
+        
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(tDiv, ta);
+        tempTaElements.push({ original: ta, temp: tDiv });
+      });
+
+      // 4. 執行擷取
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        // 下載
+        const link = document.createElement('a');
+        link.download = `金融防詐_活動三_金融防詐概念圖_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        // 5. 還原 DOM
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        // 還原 Tab 顯示狀態
+        if (window.innerWidth < 768) {
+          if (isCaseHidden) secCase.classList.add('hidden');
+          if (isMapHidden) secMap.classList.add('hidden');
+        }
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempTaElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    window.onload = initStorage;
+  </script>
+
+  
+
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy 開始 -->
+  <style>
+    /* 吉祥物發光與抖動樣式 */
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+  </style>
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+  <script>
+    (function() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      // 如果有 capture-area，將吉祥物附加到 capture-area 內，使其下載時能被 html2canvas 擷取
+      if (captureArea) {
+        captureArea.appendChild(mascot);
+        mascot.style.position = 'absolute';
+      } else {
+        mascot.style.position = 'fixed';
+      }
+
+      // hover 效果
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        if (captureArea) {
+          initialLeft = mascot.offsetLeft;
+          initialTop = mascot.offsetTop;
+        } else {
+          const rect = mascot.getBoundingClientRect();
+          initialLeft = rect.left;
+          initialTop = rect.top;
+        }
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (captureArea) {
+          const parentRect = captureArea.getBoundingClientRect();
+          const mascotRect = mascot.getBoundingClientRect();
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+          if (newTop < 0) newTop = 0;
+          if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+        } else {
+          const mascotRect = mascot.getBoundingClientRect();
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > window.innerWidth - mascotRect.width) newLeft = window.innerWidth - mascotRect.width;
+          if (newTop < 0) newTop = 0;
+          if (newTop > window.innerHeight - mascotRect.height) newTop = window.innerHeight - mascotRect.height;
+        }
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'scam_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      // 載入該頁之前擺放的位置
+      const pageKey = 'scam_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    })();
+  </script>
+  <!-- 可拖曳吉祥物 LiyuChillGuy 結束 -->
+
+</body>
+</html>

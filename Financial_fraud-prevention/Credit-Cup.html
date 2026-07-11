@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【金融防詐】單元一：信用保護好詐騙遠離我 | 活動一：信用水杯</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    /* 水杯動畫效果 */
+    .water-fill {
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* 吉祥物發光與抖動樣式 */
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    <!-- 導航條 -->
+    <div class="no-print mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-850 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+      </a>
+    </div>
+
+    
+    <!-- 頂部標頭與學生資訊區 -->
+    <div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-orange-100 text-orange-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元一：信用保護好，詐騙遠離我</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-orange-500 text-white rounded-xl shadow-md shadow-orange-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-glass-water-droplet"></i>
+            </span>
+            活動一：信用水杯小幫手
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2" id="class-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-orange-500 transition">
+            </div>
+            <div class="flex items-center gap-2" id="name-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-orange-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 說明文案與互動主區 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <!-- 左側：信用水杯 SVG 動態顯示 (佔 1 欄) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col items-center justify-center relative print-shadow-none">
+          <div class="text-center mb-4 flex flex-col items-center w-full">
+            <!-- 對話泡泡 -->
+            <div class="relative bg-orange-50 border border-orange-200 text-orange-850 text-xs font-extrabold px-4 py-2.5 rounded-xl mb-4 shadow-sm text-center max-w-[260px]">
+              <span id="mascot-dialog">答題可以為水杯蓄水唷！</span>
+              <div class="absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 w-2.5 h-2.5 bg-orange-50 border-r border-b border-orange-200 rotate-45"></div>
+            </div>
+            <!-- 靜態吉祥物展示 (放大2倍) -->
+            <div class="w-48 h-48 mb-4 flex items-center justify-center select-none">
+              <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain filter drop-shadow-sm">
+            </div>
+            
+            <span class="text-xs font-black text-slate-400 block mb-1">CREDIT CONTAINER</span>
+            <h3 class="text-lg font-black text-slate-800">我的信用儲水杯</h3>
+          </div>
+          
+          <!-- 水杯 SVG -->
+          <div class="relative w-44 h-64 bg-slate-100/50 rounded-b-[40px] rounded-t-xl border-4 border-slate-300 shadow-inner overflow-hidden flex items-end justify-center mb-4">
+            
+            <!-- 藍色水體 (動態控制高度) -->
+            <div id="water-level" class="water-fill w-full bg-gradient-to-t from-blue-600/80 to-sky-400/90" style="height: 70%;"></div>
+            
+            <!-- 分數文字疊加 -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center z-10 select-none">
+              <div id="score-display" class="text-3xl font-black text-slate-900 drop-shadow-sm">70</div>
+              <div class="text-[10px] font-black text-slate-500 tracking-wider uppercase mt-1">Credit Score</div>
+            </div>
+
+            <!-- 杯子刻度線 -->
+            <div class="absolute inset-y-0 right-3 flex flex-col justify-between py-6 text-[8px] font-black text-slate-400 select-none z-10">
+              <span>100</span>
+              <span>80</span>
+              <span>60</span>
+              <span>40</span>
+              <span>20</span>
+              <span>0</span>
+            </div>
+          </div>
+
+          <!-- 信用狀態與漏水警告 -->
+          <div id="status-card" class="w-full text-center px-3 py-2.5 rounded-xl border font-extrabold text-xs">
+            正在評估信用...
+          </div>
+        </div>
+
+        <!-- 右側：日常信用情境題 (佔 2 欄) -->
+        <div class="md:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between print-shadow-none">
+          <div>
+            <h3 class="text-sm font-black text-slate-800 mb-4 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <i class="fa-solid fa-circle-question text-orange-500"></i>
+              日常信用模擬情境 (單選)
+            </h3>
+            
+            <!-- 4道題目 -->
+            <div class="space-y-4" id="quiz-wrapper">
+              <!-- 由 JS 插入 -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ORID 思考問答區 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-sm font-black text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-graduation-cap text-orange-500"></i>
+          信用反思與討論 (ORID)
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <span class="text-[11px] font-bold text-slate-500 mb-1.5">1. Objective (客觀事實)：你看到你的信用水杯發生了什麼變化？</span>
+            <textarea id="orid-o" placeholder="水位的上升或下降，與你的哪些作答決定有關？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[75px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+          
+          <div class="flex flex-col">
+            <span class="text-[11px] font-bold text-slate-500 mb-1.5">2. Reflective (主觀感受)：當你的信用分數降低時，你有什麼感覺？</span>
+            <textarea id="orid-r" placeholder="水位下降或漏水警告時，你有什麼心理感受？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[75px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+
+          <div class="flex flex-col mt-2">
+            <span class="text-[11px] font-bold text-slate-500 mb-1.5">3. Interpretive (難關與價值)：你認為在日常生活中，維持信用最難的是什麼？為什麼？</span>
+            <textarea id="orid-i" placeholder="哪些誘惑或困難會讓你容易破壞自己的承諾？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[75px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+
+          <div class="flex flex-col mt-2">
+            <span class="text-[11px] font-bold text-slate-500 mb-1.5">4. Decisive (行動決策)：未來你要如何在生活中保護並提升自己的信用？</span>
+            <textarea id="orid-d" placeholder="請寫下你今後的防護與誠信守則行動..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[75px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部功能與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-orange-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-orange-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 吉祥物拖曳元件 -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-orange-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- 可拖曳吉祥物功能 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      // 動態把吉祥物送進 capture-area 當成子元素以支持截圖
+      captureArea.appendChild(mascot);
+
+      // hover 動畫
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        // 獲取相對於 captureArea 父容器的位置
+        initialLeft = mascot.offsetLeft;
+        initialTop = mascot.offsetTop;
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        // 計算邊界
+        const parentRect = captureArea.getBoundingClientRect();
+        const mascotRect = mascot.getBoundingClientRect();
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        // 防止拉出 captureArea 外
+        if (newLeft < 0) newLeft = 0;
+        if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+        if (newTop < 0) newTop = 0;
+        if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        // 儲存吉祥物被放置的位置，實現斷電續置
+        localStorage.setItem('scam_mascot_left', mascot.style.left);
+        localStorage.setItem('scam_mascot_top', mascot.style.top);
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      // 載入之前擺放的位置
+      const savedLeft = localStorage.getItem('scam_mascot_left');
+      const savedTop = localStorage.getItem('scam_mascot_top');
+      if (savedLeft && savedTop) {
+        mascot.style.bottom = 'auto';
+        mascot.style.left = savedLeft;
+        mascot.style.top = savedTop;
+      }
+    }
+
+    // --- 信用情境模擬問答 ---
+    const scenarios = [
+      {
+        id: 1,
+        title: "情境 1：跟死黨借了 50 元買飲料，並約定明天一定還錢...",
+        options: [
+          { val: 'A', text: "隔天一早準時還給小明", points: 15 },
+          { val: 'B', text: "拖了三天，直到小明催了才還", points: 0 },
+          { val: 'C', text: "故意忘記不還，覺得反正錢很少死黨不計較", points: -25 }
+        ]
+      },
+      {
+        id: 2,
+        title: "情境 2：借用班級公用書逾期未還，得知若未還將會被禁止借閱...",
+        options: [
+          { val: 'A', text: "立刻將書歸還並向導師或館員誠心道歉", points: 15 },
+          { val: 'B', text: "拖到學期末才勉強歸還", points: -5 },
+          { val: 'C', text: "覺得無所謂，乾脆假裝弄丟不賠償", points: -25 }
+        ]
+      },
+      {
+        id: 3,
+        title: "情境 3：小組報告分工中被分配負責一小節，需要明天交給組長彙整...",
+        options: [
+          { val: 'A', text: "提前做好並主動私訊組長確認是否有要修改的", points: 20 },
+          { val: 'B', text: "卡在最後一分鐘才草率交差，內容錯誤偏多", points: 5 },
+          { val: 'C', text: "直接失聯，害小組報告開天窗無法上傳", points: -30 }
+        ]
+      },
+      {
+        id: 4,
+        title: "情境 4：網購了一件酷炫外套超商取貨付款，收到了貨到簡訊通知...",
+        options: [
+          { val: 'A', text: "收到通知當天下午就去門市取貨付款完成", points: 20 },
+          { val: 'B', text: "拖到第七天簡訊警告要退貨了才匆匆取貨", points: 5 },
+          { val: 'C', text: "反悔不想要了，直接故意放著等退貨", points: -30 }
+        ]
+      }
+    ];
+
+    const answers = { 1: null, 2: null, 3: null, 4: null };
+
+    function renderQuiz() {
+      const container = document.getElementById('quiz-wrapper');
+      container.innerHTML = '';
+
+      scenarios.forEach(q => {
+        const qCard = document.createElement('div');
+        qCard.className = "p-4 bg-slate-50 rounded-xl border border-slate-100 flex flex-col mb-4";
+        qCard.innerHTML = `<span class="text-xs font-black text-slate-800 mb-2.5">${q.title}</span>`;
+
+        const optList = document.createElement('div');
+        optList.className = "flex flex-col gap-2";
+
+        q.options.forEach(opt => {
+          const optBtn = document.createElement('button');
+          optBtn.id = `opt-${q.id}-${opt.val}`;
+          optBtn.className = "w-full text-left p-3 rounded-lg border bg-white border-slate-200 text-xs font-bold text-slate-600 hover:bg-orange-50/50 hover:border-orange-300 transition-all flex items-center justify-between";
+          
+          let scoreText = opt.points >= 0 ? `+${opt.points}` : `${opt.points}`;
+          optBtn.innerHTML = `<span>${opt.text}</span>` +
+                             `<span class="text-[10px] font-black bg-slate-100 px-2 py-0.5 rounded text-slate-500">${scoreText} 信用</span>`;
+          
+          optBtn.onclick = () => selectOption(q.id, opt.val, opt.points);
+          optList.appendChild(optBtn);
+        });
+
+        qCard.appendChild(optList);
+        container.appendChild(qCard);
+      });
+    }
+
+    function selectOption(qId, val, points) {
+      answers[qId] = { val, points };
+      localStorage.setItem(`scam_cup_ans_val_${qId}`, val);
+      localStorage.setItem(`scam_cup_ans_pts_${qId}`, points);
+
+      // 清除同題高亮
+      scenarios.find(s => s.id === qId).options.forEach(opt => {
+        const btn = document.getElementById(`opt-${qId}-${opt.val}`);
+        btn.className = "w-full text-left p-3 rounded-lg border bg-white border-slate-200 text-xs font-bold text-slate-600 hover:bg-orange-50/50 hover:border-orange-300 transition-all flex items-center justify-between";
+        btn.querySelector('span:last-child').className = "text-[10px] font-black bg-slate-100 px-2 py-0.5 rounded text-slate-500";
+      });
+
+      // 高亮當前
+      const selected = document.getElementById(`opt-${qId}-${val}`);
+      selected.className = "w-full text-left p-3 rounded-lg border bg-orange-500 border-orange-500 text-white text-xs font-black transition-all flex items-center justify-between shadow-md shadow-orange-500/10";
+      selected.querySelector('span:last-child').className = "text-[10px] font-black bg-orange-700 px-2 py-0.5 rounded text-white";
+
+      updateCupScore();
+    }
+
+    function updateCupScore() {
+      // 信用初始值為 30 分，隨著正面行為加分，負面扣分，上限 100 分，下限 0 分
+      let score = 30;
+      for (let i = 1; i <= 4; i++) {
+        if (answers[i]) {
+          score += answers[i].points;
+        }
+      }
+
+      if (score < 0) score = 0;
+      if (score > 100) score = 100;
+
+      // 更新 SVG 水位與分數數字
+      const waterFill = document.getElementById('water-level');
+      const scoreDisp = document.getElementById('score-display');
+      
+      waterFill.style.height = score + '%';
+      scoreDisp.textContent = score;
+
+      // 狀態提示卡與吉祥物對話泡泡
+      const statusCard = document.getElementById('status-card');
+      const mascotDialog = document.getElementById('mascot-dialog');
+      
+      if (score >= 80) {
+        statusCard.className = "w-full text-center px-3 py-2.5 rounded-xl border font-extrabold text-xs bg-emerald-50 border-emerald-200 text-emerald-700";
+        statusCard.innerHTML = `<i class="fa-solid fa-medal mr-1"></i> 信用卓越：您是值得信賴的合作夥伴！`;
+        if (mascotDialog) mascotDialog.textContent = "哇！你的信用水杯滿滿的，太棒了！✨";
+      } else if (score >= 50) {
+        statusCard.className = "w-full text-center px-3 py-2.5 rounded-xl border font-extrabold text-xs bg-sky-50 border-sky-200 text-sky-700";
+        statusCard.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> 信用良好：基本維持誠信，請繼續保持！`;
+        if (mascotDialog) mascotDialog.textContent = "繼續努力答題，讓信用水杯裝滿吧！💪";
+      } else if (score >= 30) {
+        statusCard.className = "w-full text-center px-3 py-2.5 rounded-xl border font-extrabold text-xs bg-amber-50 border-amber-200 text-amber-700";
+        statusCard.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1"></i> 信用黃燈：有多次失信記錄，水杯正在漏水！`;
+        if (mascotDialog) mascotDialog.textContent = "哎呀，水杯開始漏水了，要注意誠信喔！⚠️";
+      } else {
+        statusCard.className = "w-full text-center px-3 py-2.5 rounded-xl border font-extrabold text-xs bg-rose-50 border-rose-200 text-rose-700 animate-pulse";
+        statusCard.innerHTML = `<i class="fa-solid fa-droplet-slash mr-1"></i> 信用破產：警報！水杯幾近枯竭，必須立刻導正！`;
+        if (mascotDialog) mascotDialog.textContent = "天啊！水杯快要枯竭了，快糾正誠信吧！🚨";
+      }
+    }
+
+    // --- 本地快取 ---
+    const oridIds = ['orid-o', 'orid-r', 'orid-i', 'orid-d', 'student-class', 'student-name'];
+
+    function initStorage() {
+      // 載入文字與心得
+      oridIds.forEach(id => {
+        const saved = localStorage.getItem('scam_cup_text_' + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem('scam_cup_text_' + id, e.target.value);
+        });
+      });
+
+      // 渲染題庫
+      renderQuiz();
+
+      // 載入答案選擇
+      for (let i = 1; i <= 4; i++) {
+        const savedVal = localStorage.getItem(`scam_cup_ans_val_${i}`);
+        const savedPts = localStorage.getItem(`scam_cup_ans_pts_${i}`);
+        if (savedVal && savedPts) {
+          selectOption(i, savedVal, parseInt(savedPts));
+        }
+      }
+
+      updateCupScore();
+      
+      // 初始化吉祥物
+      initMascot();
+    }
+
+    // --- 一鍵重設學習單 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除信用水杯學習單的作答答案與反思嗎？')) {
+        // 清除文字
+        oridIds.forEach(id => {
+          localStorage.removeItem('scam_cup_text_' + id);
+          document.getElementById(id).value = '';
+        });
+
+        // 清除答案
+        for (let i = 1; i <= 4; i++) {
+          localStorage.removeItem(`scam_cup_ans_val_${i}`);
+          localStorage.removeItem(`scam_cup_ans_pts_${i}`);
+          answers[i] = null;
+        }
+
+        renderQuiz();
+        updateCupScore();
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 一鍵下載 PNG (對齊校正、防裁切版) ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      // 1. 強制固定擷取寬度
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      // 2. 暫時替換「班級、姓名」輸入框為印刷下劃線文字
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-orange-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-orange-600 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 3. 暫時替換 4 個 ORID textarea 為對齊良好的靜態文字方格
+      const tempElements = [];
+      const textareas = ['orid-o', 'orid-r', 'orid-i', 'orid-d'];
+
+      textareas.forEach(id => {
+        const ta = document.getElementById(id);
+        const val = ta.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-xl p-3 text-xs text-orange-700 font-semibold min-h-[75px] flex items-center whitespace-pre-wrap shadow-inner leading-relaxed';
+        tDiv.textContent = val;
+        
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(tDiv, ta);
+        tempElements.push({ original: ta, temp: tDiv });
+      });
+
+      // 4. 執行擷取
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        // 下載
+        const link = document.createElement('a');
+        link.download = `金融防詐_活動一_信用水杯_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showToast('信用水杯學習單下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        // 5. 還原 DOM
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    window.onload = initStorage;
+  </script>
+</body>
+</html>

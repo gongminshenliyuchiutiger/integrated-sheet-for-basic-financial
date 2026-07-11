@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【金錢規劃】單元三：金錢規劃我最行 | 夢想與現實生活預算表</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    <!-- 導航條 -->
+    <div class="no-print mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-850 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+      </a>
+    </div>
+
+    
+    <!-- 頂部標頭與學生資訊區 -->
+    <div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-emerald-100 text-emerald-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元三：金錢規劃我最行</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-emerald-500 text-white rounded-xl shadow-md shadow-emerald-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-scale-unbalanced-flip"></i>
+            </span>
+            活動四：你想過什麼樣子的生活？
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2" id="class-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div class="flex items-center gap-2" id="name-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 說明文案 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm mb-6 print-shadow-none flex flex-wrap items-center justify-between gap-4">
+        <p class="text-slate-500 text-xs font-semibold leading-relaxed max-w-2xl">
+          <strong>第一步：築夢生活（填寫夢想）</strong>：填寫您心目中「夢想生活」的每月支出金額。<br>
+          <strong>第二步：踏實生涯（對照現實）</strong>：上行政院「薪情平臺」查詢您未來專業學群可能工作的月收入，並據此調整填寫「現實生活」的每月支出。<br>
+          <strong>第三步：發現薪情（生涯反思）</strong>：依照夢想生活所需的月收金額，至下方問題區查詢對應的工作職缺與科系，反思並寫下精進的專業能力。
+        </p>
+        <a href="https://earnings.dgbas.gov.tw/" target="_blank" class="inline-flex items-center gap-1.5 bg-orange-100 hover:bg-orange-200 text-orange-700 font-black text-xs px-3.5 py-2 rounded-xl transition no-print">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          前往行政院薪情平臺
+        </a>
+      </div>
+
+      <!-- 預算對照表格與問答 -->
+      <div class="space-y-6">
+        <!-- 預算對照表 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <h3 class="text-xs font-black text-slate-800 mb-3 flex items-center gap-1.5">
+            <i class="fa-solid fa-list-check text-emerald-500"></i>
+            夢想與現實生活預算表 (自動加總)
+          </h3>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse border border-slate-200">
+              <thead>
+                <tr class="bg-slate-50 text-slate-700 font-extrabold border-b border-slate-200">
+                  <th class="p-2.5 border-r border-slate-200">項目</th>
+                  <th class="p-2.5 border-r border-slate-200 text-center w-1/3">夢想生活 (每月支出金額)</th>
+                  <th class="p-2.5 text-center w-1/3">現實生活 (每月支出金額)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-250 font-medium text-slate-600">
+                <!-- 食 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">食 (伙食/餐飲)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_food" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_food" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 衣 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">衣 (衣服/鞋子/配件)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_cloth" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_cloth" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 住 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">住 (房租/房貸/水電/瓦斯)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_live" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_live" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 行 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">行 (通勤月票/油錢/保養)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_traffic" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_traffic" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 育樂 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">育樂 (學習/休閒/旅遊/社交)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_play" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_play" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 其他 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">其他 (稅金/保險/雜項支出)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_other" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_other" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 儲蓄 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">儲蓄 (存款/緊急預備金)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_save" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_save" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 投資 -->
+                <tr>
+                  <td class="p-2.5 border-r border-slate-200 font-bold text-slate-700">投資 (股票/ETF/基金等)</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center">
+                    <input type="number" id="dream_invest" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <input type="number" id="real_invest" oninput="calcTotal()" placeholder="0" class="w-full max-w-[160px] bg-slate-50 border border-slate-200 rounded px-2 py-1 text-xs text-right focus:outline-none focus:border-emerald-500 font-semibold"> 元
+                  </td>
+                </tr>
+                <!-- 合計 -->
+                <tr class="bg-emerald-50/50 font-black text-slate-800">
+                  <td class="p-2.5 border-r border-slate-200 text-emerald-800">合計每月總預算</td>
+                  <td class="p-2.5 border-r border-slate-200 text-center text-emerald-600" id="total_dream">0 元</td>
+                  <td class="p-2.5 text-center text-emerald-600" id="total_real">0 元</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 薪情平台深入發現 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm print-shadow-none">
+          <div class="flex items-start gap-2.5 mb-3">
+            <span class="w-6 h-6 rounded-lg bg-emerald-500 text-white font-black text-xs flex-shrink-0 flex items-center justify-center">Q</span>
+            <span class="text-xs font-extrabold text-slate-800 pt-0.5">第三步：請上「薪情平臺」查詢，依照您心目中「夢想生活」需要的月收入金額，所對應的工作職缺有哪些？未來要升讀哪一個科系，才能具備這項工作的專業能力？衡量一下，你是否有能力任職這項工作？</span>
+          </div>
+          <textarea id="salary_platform_notes" placeholder="例如：夢想預算共需8萬，對應職缺有資深系統工程師，未來需升讀資訊工程系，我需要精進程式能力與外語能力..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-emerald-500 focus:bg-white transition min-h-[120px] resize-none leading-relaxed shadow-inner"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部功能與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-emerald-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 吉祥物拖曳元件 -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-emerald-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- 可拖曳吉祥物功能 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      captureArea.appendChild(mascot);
+      mascot.style.position = 'absolute';
+
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        initialLeft = mascot.offsetLeft;
+        initialTop = mascot.offsetTop;
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        const parentRect = captureArea.getBoundingClientRect();
+        const mascotRect = mascot.getBoundingClientRect();
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (newLeft < 0) newLeft = 0;
+        if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+        if (newTop < 0) newTop = 0;
+        if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'money_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      const pageKey = 'money_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    }
+
+    // --- 預算表加總計算邏輯 ---
+    const budgetItems = [
+      'food', 'cloth', 'live', 'traffic', 'play', 'other', 'save', 'invest'
+    ];
+
+    function calcTotal() {
+      let dreamTotal = 0;
+      let realTotal = 0;
+
+      budgetItems.forEach(item => {
+        const dreamVal = parseFloat(document.getElementById('dream_' + item).value) || 0;
+        const realVal = parseFloat(document.getElementById('real_' + item).value) || 0;
+
+        dreamTotal += dreamVal;
+        realTotal += realVal;
+
+        // 快取
+        localStorage.setItem('money_budget_dream_' + item, dreamVal);
+        localStorage.setItem('money_budget_real_' + item, realVal);
+      });
+
+      document.getElementById('total_dream').textContent = dreamTotal.toLocaleString() + ' 元';
+      document.getElementById('total_real').textContent = realTotal.toLocaleString() + ' 元';
+    }
+
+    // --- 本地快取 ---
+    const textInputs = ['salary_platform_notes', 'student-class', 'student-name'];
+
+    function initStorage() {
+      // 載入基本
+      textInputs.forEach(id => {
+        const saved = localStorage.getItem('money_budget_' + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem('money_budget_' + id, e.target.value);
+        });
+      });
+
+      // 載入預算金額
+      budgetItems.forEach(item => {
+        const savedDream = localStorage.getItem('money_budget_dream_' + item);
+        const savedReal = localStorage.getItem('money_budget_real_' + item);
+
+        if (savedDream !== null && savedDream !== '0') {
+          document.getElementById('dream_' + item).value = savedDream;
+        }
+        if (savedReal !== null && savedReal !== '0') {
+          document.getElementById('real_' + item).value = savedReal;
+        }
+      });
+
+      calcTotal();
+      initMascot();
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除所有預算填寫與分析答案嗎？')) {
+        // 清除文字
+        textInputs.forEach(id => {
+          localStorage.removeItem('money_budget_' + id);
+          document.getElementById(id).value = '';
+        });
+
+        // 清除預算
+        budgetItems.forEach(item => {
+          localStorage.removeItem('money_budget_dream_' + item);
+          localStorage.removeItem('money_budget_real_' + item);
+          document.getElementById('dream_' + item).value = '';
+          document.getElementById('real_' + item).value = '';
+        });
+
+        calcTotal();
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      const tempElements = [];
+      const textareas = ['salary_platform_notes'];
+
+      // textareas -> div
+      textareas.forEach(id => {
+        const ta = document.getElementById(id);
+        const val = ta.value || '（未填寫）';
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-xl p-3.5 text-xs text-emerald-700 font-semibold min-h-[120px] flex items-center whitespace-pre-wrap shadow-inner leading-relaxed';
+        tDiv.textContent = val;
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(tDiv, ta);
+        tempElements.push({ original: ta, temp: tDiv });
+      });
+
+      // inputs -> span
+      budgetItems.forEach(item => {
+        ['dream_', 'real_'].forEach(prefix => {
+          const inp = document.getElementById(prefix + item);
+          const val = inp.value ? parseFloat(inp.value).toLocaleString() + ' 元' : '0 元';
+          
+          const tDiv = document.createElement('div');
+          tDiv.className = 'w-full max-w-[160px] mx-auto bg-white border border-slate-200 rounded px-2 py-1 text-xs text-emerald-700 font-black text-right shadow-inner';
+          tDiv.textContent = val;
+          
+          inp.style.display = 'none';
+          inp.parentNode.insertBefore(tDiv, inp);
+          tempElements.push({ original: inp, temp: tDiv });
+        });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `金錢規劃_活動四_夢想與現實生活預算表_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'inline-block';
+        });
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    window.onload = initStorage;
+  </script>
+
+  
+
+</body>
+</html>

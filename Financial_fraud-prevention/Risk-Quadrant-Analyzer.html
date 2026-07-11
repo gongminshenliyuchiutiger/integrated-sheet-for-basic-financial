@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【金融防詐】單元二：金融防詐小達人 | 活動四：風險象限分析師</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between">
+    <!-- 導航條 -->
+    <div class="no-print mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-850 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+      </a>
+    </div>
+
+    
+    <!-- 頂部標頭與學生資訊區 -->
+    <div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-orange-100 text-orange-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元二：金融防詐小達人養成計畫</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-orange-500 text-white rounded-xl shadow-md shadow-orange-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-chart-gantt"></i>
+            </span>
+            活動四：風險象限分析師
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2" id="class-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-orange-500 transition">
+            </div>
+            <div class="flex items-center gap-2" id="name-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-orange-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 說明文案 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-compass text-orange-500"></i>
+          「風險象限分析師」大考驗
+        </h2>
+        <p class="text-slate-500 text-xs font-bold leading-relaxed">
+          點選右側的「詐騙類型卡片」，選擇將其歸類到左側風險象限圖中的哪一個象限（1.風險規避、2.風險轉嫁、3.風險自承、4.風險降低），並寫下您的評估理由。
+        </p>
+      </div>
+
+      <!-- 二維象限拖曳/點擊擺放面板 -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        
+        <!-- 左側：象限圖 (佔 2 欄) -->
+        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm relative flex flex-col justify-between print-shadow-none">
+          <div class="text-center text-[10px] font-black text-slate-400 mb-1 tracking-widest uppercase">財損高 (High Financial Loss)</div>
+          
+          <div class="relative grid grid-cols-2 gap-2 h-[420px] bg-slate-50 rounded-xl p-2 border border-slate-100 shadow-inner">
+            
+            <!-- 象限中央軸線與圓形標記 -->
+            <div class="absolute inset-x-0 top-1/2 h-0.5 bg-slate-300 transform -translate-y-1/2"></div>
+            <div class="absolute inset-y-0 left-1/2 w-0.5 bg-slate-300 transform -translate-x-1/2"></div>
+            <div class="absolute top-1/2 left-1/2 w-8 h-8 rounded-full bg-white border-2 border-slate-300 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center font-black text-slate-400 text-xs shadow-sm shadow-slate-200">VS</div>
+            
+            <!-- 第二象限 (左上) - 風險轉嫁 -->
+            <div class="flex flex-col justify-between p-3 bg-white/40 border border-dashed border-slate-200 rounded-lg relative overflow-y-auto max-h-[200px]" id="quad-2">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-black text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full">象限 2：風險轉嫁</span>
+                <span class="text-[9px] font-bold text-slate-400">財損高 / 機會低</span>
+              </div>
+              <div class="space-y-1.5 flex-grow" id="quad-list-2">
+                <!-- 卡片列表 -->
+              </div>
+            </div>
+
+            <!-- 第一象限 (右上) - 風險規避 -->
+            <div class="flex flex-col justify-between p-3 bg-white/40 border border-dashed border-slate-200 rounded-lg relative overflow-y-auto max-h-[200px]" id="quad-1">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-black text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">象限 1：風險規避</span>
+                <span class="text-[9px] font-bold text-slate-400">財損高 / 機會高</span>
+              </div>
+              <div class="space-y-1.5 flex-grow" id="quad-list-1">
+                <!-- 卡片列表 -->
+              </div>
+            </div>
+
+            <!-- 第三象限 (左下) - 風險自承 -->
+            <div class="flex flex-col justify-between p-3 bg-white/40 border border-dashed border-slate-200 rounded-lg relative overflow-y-auto max-h-[200px] mt-2" id="quad-3">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">象限 3：風險自承</span>
+                <span class="text-[9px] font-bold text-slate-400">財損低 / 機會低</span>
+              </div>
+              <div class="space-y-1.5 flex-grow" id="quad-list-3">
+                <!-- 卡片列表 -->
+              </div>
+            </div>
+
+            <!-- 第四象限 (右下) - 風險降低 -->
+            <div class="flex flex-col justify-between p-3 bg-white/40 border border-dashed border-slate-200 rounded-lg relative overflow-y-auto max-h-[200px] mt-2" id="quad-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">象限 4：風險降低</span>
+                <span class="text-[9px] font-bold text-slate-400">財損低 / 機會高</span>
+              </div>
+              <div class="space-y-1.5 flex-grow" id="quad-list-4">
+                <!-- 卡片列表 -->
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="flex justify-between items-center text-[10px] font-black text-slate-400 mt-2 px-1">
+            <span>發生機會低 (Low Probability)</span>
+            <span>發生機會高 (High Probability)</span>
+          </div>
+          <div class="text-center text-[10px] font-black text-slate-400 mt-1 tracking-widest uppercase">財損低 (Low Financial Loss)</div>
+        </div>
+
+        <!-- 右側：待分類卡片池 -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between print-shadow-none">
+          <div>
+            <h3 class="text-xs font-black text-slate-700 tracking-wider mb-4 border-b border-slate-100 pb-3 flex items-center gap-1.5">
+              <span class="w-1.5 h-4 bg-orange-500 rounded-full"></span>
+              待分析詐騙類型卡片池
+            </h3>
+            
+            <div class="space-y-3.5" id="pool-container">
+              <!-- 卡片由 JS 生成 -->
+            </div>
+          </div>
+          
+          <div class="mt-6 pt-4 border-t border-slate-100 text-[10px] font-bold text-slate-400 text-center">
+            提示：選取並點擊卡片旁的按鈕，快速分派至象限中。
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 象限擺放理由說明區 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h3 class="text-xs font-black text-slate-800 mb-4 flex items-center gap-2">
+          <span class="w-2 h-5 bg-orange-500 rounded-full"></span>
+          風險評估理由與分析報告
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <span class="text-[11px] font-bold text-rose-700 mb-1 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span> 象限 1（風險規避）的理由：</span>
+            <textarea id="q_reason_1" placeholder="為什麼將這些類型歸類於風險規避？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[11px] font-bold text-sky-700 mb-1 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-500 inline-block"></span> 象限 2（風險轉嫁）的理由：</span>
+            <textarea id="q_reason_2" placeholder="為什麼將這些類型歸類於風險轉嫁？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+          <div class="flex flex-col mt-2">
+            <span class="text-[11px] font-bold text-emerald-700 mb-1 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> 象限 3（風險自承）的理由：</span>
+            <textarea id="q_reason_3" placeholder="為什麼將這些類型歸類於風險自承？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+          <div class="flex flex-col mt-2">
+            <span class="text-[11px] font-bold text-amber-700 mb-1 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> 象限 4（風險降低）的理由：</span>
+            <textarea id="q_reason_4" placeholder="為什麼將這些類型歸類於風險降低？" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[70px] resize-none leading-relaxed shadow-inner"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 小組自評與互評表 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h3 class="text-xs font-black text-slate-800 mb-4 flex items-center gap-2">
+          <span class="w-2 h-5 bg-orange-500 rounded-full"></span>
+          【風險象限分析師】小組自評與互評表 (點選分數評分)
+        </h3>
+        
+        <!-- 自評互評表格 -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left border-collapse border border-slate-200">
+            <thead>
+              <tr class="bg-slate-50 text-slate-700 font-extrabold border-b border-slate-200">
+                <th class="p-3 border-r border-slate-200 w-24">評估面向</th>
+                <th class="p-3 border-r border-slate-200 text-center w-28">5分 (優異)</th>
+                <th class="p-3 border-r border-slate-200 text-center w-28">4分 (良好)</th>
+                <th class="p-3 border-r border-slate-200 text-center w-28">3分 (基本)</th>
+                <th class="p-3 border-r border-slate-200 text-center w-28">2分 (待加強)</th>
+                <th class="p-3 border-r border-slate-200 text-center w-28">1分 (未達標)</th>
+                <th class="p-3 text-center">評分結果</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 font-semibold text-slate-700">
+              
+              <!-- 表格說明列 -->
+              <tr class="bg-slate-50/50">
+                <td class="p-3 border-r border-slate-200 font-extrabold text-[11px] text-orange-600">評等指標說明</td>
+                <td class="p-3 border-r border-slate-200 text-[10px] text-slate-500 leading-relaxed">能精確運用風險象限分析多類型詐騙風險，提出符合管理策略</td>
+                <td class="p-3 border-r border-slate-200 text-[10px] text-slate-500 leading-relaxed">能運用風險象限對詐騙風險進行分類與基本管理</td>
+                <td class="p-3 border-r border-slate-200 text-[10px] text-slate-500 leading-relaxed">能初步應用風險象限，理解分類概念</td>
+                <td class="p-3 border-r border-slate-200 text-[10px] text-slate-500 leading-relaxed">風險象限應用不當，管理策略不明確</td>
+                <td class="p-3 border-r border-slate-200 text-[10px] text-slate-500 leading-relaxed">無法運用風險象限進行分類與管理</td>
+                <td class="p-3 text-center font-bold text-orange-600">我的給分</td>
+              </tr>
+              
+              <!-- 1組 -->
+              <tr id="eval-row-1">
+                <td class="p-3 border-r border-slate-200 font-bold flex items-center gap-1.5"><input type="checkbox" id="eval-check-1" class="rounded border-slate-300 text-orange-500 focus:ring-orange-400"> 偵探一組</td>
+                <td onclick="rateGroup(1, 5)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-1-5">5★</td>
+                <td onclick="rateGroup(1, 4)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-1-4">4★</td>
+                <td onclick="rateGroup(1, 3)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-1-3">3★</td>
+                <td onclick="rateGroup(1, 2)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-1-2">2★</td>
+                <td onclick="rateGroup(1, 1)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-1-1">1★</td>
+                <td class="p-3 text-center font-black text-sm text-orange-600" id="result-score-1">-</td>
+              </tr>
+
+              <!-- 2組 -->
+              <tr id="eval-row-2">
+                <td class="p-3 border-r border-slate-200 font-bold flex items-center gap-1.5"><input type="checkbox" id="eval-check-2" class="rounded border-slate-300 text-orange-500 focus:ring-orange-400"> 偵探二組</td>
+                <td onclick="rateGroup(2, 5)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-2-5">5★</td>
+                <td onclick="rateGroup(2, 4)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-2-4">4★</td>
+                <td onclick="rateGroup(2, 3)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-2-3">3★</td>
+                <td onclick="rateGroup(2, 2)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-2-2">2★</td>
+                <td onclick="rateGroup(2, 1)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-2-1">1★</td>
+                <td class="p-3 text-center font-black text-sm text-orange-600" id="result-score-2">-</td>
+              </tr>
+
+              <!-- 3組 -->
+              <tr id="eval-row-3">
+                <td class="p-3 border-r border-slate-200 font-bold flex items-center gap-1.5"><input type="checkbox" id="eval-check-3" class="rounded border-slate-300 text-orange-500 focus:ring-orange-400"> 偵探三組</td>
+                <td onclick="rateGroup(3, 5)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-3-5">5★</td>
+                <td onclick="rateGroup(3, 4)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-3-4">4★</td>
+                <td onclick="rateGroup(3, 3)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-3-3">3★</td>
+                <td onclick="rateGroup(3, 2)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-3-2">2★</td>
+                <td onclick="rateGroup(3, 1)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-3-1">1★</td>
+                <td class="p-3 text-center font-black text-sm text-orange-600" id="result-score-3">-</td>
+              </tr>
+
+              <!-- 4組 -->
+              <tr id="eval-row-4">
+                <td class="p-3 border-r border-slate-200 font-bold flex items-center gap-1.5"><input type="checkbox" id="eval-check-4" class="rounded border-slate-300 text-orange-500 focus:ring-orange-400"> 偵探四組</td>
+                <td onclick="rateGroup(4, 5)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-4-5">5★</td>
+                <td onclick="rateGroup(4, 4)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-4-4">4★</td>
+                <td onclick="rateGroup(4, 3)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-4-3">3★</td>
+                <td onclick="rateGroup(4, 2)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-4-2">2★</td>
+                <td onclick="rateGroup(4, 1)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-4-1">1★</td>
+                <td class="p-3 text-center font-black text-sm text-orange-600" id="result-score-4">-</td>
+              </tr>
+
+              <!-- 5組 -->
+              <tr id="eval-row-5">
+                <td class="p-3 border-r border-slate-200 font-bold flex items-center gap-1.5"><input type="checkbox" id="eval-check-5" class="rounded border-slate-300 text-orange-500 focus:ring-orange-400"> 偵探五組</td>
+                <td onclick="rateGroup(5, 5)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-5-5">5★</td>
+                <td onclick="rateGroup(5, 4)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-5-4">4★</td>
+                <td onclick="rateGroup(5, 3)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-5-3">3★</td>
+                <td onclick="rateGroup(5, 2)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-5-2">2★</td>
+                <td onclick="rateGroup(5, 1)" class="p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition" id="cell-5-1">1★</td>
+                <td class="p-3 text-center font-black text-sm text-orange-600" id="result-score-5">-</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- 自評互評備註說明 -->
+        <div class="mt-4 flex flex-col">
+          <span class="text-[10px] font-bold text-slate-500 mb-1 flex items-center gap-1"><i class="fa-solid fa-pen text-orange-500"></i> 備註（請簡要說明給分理由）：</span>
+          <textarea id="eval_memo" placeholder="請填寫對各組評分或自評的具體理由..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-semibold text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition min-h-[60px] resize-none leading-relaxed shadow-inner"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部功能與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-orange-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-orange-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-orange-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- 6 大詐騙卡片定義 ---
+    const scamCards = [
+      { id: 'sc-1', text: "網路購物詐騙" },
+      { id: 'sc-2', text: "假廣告詐騙" },
+      { id: 'sc-3', text: "假投資詐騙" },
+      { id: 'sc-4', text: "解除分期付款" },
+      { id: 'sc-5', text: "假中獎通知" },
+      { id: 'sc-6', text: "假檢警詐騙" }
+    ];
+
+    // 存放卡片目前的象限： 0=待分類, 1=象限1, 2=象限2, 3=象限3, 4=象限4
+    const cardPositions = {};
+
+    function initCards() {
+      scamCards.forEach(c => {
+        const savedPos = localStorage.getItem('scam_quad_card_' + c.id);
+        cardPositions[c.id] = savedPos !== null ? parseInt(savedPos) : 0;
+      });
+
+      renderAllLists();
+    }
+
+    function renderAllLists() {
+      // 1. 清空所有列表容器
+      document.getElementById('pool-container').innerHTML = '';
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('quad-list-' + i).innerHTML = '';
+      }
+
+      // 2. 分發渲染卡片
+      scamCards.forEach(c => {
+        const pos = cardPositions[c.id];
+        
+        const cardDiv = document.createElement('div');
+        
+        if (pos === 0) {
+          // 池中卡片：配有快速分派按鈕與質感背景
+          cardDiv.className = "flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm hover:border-orange-400 hover:bg-orange-50/20 transition duration-150";
+          cardDiv.innerHTML = `<span class="text-xs font-black text-slate-800">${c.text}</span>` +
+                               `<div class="flex gap-1.5">` +
+                                 `<button onclick="assignCard('${c.id}', 1)" class="w-5 h-5 bg-rose-500 hover:bg-rose-600 text-white rounded text-[9px] font-black flex items-center justify-center shadow-sm" title="送入象限 1">1</button>` +
+                                 `<button onclick="assignCard('${c.id}', 2)" class="w-5 h-5 bg-sky-500 hover:bg-sky-600 text-white rounded text-[9px] font-black flex items-center justify-center shadow-sm" title="送入象限 2">2</button>` +
+                                 `<button onclick="assignCard('${c.id}', 3)" class="w-5 h-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded text-[9px] font-black flex items-center justify-center shadow-sm" title="送入象限 3">3</button>` +
+                                 `<button onclick="assignCard('${c.id}', 4)" class="w-5 h-5 bg-amber-500 hover:bg-amber-600 text-white rounded text-[9px] font-black flex items-center justify-center shadow-sm" title="送入象限 4">4</button>` +
+                               `</div>`;
+          document.getElementById('pool-container').appendChild(cardDiv);
+        } else {
+          // 象限中卡片：小巧精緻，帶有移除回到池子按鈕
+          let themeClass = '';
+          if (pos === 1) themeClass = 'bg-rose-50 border-rose-100 text-rose-800';
+          if (pos === 2) themeClass = 'bg-sky-50 border-sky-100 text-sky-800';
+          if (pos === 3) themeClass = 'bg-emerald-50 border-emerald-100 text-emerald-800';
+          if (pos === 4) themeClass = 'bg-amber-50 border-amber-100 text-amber-800';
+
+          cardDiv.className = `flex items-center justify-between border rounded-lg px-2 py-1 text-[11px] font-extrabold ${themeClass} shadow-sm`;
+          cardDiv.innerHTML = `<span>${c.text}</span>` +
+                               `<button onclick="assignCard('${c.id}', 0)" class="no-print w-4 h-4 bg-slate-200/80 hover:bg-slate-300 text-slate-600 rounded-full flex items-center justify-center text-[8px] font-black" title="移除卡片"><i class="fa-solid fa-xmark"></i></button>`;
+          document.getElementById('quad-list-' + pos).appendChild(cardDiv);
+        }
+      });
+    }
+
+    function assignCard(cardId, targetPos) {
+      cardPositions[cardId] = targetPos;
+      localStorage.setItem('scam_quad_card_' + cardId, targetPos);
+      renderAllLists();
+    }
+
+    // --- 自評互評評分邏輯 ---
+    const scores = { 1: null, 2: null, 3: null, 4: null, 5: null };
+
+    function rateGroup(gId, rating) {
+      scores[gId] = rating;
+      localStorage.setItem('scam_quad_score_' + gId, rating);
+      
+      // 更新表格單元格的高亮樣式
+      for (let r = 1; r <= 5; r++) {
+        const cell = document.getElementById(`cell-${gId}-${r}`);
+        if (r === rating) {
+          cell.className = "p-3 border-r border-slate-200 text-center cursor-pointer bg-orange-500 text-white font-black";
+        } else {
+          cell.className = "p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition";
+        }
+      }
+
+      // 更新評分結果文字
+      const labelMap = { 5: '優異(5分)', 4: '良好(4分)', 3: '基本(3分)', 2: '待加強(2分)', 1: '未達標(1分)' };
+      document.getElementById('result-score-' + gId).textContent = labelMap[rating];
+    }
+
+    // --- 載入與同步文字框與自評互評 ---
+    const textIds = [
+      'q_reason_1', 'q_reason_2', 'q_reason_3', 'q_reason_4', 'eval_memo',
+      'student-class', 'student-name'
+    ];
+
+    function initStorage() {
+      // 載入文字答案
+      textIds.forEach(id => {
+        const saved = localStorage.getItem('scam_quad_' + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem('scam_quad_' + id, e.target.value);
+        });
+      });
+
+      // 載入評分結果
+      for (let g = 1; g <= 5; g++) {
+        const savedScore = localStorage.getItem('scam_quad_score_' + g);
+        if (savedScore !== null) {
+          rateGroup(g, parseInt(savedScore));
+        }
+
+        // 載入 checkbox
+        const savedCheck = localStorage.getItem('scam_quad_check_' + g);
+        const checkbox = document.getElementById('eval-check-' + g);
+        if (savedCheck === 'true') {
+          checkbox.checked = true;
+        }
+        checkbox.addEventListener('change', (e) => {
+          localStorage.setItem('scam_quad_check_' + g, e.target.checked);
+        });
+      }
+
+      // 初始化卡片
+      initCards();
+    }
+
+    // --- 一鍵重設學習單 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除所有象限卡片、文字評估以及自評互評表嗎？')) {
+        // 重設文字
+        textIds.forEach(id => {
+          localStorage.removeItem('scam_quad_' + id);
+          document.getElementById(id).value = '';
+        });
+
+        // 重設評分
+        for (let g = 1; g <= 5; g++) {
+          localStorage.removeItem('scam_quad_score_' + g);
+          localStorage.removeItem('scam_quad_check_' + g);
+          document.getElementById('eval-check-' + g).checked = false;
+          
+          for (let r = 1; r <= 5; r++) {
+            document.getElementById(`cell-${g}-${r}`).className = "p-3 border-r border-slate-200 text-center cursor-pointer hover:bg-orange-50 transition";
+          }
+          document.getElementById('result-score-' + g).textContent = '-';
+          scores[g] = null;
+        }
+
+        // 重設卡片位置
+        scamCards.forEach(c => {
+          localStorage.removeItem('scam_quad_card_' + c.id);
+          cardPositions[c.id] = 0;
+        });
+
+        renderAllLists();
+        showToast('學習單已全面重設！');
+      }
+    });
+
+    // --- 一鍵下載 PNG (對齊校正、防裁切版) ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      // 1. 強制固定擷取寬度
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      // 2. 暫時替換「班級、姓名」輸入框為印刷下劃線文字
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-orange-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-orange-600 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 3. 暫時替換 5 個 textarea 為對齊良好的靜態文字方格
+      const tempElements = [];
+      const textareas = ['q_reason_1', 'q_reason_2', 'q_reason_3', 'q_reason_4', 'eval_memo'];
+
+      textareas.forEach(id => {
+        const ta = document.getElementById(id);
+        const val = ta.value || '（未填寫）';
+        
+        const tDiv = document.createElement('div');
+        tDiv.className = 'w-full bg-white border border-slate-200 rounded-xl p-3 text-xs text-orange-700 font-semibold min-h-[70px] flex items-center whitespace-pre-wrap shadow-inner leading-relaxed';
+        tDiv.textContent = val;
+        
+        ta.style.display = 'none';
+        ta.parentNode.insertBefore(tDiv, ta);
+        tempElements.push({ original: ta, temp: tDiv });
+      });
+
+      // 4. 執行擷取
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        // 下載
+        const link = document.createElement('a');
+        link.download = `金融防詐_活動四_風險象限分析師_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        // 5. 還原 DOM
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+        });
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    window.onload = initStorage;
+  </script>
+
+  
+
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy 開始 -->
+  <style>
+    /* 吉祥物發光與抖動樣式 */
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+  </style>
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+  <script>
+    (function() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      // 如果有 capture-area，將吉祥物附加到 capture-area 內，使其下載時能被 html2canvas 擷取
+      if (captureArea) {
+        captureArea.appendChild(mascot);
+        mascot.style.position = 'absolute';
+      } else {
+        mascot.style.position = 'fixed';
+      }
+
+      // hover 效果
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        if (captureArea) {
+          initialLeft = mascot.offsetLeft;
+          initialTop = mascot.offsetTop;
+        } else {
+          const rect = mascot.getBoundingClientRect();
+          initialLeft = rect.left;
+          initialTop = rect.top;
+        }
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (captureArea) {
+          const parentRect = captureArea.getBoundingClientRect();
+          const mascotRect = mascot.getBoundingClientRect();
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+          if (newTop < 0) newTop = 0;
+          if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+        } else {
+          const mascotRect = mascot.getBoundingClientRect();
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > window.innerWidth - mascotRect.width) newLeft = window.innerWidth - mascotRect.width;
+          if (newTop < 0) newTop = 0;
+          if (newTop > window.innerHeight - mascotRect.height) newTop = window.innerHeight - mascotRect.height;
+        }
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'scam_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      // 載入該頁之前擺放的位置
+      const pageKey = 'scam_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    })();
+  </script>
+  <!-- 可拖曳吉祥物 LiyuChillGuy 結束 -->
+
+</body>
+</html>

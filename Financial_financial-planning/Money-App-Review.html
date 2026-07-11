@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【金錢規劃】單元二：記帳我可以 | 活動四：記帳大觀園</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    @keyframes neon-rainbow {
+      0% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+      20% { filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.9)); }
+      40% { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.9)); }
+      60% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.9)); }
+      80% { filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.9)); }
+    }
+    @keyframes mascot-shake {
+      0% { transform: scale(1) rotate(0deg); }
+      10% { transform: scale(1.05) rotate(-2deg); }
+      20% { transform: scale(1.05) rotate(2deg); }
+      30% { transform: scale(1.05) rotate(-1deg); }
+      40% { transform: scale(1.05) rotate(1deg); }
+      50% { transform: scale(1) rotate(0deg); }
+    }
+    .mascot-neon-shake {
+      animation: neon-rainbow 1.5s linear infinite, mascot-shake 0.4s ease-in-out infinite;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
+    <!-- 導航條 -->
+    <div class="no-print mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-850 transition">
+        <i class="fa-solid fa-arrow-left-long"></i> 返回儀表板
+      </a>
+    </div>
+
+    <!-- 頂部標頭與學生資訊區 -->
+    <div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b-2 border-dashed border-slate-200 pb-6 mb-6">
+        <div>
+          <span class="inline-block bg-emerald-100 text-emerald-700 font-extrabold text-xs px-3 py-1.5 rounded-full mb-2 tracking-wider">單元二：記帳我可以</span>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <span class="p-2.5 bg-emerald-500 text-white rounded-xl shadow-md shadow-emerald-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </span>
+            活動四：記帳大觀園
+          </h1>
+        </div>
+        
+        <!-- 學生資訊區 -->
+        <div id="student-info-container" class="mt-4 md:mt-0 flex gap-4 items-center">
+          <div class="bg-white px-5 py-3 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap gap-4 items-center" id="class-name-inputs">
+            <div class="flex items-center gap-2" id="class-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">班級：</span>
+              <input type="text" id="student-class" placeholder="請輸入班級" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div class="flex items-center gap-2" id="name-container">
+              <span class="text-slate-600 font-bold text-sm flex-shrink-0">姓名：</span>
+              <input type="text" id="student-name" placeholder="請輸入姓名" class="w-24 md:w-28 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 活動四：記帳大觀園 —— 記帳 APP 互動評比板 -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-6 print-shadow-none">
+        <h2 class="text-base font-extrabold text-slate-900 mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-mobile-screen-button text-emerald-500"></i>
+          記帳 APP 互動評比板
+        </h2>
+        
+        <!-- 影片導讀 -->
+        <div class="no-print bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-2.5">
+            <span class="p-2 bg-red-100 text-red-600 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fa-brands fa-youtube text-lg animate-pulse"></i>
+            </span>
+            <div>
+              <h4 class="text-xs font-black text-slate-800">推薦觀看 YouTube 影片：理財第 11 課 —— 金錢規劃：記帳</h4>
+              <p class="text-[11px] text-slate-550 font-semibold leading-relaxed mt-0.5">
+                認識記帳的優勢、紙本和數位記帳的差異與適用對象。（建議觀看至 3 分 25 秒）
+              </p>
+            </div>
+          </div>
+          <a href="https://reurl.cc/YExqyL" target="_blank" class="flex-shrink-0 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-1.5 self-start sm:self-center">
+            <i class="fa-solid fa-play"></i> 播放影片 (reurl.cc/YExqyL)
+          </a>
+        </div>
+
+        <p class="text-slate-550 text-xs font-semibold leading-relaxed mb-6 border-b border-slate-100 pb-3">
+          請點選左側不同的記帳 APP 查看其特色、優缺點與適合的理財特質，作為您實踐理財計畫的評估參考！
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 左側 APP 列表 (滾動卡片，目前為 9 個 APP) -->
+          <div class="md:col-span-1 space-y-2 max-h-[320px] overflow-y-auto pr-1">
+            <button onclick="selectApp('cw')" id="app-btn-cw" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>CWMoney</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">專業圖表</span>
+            </button>
+            <button onclick="selectApp('andro')" id="app-btn-andro" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>AndroMoney</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">直覺好用</span>
+            </button>
+            <button onclick="selectApp('ahorro')" id="app-btn-ahorro" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>Ahorro 小豬撲滿</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">簡約基礎</span>
+            </button>
+            <button onclick="selectApp('moze')" id="app-btn-moze" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>Moze</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">極致視覺</span>
+            </button>
+            <button onclick="selectApp('moneybook')" id="app-btn-moneybook" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>MoneyBook 麻布記帳</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">資產整合</span>
+            </button>
+            <button onclick="selectApp('city')" id="app-btn-city" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>記帳城市 Fortune City</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">遊戲經營</span>
+            </button>
+            <button onclick="selectApp('kana')" id="app-btn-kana" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>Kanahei 家計簿</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">可愛插圖</span>
+            </button>
+            <button onclick="selectApp('nag')" id="app-btn-nag" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>碎碎念記帳 Nagging</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">聊天互動</span>
+            </button>
+            <button onclick="selectApp('hala')" id="app-btn-hala" class="w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between">
+              <span>哈啦Money</span>
+              <span class="text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600">語音怪物</span>
+            </button>
+          </div>
+
+          <!-- 右側 APP 詳細資訊 (佔 2 欄) -->
+          <div class="md:col-span-2 bg-slate-50 rounded-2xl border border-slate-200 p-5 shadow-inner flex flex-col justify-between min-h-[300px]">
+            <div id="app-detail-content">
+              <span class="text-[10px] font-black text-slate-400 block mb-1">APP Evaluation</span>
+              <h3 id="app-name" class="text-base font-black text-slate-800 mb-3">請點選左側 APP 查看評比</h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                  <span class="text-[10px] font-black text-emerald-600 block mb-1">
+                    <i class="fa-solid fa-thumbs-up"></i> APP 特色與優點
+                  </span>
+                  <p id="app-pros" class="text-xs font-semibold text-slate-700 leading-relaxed">載入中...</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                  <span class="text-[10px] font-black text-rose-500 block mb-1">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 缺點與侷限
+                  </span>
+                  <p id="app-cons" class="text-xs font-semibold text-slate-700 leading-relaxed">載入中...</p>
+                </div>
+              </div>
+
+              <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                <span class="text-[10px] font-black text-slate-500 block mb-1">
+                  <i class="fa-solid fa-users"></i> 推薦適用群體
+                </span>
+                <p id="app-target" class="text-xs font-bold text-slate-800 leading-relaxed">載入中...</p>
+              </div>
+            </div>
+
+            <!-- 最後抉擇 -->
+            <div class="mt-4 pt-3 border-t border-slate-200/60 flex items-center gap-2">
+              <span class="text-xs font-black text-slate-900 flex-shrink-0">我最後評估想使用的記帳工具是：</span>
+              <input type="text" id="final_choice" placeholder="例如：Ahorro 小豬撲滿，因為介面最乾淨..." class="flex-grow bg-white border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-emerald-500 transition shadow-sm">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部功能與頁尾 -->
+    <div class="mt-8">
+      
+      <!-- 功能按鈕列 -->
+      <div class="no-print flex flex-wrap justify-center gap-4 mb-6">
+        <button id="btn-clear" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm px-6 py-3 rounded-xl shadow-sm transition-all transform active:scale-95">
+          <i class="fa-solid fa-trash-can"></i>
+          重設學習單
+        </button>
+        <button id="btn-download" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm px-6 py-3 rounded-xl shadow-md shadow-emerald-600/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          下載學習單 (PNG)
+        </button>
+      </div>
+
+      <!-- 頁尾宣告與 FB 連結 -->
+      <div class="text-center border-t border-slate-200/60 pt-6">
+        <div class="flex justify-center mb-3">
+          <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            快樂鯉魚秋老虎
+          </a>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+          Copyright © Liyuchiutiger Gongminshen
+        </p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <!-- Toast 訊息提示 -->
+  <div id="toast" class="no-print fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-message">提示訊息</span>
+  </div>
+
+  <!-- 可拖曳吉祥物 LiyuChillGuy -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
+  </div>
+
+  <script>
+    // --- Toast 提示功能 ---
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      
+      msg.textContent = message;
+      if (type === 'error') {
+        icon.className = 'fa-solid fa-circle-xmark text-red-400';
+      } else {
+        icon.className = 'fa-solid fa-circle-check text-emerald-400';
+      }
+      
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 3000);
+    }
+
+    // --- 可拖曳吉祥物功能 ---
+    function initMascot() {
+      const mascot = document.getElementById('draggable-mascot');
+      const img = document.getElementById('mascot-img');
+      const captureArea = document.getElementById('capture-area');
+
+      captureArea.appendChild(mascot);
+      mascot.style.position = 'absolute';
+
+      img.addEventListener('mouseenter', () => img.classList.add('mascot-neon-shake'));
+      img.addEventListener('mouseleave', () => img.classList.remove('mascot-neon-shake'));
+
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+
+      const dragStart = (e) => {
+        isDragging = true;
+        img.classList.add('mascot-neon-shake');
+
+        initialLeft = mascot.offsetLeft;
+        initialTop = mascot.offsetTop;
+
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        mascot.style.bottom = 'auto';
+        mascot.style.left = initialLeft + 'px';
+        mascot.style.top = initialTop + 'px';
+      };
+
+      const dragMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+
+        const parentRect = captureArea.getBoundingClientRect();
+        const mascotRect = mascot.getBoundingClientRect();
+
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        if (newLeft < 0) newLeft = 0;
+        if (newLeft > parentRect.width - mascotRect.width) newLeft = parentRect.width - mascotRect.width;
+        if (newTop < 0) newTop = 0;
+        if (newTop > parentRect.height - mascotRect.height) newTop = parentRect.height - mascotRect.height;
+
+        mascot.style.left = newLeft + 'px';
+        mascot.style.top = newTop + 'px';
+      };
+
+      const dragEnd = () => {
+        isDragging = false;
+        img.classList.remove('mascot-neon-shake');
+        
+        const pageKey = 'money_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+        localStorage.setItem(pageKey, JSON.stringify({ left: mascot.style.left, top: mascot.style.top }));
+      };
+
+      mascot.addEventListener('mousedown', dragStart);
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+
+      mascot.addEventListener('touchstart', dragStart, { passive: true });
+      window.addEventListener('touchmove', dragMove, { passive: false });
+      window.addEventListener('touchend', dragEnd);
+
+      const pageKey = 'money_mascot_pos_' + window.location.pathname.split('/').pop().replace('.html', '');
+      const savedPos = localStorage.getItem(pageKey);
+      if (savedPos) {
+        try {
+          const pos = JSON.parse(savedPos);
+          mascot.style.bottom = 'auto';
+          mascot.style.left = pos.left;
+          mascot.style.top = pos.top;
+        } catch (err) {}
+      }
+    }
+
+    // --- APP 評比庫資料 ---
+    const appData = {
+      cw: {
+        name: "CWMoney 理財筆記",
+        pros: "功能齊全，包含圓餅圖、長條圖等專業圖表；提供專案與多帳戶管理，並支援發票掃描自動對獎。",
+        cons: "介面較為繁雜，新手容易迷路；免費版廣告偏多，部分進階功能需付費訂閱。",
+        target: "適合偏好細緻財務規劃、注重收支結構分析、並有多帳戶管理需求的「理性型」使用者。"
+      },
+      andro: {
+        name: "AndroMoney 理財幫手",
+        pros: "操作流暢，多幣別切換極快；圖表視覺化清晰，支援將資料備份匯出至雲端 Excel 分析。",
+        cons: "介面設計較偏傳統，缺少一些現代化的趣味互動或美化功能。",
+        target: "適合需要出國旅行、經常切換幣別，且習慣使用 Excel 進行資料二次統計分析的自律者。"
+      },
+      ahorro: {
+        name: "Ahorro 小豬撲滿",
+        pros: "畫面極度簡約乾淨，主打快速記帳；核心功能免費，無繁瑣設定，操作零門檻。",
+        cons: "功能非常基礎，無專業多帳戶或資產管理，缺少深入的圖表分析。",
+        target: "強烈適合「怕麻煩、懶得記帳」或「剛開始接觸記帳」的初學者，能幫助快速養成記帳好習慣。"
+      },
+      moze: {
+        name: "Moze 記帳",
+        pros: "視覺精美有設計感，折線圖、圓餅圖、長條圖一應俱全；支援未來與固定支出設定。",
+        cons: "僅支援 iOS 系統，且高階多功能操作對新手來說學習曲線較高，部分付費。",
+        target: "適合偏好高質感介面、擁有 iOS 載具，且追求專業資金流水記帳的使用者。"
+      },
+      moneybook: {
+        name: "MoneyBook 麻布記帳",
+        pros: "能同步整合多個銀行帳戶、信用卡與悠遊卡等資料，自動匯入並統一收支；帳單到期時能自動提醒。",
+        cons: "因為整合多個金融帳戶，對個資安全隱私有疑慮者需要斟酌；若帳戶異動時，App 目前未有自動警示系統。",
+        target: "適合擁有多個銀行帳戶或信用卡，偏好一站式管理、自動記帳與資產整合的理性規劃者。"
+      },
+      city: {
+        name: "記帳城市 Fortune City",
+        pros: "將記帳與城市模擬建造遊戲結合，記帳一筆收支即可建造一棟房屋，還能與好友探訪城市。",
+        cons: "以遊戲性質為主，偏向初階記帳，專業深度分析圖表較少，部分功能需付費。",
+        target: "強烈推薦給「缺乏理財動機」或「隨興型」學生，透過建造城市遊戲化激發記帳動力！"
+      },
+      kana: {
+        name: "Kanahei 家計簿",
+        pros: "內建可愛的卡娜赫拉系列插畫，隨著記帳天數的增加可以解鎖故事插圖，療癒度滿分。",
+        cons: "有時候部分中文字體顯示會有狀況，且內建計算機功能偶爾會出錯。",
+        target: "適合重視畫面視覺療癒感、怕記帳枯燥無味的學生，以故事解鎖吸引持續記錄。"
+      },
+      nag: {
+        name: "碎碎念記帳 Nagging Money",
+        pros: "設定碎碎念的角色（如老媽、老爸），每次記帳之後角色會用語音與文字回覆互動，支持發票掃描與CSV匯出。",
+        cons: "部分額外功能需要付費，且有些工具隱藏於小圖示中需要尋找。",
+        target: "適合「怕麻煩」或「容易忘記」的人，在類似通訊軟體的對話框中一邊聊天一邊完成記帳。"
+      },
+      hala: {
+        name: "哈啦Money 記帳",
+        pros: "支援用語音講一句話直接記帳（如「可樂20元」），內建怪物養成系統，並可與其他用戶比較收支高低。",
+        cons: "免費版廣告稍微偏多，需付費移除；怪物等級提升可能需要較長時間。",
+        target: "適合「怕麻煩、懶得打字」的使用者。一邊用語音記帳，一邊透過怪物養成增加樂趣。"
+      }
+    };
+
+    let selectedAppKey = null;
+
+    function selectApp(key) {
+      selectedAppKey = key;
+      localStorage.setItem('money_app_selected_key_v3', key);
+      
+      // 更新按鈕高亮
+      Object.keys(appData).forEach(k => {
+        const btn = document.getElementById(`app-btn-${k}`);
+        if (k === key) {
+          btn.className = "w-full text-left p-3 rounded-xl border bg-emerald-500 border-emerald-500 text-white text-xs font-black transition-all flex items-center justify-between shadow-md shadow-emerald-500/10";
+          btn.querySelector('span:last-child').className = "text-[9px] bg-emerald-700 text-white px-2 py-0.5 rounded";
+        } else {
+          btn.className = "w-full text-left p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-black text-slate-700 hover:bg-emerald-50/20 hover:border-emerald-300 transition-all flex items-center justify-between";
+          btn.querySelector('span:last-child').className = "text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-600";
+        }
+      });
+
+      // 更新詳細內容
+      const detail = appData[key];
+      document.getElementById('app-name').innerHTML = `<i class="fa-solid fa-mobile text-emerald-500 mr-1.5"></i> ${detail.name}`;
+      document.getElementById('app-pros').textContent = detail.pros;
+      document.getElementById('app-cons').textContent = detail.cons;
+      document.getElementById('app-target').innerHTML = `<i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> ${detail.target}`;
+    }
+
+    // --- 本地快取 ---
+    const textInputs = ['final_choice', 'student-class', 'student-name'];
+    const storagePrefix = 'money_app_rev_v3_';
+
+    function initStorage() {
+      // 載入與監聽文字
+      textInputs.forEach(id => {
+        const saved = localStorage.getItem(storagePrefix + id);
+        if (saved !== null) {
+          document.getElementById(id).value = saved;
+        }
+        document.getElementById(id).addEventListener('input', (e) => {
+          localStorage.setItem(storagePrefix + id, e.target.value);
+        });
+      });
+
+      // 載入選中的 APP
+      const savedApp = localStorage.getItem('money_app_selected_key_v3');
+      if (savedApp && appData[savedApp]) {
+        selectApp(savedApp);
+      } else {
+        selectApp('cw'); // 預設首個
+      }
+
+      initMascot();
+    }
+
+    // --- 重設 ---
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      if (confirm('確定要清除最後實踐的記帳工具決定嗎？')) {
+        textInputs.forEach(id => {
+          localStorage.removeItem(storagePrefix + id);
+          document.getElementById(id).value = '';
+        });
+
+        localStorage.removeItem('money_app_selected_key_v3');
+        selectApp('cw');
+        showToast('學習單已重設！');
+      }
+    });
+
+    // --- 下載 ---
+    document.getElementById('btn-download').addEventListener('click', async () => {
+      const captureArea = document.getElementById('capture-area');
+      const downloadBtn = document.getElementById('btn-download');
+      
+      const originalBtnText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 正在生成學習單...`;
+      downloadBtn.disabled = true;
+
+      const originalStyleWidth = captureArea.style.width;
+      const originalStyleMaxWidth = captureArea.style.maxWidth;
+      captureArea.style.width = '1024px';
+      captureArea.style.maxWidth = '1024px';
+
+      const classInput = document.getElementById('student-class');
+      const nameInput = document.getElementById('student-name');
+      const classVal = classInput.value || '未填寫';
+      const nameVal = nameInput.value || '未填寫';
+
+      const printInfoDiv = document.createElement('div');
+      printInfoDiv.id = 'temp-student-info-print';
+      printInfoDiv.className = 'flex gap-6 items-center text-slate-700 text-sm font-extrabold flex-shrink-0';
+      printInfoDiv.innerHTML = `<div>班級：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${classVal}</span></div>` +
+                               `<div>姓名：<span class="border-b border-slate-400 pb-0.5 px-3 text-emerald-600 font-extrabold text-sm">${nameVal}</span></div>`;
+
+      const inputsWrapper = document.getElementById('class-name-inputs');
+      inputsWrapper.style.display = 'none';
+      inputsWrapper.parentNode.insertBefore(printInfoDiv, inputsWrapper);
+
+      // 文字輸入框替換為靜態文字顯示
+      const tempElements = [];
+      const blockInputs = ['final_choice'];
+
+      // block inputs -> div
+      blockInputs.forEach(id => {
+        const inp = document.getElementById(id);
+        const val = inp.value || '（未填寫）';
+        const tDiv = document.createElement('div');
+        tDiv.className = 'flex-grow bg-white border border-slate-200 rounded-lg p-2 text-xs text-emerald-700 font-semibold shadow-inner min-h-[36px] flex items-center';
+        tDiv.textContent = val;
+        inp.style.display = 'none';
+        inp.parentNode.insertBefore(tDiv, inp);
+        tempElements.push({ original: inp, temp: tDiv });
+      });
+
+      try {
+        const canvas = await html2canvas(captureArea, {
+          scale: 2,
+          windowWidth: 1024,
+          backgroundColor: '#f8fafc',
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          ignoreElements: (element) => {
+            return element.id === 'draggable-mascot' || 
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.googleapis.com')) ||
+                   (element.tagName === 'LINK' && element.href && element.href.includes('fonts.gstatic.com'));
+          }
+        });
+
+        const link = document.createElement('a');
+        link.download = `金錢規劃_活動四_記帳大觀園_${nameVal}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showToast('學習單成果下載成功！');
+      } catch (err) {
+        console.error('擷取失敗：', err);
+        showToast('產生圖片失敗，請重試。', 'error');
+      } finally {
+        captureArea.style.width = originalStyleWidth;
+        captureArea.style.maxWidth = originalStyleMaxWidth;
+
+        printInfoDiv.remove();
+        inputsWrapper.style.display = 'flex';
+
+        tempElements.forEach(item => {
+          item.temp.remove();
+          item.original.style.display = 'block';
+          if (item.original.id !== 'final_choice') {
+            item.original.style.display = 'inline-block';
+          }
+        });
+
+        downloadBtn.innerHTML = originalBtnText;
+        downloadBtn.disabled = false;
+      }
+    });
+
+    window.onload = initStorage;
+  </script>
+
+</body>
+</html>
