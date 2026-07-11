@@ -37,7 +37,7 @@
 <body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between">
 
   <!-- 頂部與主內容區 (用於 html2canvas 擷取) -->
-  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between">
+  <div id="capture-area" class="w-full max-w-5xl mx-auto px-4 py-8 md:px-8 bg-slate-50 flex-grow flex flex-col justify-between relative">
     <!-- 導航條 -->
     <div class="no-print mb-6">
       <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-850 transition">
@@ -396,7 +396,7 @@
           windowWidth: 1024,
           backgroundColor: '#f8fafc',
           useCORS: true,
-          allowTaint: true,
+          allowTaint: false,
           logging: false,
           ignoreElements: (element) => {
             // 忽略吉祥物與外部字型 link 以防 CORS 污染 canvas 導致匯出失敗

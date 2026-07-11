@@ -8,192 +8,783 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Noto Sans TC -->
+  <!-- Google Fonts: Outfit & Noto Sans TC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   
   <style>
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 100%;
+    }
     body {
-      font-family: 'Noto Sans TC', sans-serif;
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+    }
+    
+    /* 玻璃擬態面板 (Glassmorphism) */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+    
+    /* 流光呼吸背景光暈：動態變色漂流極光效果 */
+    .tech-bg-glow-1 {
+      position: absolute;
+      top: -15%;
+      left: -15%;
+      width: 55vw;
+      height: 55vw;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: aurora-float-1 25s ease-in-out infinite;
+    }
+    
+    .tech-bg-glow-2 {
+      position: absolute;
+      bottom: -15%;
+      right: -15%;
+      width: 55vw;
+      height: 55vw;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: aurora-float-2 30s ease-in-out infinite;
+    }
+
+    @keyframes aurora-float-1 {
+      0% { 
+        transform: translate(0, 0) scale(1) rotate(0deg); 
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.14) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%); 
+      }
+      33% { 
+        transform: translate(8vw, 6vh) scale(1.15) rotate(120deg); 
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 100%); 
+      }
+      66% { 
+        transform: translate(-4vw, 12vh) scale(0.9) rotate(240deg); 
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(244, 63, 94, 0.05) 50%, transparent 100%); 
+      }
+      100% { 
+        transform: translate(0, 0) scale(1) rotate(360deg); 
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.14) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%); 
+      }
+    }
+
+    @keyframes aurora-float-2 {
+      0% { 
+        transform: translate(0, 0) scale(1) rotate(0deg); 
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(244, 63, 94, 0.05) 50%, transparent 100%); 
+      }
+      33% { 
+        transform: translate(-10vw, -8vh) scale(0.9) rotate(-120deg); 
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 100%); 
+      }
+      66% { 
+        transform: translate(10vw, -4vh) scale(1.15) rotate(-240deg); 
+        background: radial-gradient(circle, rgba(244, 63, 94, 0.12) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 100%); 
+      }
+      100% { 
+        transform: translate(0, 0) scale(1) rotate(-360deg); 
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(244, 63, 94, 0.05) 50%, transparent 100%); 
+      }
+    }
+    
+    /* 卡片流光外框容器 */
+    .tech-card-container {
+      position: relative;
+      border-radius: 28px;
+      padding: 1px; /* 為了顯露 Conic Gradient */
+      background: rgba(255, 255, 255, 0.25);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      perspective: 1000px;
+    }
+    
+    /* Conic Gradient 流光霓虹燈效果：增強飽和度與色彩豐富度 */
+    .tech-card-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0%, 
+        rgba(59, 130, 246, 0) 30%, 
+        rgba(59, 130, 246, 0.6) 40%, 
+        rgba(0, 242, 254, 0.65) 45%, 
+        rgba(16, 185, 129, 0.65) 50%, 
+        rgba(139, 92, 246, 0.6) 55%, 
+        rgba(244, 63, 94, 0.5) 60%, 
+        rgba(59, 130, 246, 0) 70%, 
+        transparent 100%
+      );
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      animation: rotate-beam 4s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .tech-card-container:hover::before {
+      opacity: 1;
+    }
+    
+    .tech-card-container:hover {
+      box-shadow: 0 30px 60px -20px rgba(59, 130, 246, 0.22), 0 0 2px 1px rgba(0, 242, 254, 0.2);
+      transform: translateY(-6px);
+    }
+    
+    @keyframes rotate-beam {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* 內層卡片主體 */
+    .tech-card-body {
+      position: relative;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 27px;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.3s ease;
+    }
+    
+    .tech-card-container:hover .tech-card-body {
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    /* 3D 卡片滑鼠炫光 reflection */
+    .card-shine {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle 120px at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 80%);
+      pointer-events: none;
+      z-index: 2;
+      border-radius: 27px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .tech-card-container:hover .card-shine {
+      opacity: 1;
+    }
+
+    /* Staggered 入場動畫 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-tech-enter {
+      opacity: 0;
+      animation: fadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    /* 輕量科技風按鈕 (Light Tech Ghost Button) */
+    .btn-light-tech {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.05);
+    }
+    
+    .btn-light-tech:hover {
+      border-color: rgba(59, 130, 246, 0.6);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .btn-light-tech:active {
+      transform: translateY(0);
+    }
+
+    /* 科技漸層文字 */
+    .glow-title {
+      background: linear-gradient(135deg, #0f172a 0%, #2563eb 50%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* 微端點打字機光標 */
+    .terminal-cursor {
+      display: inline-block;
+      width: 6px;
+      height: 14px;
+      background-color: #10b981;
+      margin-left: 4px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+    
+    @keyframes blink {
+      50% { opacity: 0; }
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/30 min-h-screen text-slate-800 antialiased flex flex-col justify-between relative overflow-x-hidden">
+<body class="bg-gradient-to-br from-slate-50 via-blue-50/20 to-emerald-50/20 min-h-screen text-slate-800 antialiased flex flex-col relative overflow-x-hidden">
 
-  <!-- 裝飾用背景微光 -->
-  <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/5 rounded-full blur-[100px] pointer-events-none"></div>
-  <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-400/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <!-- 可拖曳吉祥物 LiyuChillGuy (置於頂部防瀏覽器滾動空白 Bug) -->
+  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
+    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow drop-shadow-md" id="mascot-img">
+  </div>
+
+  <!-- HTML5 Canvas 科技粒子互動背景 -->
+  <canvas id="tech-canvas" class="absolute inset-0 pointer-events-auto z-0"></canvas>
+
+  <!-- 流光呼吸背景光暈 -->
+  <div class="tech-bg-glow-1"></div>
+  <div class="tech-bg-glow-2"></div>
 
   <!-- 主內容區 -->
-  <div class="w-full max-w-6xl mx-auto px-6 pt-12 md:pt-20 pb-4 md:pb-6 flex-grow z-10 flex flex-col justify-between">
+  <div class="w-full max-w-6xl mx-auto px-6 pt-10 md:pt-16 pb-0 flex-grow z-10 flex flex-col justify-between">
     
     <!-- 頂部 Header -->
-    <div class="text-center mb-12">
-      <span class="inline-block bg-blue-100 text-blue-800 border border-blue-200 font-extrabold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">
-        金管會金融基礎教育推廣教材
-      </span>
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 flex flex-wrap items-center justify-center gap-3">
-        <span class="p-3.5 bg-gradient-to-tr from-blue-600 to-emerald-500 text-white rounded-3xl shadow-xl shadow-blue-500/20 flex items-center justify-center">
+    <div class="text-center mb-10 select-none animate-tech-enter" style="animation-delay: 0.1s;">
+      
+      <!-- 虛擬終端打字提示列 -->
+      <div class="inline-flex items-center gap-2 bg-slate-900/5 px-4 py-1.5 rounded-full mb-5 border border-slate-200/50 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-[10px] md:text-xs font-black text-slate-500 tracking-wider uppercase" id="terminal-ticker">
+          金管會金融基礎教育推廣教材
+        </span>
+        <span class="terminal-cursor"></span>
+      </div>
+
+      <h1 class="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 flex flex-wrap items-center justify-center gap-3">
+        <span class="p-3 bg-gradient-to-tr from-blue-600 to-emerald-500 text-white rounded-3xl shadow-xl shadow-blue-500/10 flex items-center justify-center animate-bounce" style="animation-duration: 4s;">
           <i class="fa-solid fa-graduation-cap"></i>
         </span>
-        金融基礎教育互動式學習單整合系統
+        <span class="glow-title">金融基礎教育互動式學習單整合系統</span>
       </h1>
       
-      <!-- 官方推廣入口網連結按鈕 -->
-      <div class="mt-6 mb-6 flex justify-center">
-        <a href="https://rm.ib.gov.tw/Pages/FKLearning_new.aspx?Dir=010200000000000000" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-700 via-indigo-650 to-blue-800 hover:from-blue-800 hover:to-indigo-800 text-white font-extrabold text-xs md:text-sm px-6 py-3.5 rounded-2xl shadow-lg shadow-blue-700/10 hover:shadow-xl hover:shadow-blue-700/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-blue-600/30">
-          <i class="fa-solid fa-globe text-emerald-400"></i>
-          金管會保險局風險管理與保險教育推廣入口網金融基礎教育教材
-          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-80"></i>
+      <!-- 官方入口連結按鈕 (輕量化重構) -->
+      <div class="mt-6 mb-5 flex justify-center">
+        <a href="https://rm.ib.gov.tw/Pages/FKLearning_new.aspx?Dir=010200000000000000" target="_blank" class="btn-light-tech inline-flex items-center gap-2 text-blue-700 hover:text-blue-800 font-extrabold text-xs md:text-sm px-6 py-3.5 rounded-2xl" id="btn-gov-link">
+          <i class="fa-solid fa-globe text-emerald-500 animate-spin" style="animation-duration: 12s;"></i>
+          金管會保險局風險管理與保險教育推廣入口網教材
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
         </a>
       </div>
 
-      <p class="text-slate-500 text-sm font-semibold mt-4 max-w-2xl mx-auto leading-relaxed">
-        本系統收錄全套七大核心金融主題教材。學生可直接進行線上互動答題、即時計分與模擬沙盒交易，並支持一鍵下載不跑版的成果學習單。
+      <p class="text-slate-500 text-xs md:text-sm font-semibold max-w-2xl mx-auto leading-relaxed">
+        本系統收錄全套七大核心金融主題教材。學生可線上互動答題、即時計分與模擬沙盒交易，並支持一鍵下載不跑版的成果學習單。
       </p>
     </div>
 
-    <!-- 教材卡片網格 -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    <!-- 教材卡片網格 (響應式網格與 Staggered 淡入) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-10 w-full" id="cards-grid">
       
       <!-- 1. 金錢規劃 -->
-      <a href="Financial_financial-planning/index.html" class="group bg-white hover:bg-emerald-50/10 border border-slate-200 hover:border-emerald-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-wallet"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-emerald-700 transition">【金錢規劃】</h2>
+      <div class="tech-card-container animate-tech-enter" style="animation-delay: 0.2s;">
+        <div class="card-shine"></div>
+        <a href="Financial_financial-planning/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-wallet"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【金錢規劃】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-emerald-50 text-emerald-600 border border-emerald-200/50 px-2 py-0.5 rounded-md tracking-wider">BUDGET</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              了解需要與想要、記帳存錢目標、複利效應、夢想與預算規劃。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            了解需要與想要、記帳存錢目標、複利效應、夢想與預算規劃。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-emerald-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-emerald-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
       <!-- 2. 借貸與信用 -->
-      <a href="Financial_borrowing-credit/index.html" class="group bg-white hover:bg-amber-50/10 border border-slate-200 hover:border-amber-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-hand-holding-dollar"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-amber-700 transition">【信用與借貸】</h2>
+      <div class="tech-card-container animate-tech-enter" style="animation-delay: 0.28s;">
+        <div class="card-shine"></div>
+        <a href="Financial_borrowing-credit/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-hand-holding-dollar"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【信用與借貸】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-amber-50 text-amber-600 border border-amber-200/50 px-2 py-0.5 rounded-md tracking-wider">CREDIT</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              誠信用途、日常信用評分、悠遊卡與信用卡、債務預防與就學貸款試算。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            誠信用途、日常信用評分、悠遊卡與信用卡、債務預防與就學貸款試算。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-amber-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-amber-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
       <!-- 3. 保險與風險管理 -->
-      <a href="Financial_insurance-risk/index.html" class="group bg-white hover:bg-blue-50/10 border border-slate-200 hover:border-blue-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-umbrella"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-blue-700 transition">【保險與風險管理】</h2>
+      <div class="tech-card-container animate-tech-enter" style="animation-delay: 0.36s;">
+        <div class="card-shine"></div>
+        <a href="Financial_insurance-risk/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-umbrella"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【保險與風險】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-blue-50 text-blue-600 border border-blue-200/50 px-2 py-0.5 rounded-md tracking-wider">RISK</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              校園角落搜查、防範風險策略、保險知識挑戰、人物保險規劃與健保探討。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            校園角落搜查、防範風險策略、保險知識挑戰、人物保險規劃與健保探討。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-blue-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-blue-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
       <!-- 4. 理財投資 -->
-      <a href="Financial_wealth-investment/index.html" class="group bg-white hover:bg-teal-50/10 border border-slate-200 hover:border-teal-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-chart-pie"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-teal-700 transition">【理財投資】</h2>
+      <div class="tech-card-container animate-tech-enter" style="animation-delay: 0.44s;">
+        <div class="card-shine"></div>
+        <a href="Financial_wealth-investment/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-chart-pie"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【理財投資】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-teal-50 text-teal-600 border border-teal-200/50 px-2 py-0.5 rounded-md tracking-wider">INVEST</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              開心農場融資模擬、投投是道乒乓球、園遊會開店企劃與投資大觀園。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            開心農場融資模擬、投投是道乒乓球、園遊會開店企劃與投資大觀園（理財、風險與夢想大樓）。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-teal-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-teal-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
       <!-- 5. 金融消費保護 -->
-      <a href="Financial_consumer-protection/index.html" class="group bg-white hover:bg-cyan-50/10 border border-slate-200 hover:border-cyan-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-handshake-angle"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-cyan-700 transition">【金融消費保護】</h2>
+      <div class="tech-card-container animate-tech-enter" style="animation-delay: 0.52s;">
+        <div class="card-shine"></div>
+        <a href="Financial_consumer-protection/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-handshake-angle"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【消費保護】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-cyan-50 text-cyan-600 border border-cyan-200/50 px-2 py-0.5 rounded-md tracking-wider">PROTECT</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              大家來評理評議案例、防範高齡金融剝削、個人金融消費權利與申訴流程。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            大家來評理評議案例、防範高齡金融剝削、個人金融消費權利與申訴流程。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-cyan-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-cyan-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
       <!-- 6. 洗錢防制 -->
-      <a href="Financial_anti-money-laundering/index.html" class="group bg-white hover:bg-indigo-50/10 border border-slate-200 hover:border-indigo-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-building-columns"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-indigo-700 transition">【洗錢防制】</h2>
+      <div class="tech-card-container animate-tech-enter" style="animation-delay: 0.6s;">
+        <div class="card-shine"></div>
+        <a href="Financial_anti-money-laundering/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg shadow-sm">
+                  <i class="fa-solid fa-building-columns"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【洗錢防制】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-indigo-50 text-indigo-600 border border-indigo-200/50 px-2 py-0.5 rounded-md tracking-wider">COMPLIANCE</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              防制洗錢基礎互動答題、豪奢斷點情境圖思辨、首創 Canvas 連線金流流向。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            防制洗錢基礎互動答題、豪奢斷點情境圖思辨、首創 Canvas 畫布連線金流流向。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-indigo-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-indigo-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
-      <!-- 7. 金融防詐 -->
-      <a href="Financial_fraud-prevention/index.html" class="group bg-white hover:bg-orange-50/10 border border-slate-200 hover:border-orange-500/50 rounded-3xl p-6 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between min-h-[200px] shadow-sm">
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-lg shadow-sm">
-              <i class="fa-solid fa-shield-halved"></i>
-            </span>
-            <h2 class="text-lg font-black text-slate-900 group-hover:text-orange-700 transition">【金融防詐】</h2>
+      <!-- 7. 金融防詐 (響應式佔位優化，平板佔2欄，桌機佔3欄且置中限制寬度) -->
+      <div class="tech-card-container md:col-span-2 lg:col-span-3 max-w-md md:max-w-none lg:max-w-md mx-auto w-full animate-tech-enter" style="animation-delay: 0.68s;">
+        <div class="card-shine"></div>
+        <a href="Financial_fraud-prevention/index.html" class="tech-card-body p-6">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-lg shadow-sm animate-pulse">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </span>
+                <h2 class="text-lg font-black text-slate-900 whitespace-nowrap">【金融防詐】</h2>
+              </div>
+              <span class="text-[9px] font-black bg-orange-50 text-orange-600 border border-orange-200/50 px-2 py-0.5 rounded-md tracking-wider">ANTI-SCAM</span>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-semibold">
+              信用水杯小幫手、真假訊息擂台戰、防詐守門員、防詐行動家與詐騙快閃GO。
+            </p>
           </div>
-          <p class="text-slate-500 text-xs leading-relaxed font-semibold">
-            信用水杯小幫手、真假訊息擂台戰、防詐守門員、防詐行動家與詐騙快閃GO。
-          </p>
-        </div>
-        <span class="text-[11px] font-extrabold text-orange-600 self-end mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">進入教材系統 <i class="fa-solid fa-arrow-right"></i></span>
-      </a>
+          <span class="text-[11px] font-extrabold text-orange-600 self-end mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">
+            進入教材系統 <i class="fa-solid fa-chevron-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
 
-    </div> <!-- 結束教材卡片網格 grid 容器 -->
+    </div>
 
-    <!-- 頁尾 (完全融入背景的通透精簡樣式，移除灰色分界線以完美對齊設計) -->
-    <div class="text-center mt-12 pb-2">
-      <div class="flex justify-center mb-3">
-        <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs px-3.5 py-2 rounded-full border border-blue-100 transition-all">
+    <!-- 頁尾 (底部保留適度優雅空間) -->
+    <div class="text-center mt-6 pb-4 select-none animate-tech-enter" style="animation-delay: 0.8s;">
+      <div class="flex justify-center mb-3" id="fb-link-wrapper">
+        <a href="https://www.facebook.com/happyliyuchilltiger/" target="_blank" class="inline-flex items-center gap-2 bg-slate-900/5 hover:bg-slate-900/10 text-blue-700 font-bold text-xs px-4 py-2 rounded-full border border-slate-200/80 transition-all shadow-sm">
           <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
           </svg>
           快樂鯉魚秋老虎
         </a>
       </div>
-      <p class="text-[11px] text-slate-400 font-bold tracking-wider uppercase">
+      <p class="text-[10px] text-slate-400 font-extrabold tracking-widest uppercase m-0 p-0">
         Copyright © Liyuchiutiger Gongminshen
       </p>
     </div>
 
-  </div> <!-- 結束 max-w-6xl 容器 -->
-
-  <!-- 可拖曳吉祥物 LiyuChillGuy -->
-  <div id="draggable-mascot" class="no-print fixed bottom-6 left-6 z-50 select-none" style="width: 160px; height: 160px; touch-action: none;">
-    <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy" class="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-shadow" id="mascot-img">
   </div>
 
   <script>
+    // --- Web Audio API 科幻音效生成器 (純 JS 合成，不依賴外部檔案) ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // 科技感卡片 Hover 音效：微弱、清脆、上揚的電子頻率
+    function playHoverSound() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.type = 'sine'; // 正弦波，柔和精緻
+        
+        const now = ctx.currentTime;
+        osc.frequency.setValueAtTime(520, now);
+        osc.frequency.exponentialRampToValueAtTime(920, now + 0.08); // 快速上揚
+        
+        gain.gain.setValueAtTime(0.04, now); // 音量極低，確保精緻不刺耳
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } catch (err) {}
+    }
+
+    // 科技感按鈕/卡片 Click 音效：清脆雙頻跳音
+    function playClickSound() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.type = 'triangle'; // 三角波，反饋清脆
+        
+        const now = ctx.currentTime;
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.setValueAtTime(587.33, now + 0.03); // 跳頻 (A5 -> D5)
+        
+        gain.gain.setValueAtTime(0.07, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        
+        osc.start(now);
+        osc.stop(now + 0.12);
+      } catch (err) {}
+    }
+
+    // 在使用者第一次與網頁互動時啟用 AudioContext (符合 Autoplay 規範)
+    function enableAudioOnInteraction() {
+      const initAudio = () => {
+        getAudioContext();
+        window.removeEventListener('click', initAudio);
+        window.removeEventListener('touchstart', initAudio);
+      };
+      window.addEventListener('click', initAudio);
+      window.addEventListener('touchstart', initAudio);
+    }
+
+    // --- Canvas 科技粒子互動背景 (彩色霓虹網格版) ---
+    function initCanvas() {
+      const canvas = document.getElementById('tech-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      const mouse = { x: null, y: null, radius: 150 };
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      // 彩色霓虹色相群
+      const themeColors = [
+        { r: 59, g: 130, b: 246 },  // 科技藍
+        { r: 16, g: 185, b: 129 },  // 極光綠
+        { r: 139, g: 92, b: 246 },  // 魅影紫
+        { r: 6, g: 182, b: 212 }    // 螢光青
+      ];
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.vx = (Math.random() - 0.5) * 0.32;
+          this.vy = (Math.random() - 0.5) * 0.32;
+          this.radius = Math.random() * 2 + 1.2;
+          this.colorObj = themeColors[Math.floor(Math.random() * themeColors.length)];
+          this.opacity = Math.random() * 0.3 + 0.2;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.x < 0 || this.x > width) this.vx *= -1;
+          if (this.y < 0 || this.y > height) this.vy *= -1;
+
+          // 滑鼠互動（排斥）
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              const force = (mouse.radius - dist) / mouse.radius;
+              const angle = Math.atan2(dy, dx);
+              this.x += Math.cos(angle) * force * 1.8;
+              this.y += Math.sin(angle) * force * 1.8;
+            }
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${this.colorObj.r}, ${this.colorObj.g}, ${this.colorObj.b}, ${this.opacity})`;
+          ctx.shadowBlur = this.radius * 2.5;
+          ctx.shadowColor = `rgba(${this.colorObj.r}, ${this.colorObj.g}, ${this.colorObj.b}, 0.5)`;
+          ctx.fill();
+          ctx.shadowBlur = 0; // 重置
+        }
+      }
+
+      function setup() {
+        particles = [];
+        const count = Math.min(Math.floor((width * height) / 16000), 85);
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+
+        // 畫彩色漸變連線
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 130) {
+              const alpha = (130 - dist) / 130 * 0.16;
+              
+              // 建立兩個粒子間的漸層連線
+              const grad = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+              grad.addColorStop(0, `rgba(${particles[i].colorObj.r}, ${particles[i].colorObj.g}, ${particles[i].colorObj.b}, ${alpha})`);
+              grad.addColorStop(1, `rgba(${particles[j].colorObj.r}, ${particles[j].colorObj.g}, ${particles[j].colorObj.b}, ${alpha})`);
+              
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = grad;
+              ctx.lineWidth = 0.7;
+              ctx.stroke();
+            }
+          }
+
+          // 畫粒子與滑鼠連線
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = particles[i].x - mouse.x;
+            const dy = particles[i].y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              const alpha = (mouse.radius - dist) / mouse.radius * 0.22;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(${particles[i].colorObj.r}, ${particles[i].colorObj.g}, ${particles[i].colorObj.b}, ${alpha})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      setup();
+      animate();
+    }
+
+    // --- 卡片 3D 傾斜與反光特效 ---
+    function initCardTilt() {
+      // 僅在支援滑鼠指針的裝置上啟用，避免干擾行動裝置的觸控滾動
+      if (!window.matchMedia("(pointer: fine)").matches) return;
+      
+      const cards = document.querySelectorAll('.tech-card-container');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          // 計算旋轉度數 (最大限制在 7.5 度，保持精緻感)
+          const rotateX = ((centerY - y) / centerY) * 7.5;
+          const rotateY = ((x - centerX) / centerX) * 7.5;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+          
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
+      });
+    }
+
+    // --- 綁定音效監聽器 ---
+    function initInteractiveSounds() {
+      // 為所有教材卡片與按鈕綁定 Hover 音效
+      const interactiveElements = document.querySelectorAll('.tech-card-container, .btn-light-tech, #fb-link-wrapper a');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', playHoverSound);
+        
+        // 點擊音效
+        el.addEventListener('click', playClickSound);
+      });
+    }
+
+    // --- 虛擬終端打字日誌輪播 ---
+    function initTerminalTicker() {
+      const ticker = document.getElementById('terminal-ticker');
+      const logs = [
+        "金管會金融基礎教育推廣教材",
+        "互動式學習單整合系統已啟動... SUCCESS",
+        "核心沙盒模擬交易模組連接成功... READY",
+        "七大金融主題教學模組... ACTIVE",
+        "學生線上作答與計分成果下載..."
+      ];
+      let logIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 50;
+
+      function type() {
+        const currentLog = logs[logIndex];
+        
+        if (isDeleting) {
+          ticker.textContent = currentLog.substring(0, charIndex - 1);
+          charIndex--;
+          typingSpeed = 20;
+        } else {
+          ticker.textContent = currentLog.substring(0, charIndex + 1);
+          charIndex++;
+          typingSpeed = 60;
+        }
+
+        if (!isDeleting && charIndex === currentLog.length) {
+          isDeleting = true;
+          typingSpeed = 3000; // 停頓時間
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          logIndex = (logIndex + 1) % logs.length;
+          typingSpeed = 500; // 換下一行前停頓
+        }
+
+        setTimeout(type, typingSpeed);
+      }
+
+      setTimeout(type, 1000);
+    }
+
+    // --- 可拖曳吉祥物功能 ---
     function initMascot() {
       const mascot = document.getElementById('draggable-mascot');
       if (!mascot) return;
@@ -242,7 +833,16 @@
         isDragging = false;
       });
     }
-    window.onload = initMascot;
+
+    // 初始化所有模組
+    window.addEventListener('DOMContentLoaded', () => {
+      enableAudioOnInteraction();
+      initCanvas();
+      initCardTilt();
+      initInteractiveSounds();
+      initTerminalTicker();
+      initMascot();
+    });
   </script>
 </body>
 </html>
